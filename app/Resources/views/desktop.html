@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!-- Metadata -->
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title></title>
+        <meta name="keywords"    content="" />
+        <meta name="description" content="" />
+
+        <!-- To use CDN, comment next line and change compile.json -->
+        <link rel="stylesheet" type="text/css" media="all" href="build/libraries.min.css" />
+
+        <!-- To use CDN, uncomment next lines and change compile.json -->
+        <!--<link rel="stylesheet" type="text/css" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" media="all" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
+
+        <link rel="stylesheet" type="text/css" media="all" href="build/application.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/3D.css" />
+
+        <!-- To use CDN, uncomment next lines and change compile.json -->
+        <!--<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>-->
+        <!--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+
+        <script type="text/javascript" src="build/three-js.min.js"></script>
+        <script type="text/javascript" src="build/libraries.min.js"></script>
+
+        <script type="text/javascript" src="build/desktop.min.js"></script>
+        <script type="text/javascript" src="build/application.min.js"></script>
+    </head>
+
+    <body>
+        <div id="office"></div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var View = new View3D('office', true);
+                View.init();
+            });
+        </script>
+    </body>
+</html>

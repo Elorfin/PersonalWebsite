@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block title %}Axel Penin{% endblock %}</title>
+
+        <link type="text/css" rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body>
+        <div class="app-container"></div>
+        {% block body %}{% endblock %}
+
+        <script src="{{ asset('dist/js/app.bundle.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

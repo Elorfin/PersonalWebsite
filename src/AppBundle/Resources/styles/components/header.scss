@@ -1,0 +1,83 @@
+.app-header {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 30px;
+  align-items: center;
+}
+
+.app-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.app-title {
+  flex: 1;
+  margin: 0 $spacer-x;
+
+  small {
+    display: block;
+    color: $gray-light;
+  }
+}
+
+.app-main-menu {
+  text-align: right;
+}
+
+.lang-select {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  color: $gray-light;
+  background: #eee;
+  border-radius: 4px;
+  padding: 4px 6px;
+  //margin-bottom: $spacer-y;
+  font-size: $font-size-sm;
+
+  .fa {
+    margin-left: 6px;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $gray;
+  }
+}
+
+.app-nav {
+  //margin-right: -$spacer-x; // absorb last link spacing
+
+  .app-nav-link {
+    display: inline-block;
+    padding: 10px $spacer-x;
+    text-align: center;
+    color: $gray;
+    border-bottom: 4px solid transparent;
+
+    &.active {
+
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .app-nav-link-icon {
+    font-size: 32px;
+  }
+
+  .app-nav-link-label {
+    display: block;
+  }
+}

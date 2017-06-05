@@ -1,0 +1,10 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding-left: calc(100vw - 100%); // avoids push effect on content when scrollbar appears
+}

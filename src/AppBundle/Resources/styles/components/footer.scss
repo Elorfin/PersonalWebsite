@@ -1,0 +1,83 @@
+.app-footer {
+  background: #fbfbfb;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $spacer-y 0;
+
+  .app-footer-column {
+    flex: 1;
+    padding: $spacer-y $spacer-x;
+    border-right: 1px solid $gray-lighter;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    header {
+      color: $brand-primary;
+      font-weight: bold;
+      font-family: Century Gothic; // todo : embed font
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        padding: 0;
+
+        a {
+          color: $gray;
+          display: block;
+          padding: 5px 15px;
+
+          .fa {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .last-update {
+      display: block;
+      text-align: center;
+    }
+
+    .versions-btn-group {
+      text-align: center;
+      padding: $spacer-y 0;
+    }
+  }
+
+  .app-nav-link,
+  .app-nav-divider {
+    display: inline-block;
+    margin: 0 $spacer-x;
+  }
+
+  .app-nav-link {
+    display: inline-block;
+    text-align: center;
+    color: $gray;
+
+
+    &.active {
+
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .app-nav-link-icon {
+    font-size: 32px;
+  }
+
+  .app-nav-link-label {
+    display: block;
+  }
+}
