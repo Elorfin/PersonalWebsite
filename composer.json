@@ -1,5 +1,6 @@
 {
     "name": "elorfin/website",
+    "description": "Axel Penin's personal website",
     "license": "proprietary",
     "type": "project",
     "autoload": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Api;
 
 use AppBundle\Manager\PdfManager;
 use JMS\DiExtraBundle\Annotation as DI;
