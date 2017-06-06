@@ -7,5 +7,6 @@ Personal website
 My online curriculum vitae
 
 Stack : 
+- PHP 7
 - Symfony 3
 - React

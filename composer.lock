@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6ee304d32a9157f1e27fa120fb78e611",
-    "content-hash": "3833b487e7ee8bc70b49ac20794eedd4",
+    "hash": "b0eaba4b41a2897b1b89dc34b7eaed2c",
+    "content-hash": "d121060c0f84753ff379931105f8e199",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1741,60 +1741,6 @@
             "time": "2017-03-31 14:50:32"
         },
         {
-            "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/9a06dc570a0367850280eefd3f1dc2da45aef517",
-                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1",
-                "symfony/phpunit-bridge": "~3.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.4-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "lib/swift_required.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Corbyn"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Swiftmailer, free feature-rich PHP mailer",
-            "homepage": "http://swiftmailer.org",
-            "keywords": [
-                "email",
-                "mail",
-                "mailer"
-            ],
-            "time": "2017-05-01 15:54:03"
-        },
-        {
             "name": "symfony/monolog-bundle",
             "version": "v3.1.0",
             "source": {
@@ -2192,76 +2138,17 @@
             "time": "2016-11-14 01:06:16"
         },
         {
-            "name": "symfony/swiftmailer-bundle",
-            "version": "v2.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "deabc81120c2086571f7c4484ab785c5e1b84f75"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/deabc81120c2086571f7c4484ab785c5e1b84f75",
-                "reference": "deabc81120c2086571f7c4484ab785c5e1b84f75",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "swiftmailer/swiftmailer": "~4.2|~5.0",
-                "symfony/config": "~2.7|~3.0",
-                "symfony/dependency-injection": "~2.7|~3.0",
-                "symfony/http-kernel": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "symfony/console": "~2.7|~3.0",
-                "symfony/framework-bundle": "~2.7|~3.0",
-                "symfony/phpunit-bridge": "~3.3@dev",
-                "symfony/yaml": "~2.7|~3.0"
-            },
-            "suggest": {
-                "psr/log": "Allows logging"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Bundle\\SwiftmailerBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony SwiftmailerBundle",
-            "homepage": "http://symfony.com",
-            "time": "2017-05-22 04:58:24"
-        },
-        {
             "name": "symfony/symfony",
-            "version": "v3.3.0",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "5a7e31c48e7cd4831efa409fffb661beb9995174"
+                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/5a7e31c48e7cd4831efa409fffb661beb9995174",
-                "reference": "5a7e31c48e7cd4831efa409fffb661beb9995174",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/82bd7c039214b34bb5d12c04f996f05f6581c49f",
+                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f",
                 "shasum": ""
             },
             "require": {
@@ -2278,7 +2165,7 @@
                 "symfony/polyfill-php56": "~1.0",
                 "symfony/polyfill-php70": "~1.0",
                 "symfony/polyfill-util": "~1.0",
-                "twig/twig": "~1.32|~2.2"
+                "twig/twig": "~1.34|~2.4"
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0",
@@ -2401,24 +2288,25 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-05-29 21:02:32"
+            "time": "2017-06-06 04:00:14"
         },
         {
             "name": "twig/twig",
-            "version": "v1.33.2",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927"
+                "reference": "fe3e3f3359b23b36f65cb600cd516142c07a2e7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/dd6ca96227917e1e85b41c7c3cc6507b411e0927",
-                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fe3e3f3359b23b36f65cb600cd516142c07a2e7d",
+                "reference": "fe3e3f3359b23b36f65cb600cd516142c07a2e7d",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.7"
+                "php": "^7.0",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/container": "^1.0",
@@ -2428,12 +2316,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.33-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
                     "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2463,76 +2354,22 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-20 17:39:48"
+            "time": "2017-06-06 03:58:14"
         }
     ],
     "packages-dev": [
         {
-            "name": "sensio/generator-bundle",
-            "version": "v3.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/37f9f4e165b033fb76cc2320838321cc57140e65",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/console": "~2.7|~3.0",
-                "symfony/framework-bundle": "~2.7|~3.0",
-                "symfony/process": "~2.7|~3.0",
-                "symfony/yaml": "~2.7|~3.0",
-                "twig/twig": "^1.28.2|^2.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.4",
-                "symfony/doctrine-bridge": "~2.7|~3.0",
-                "symfony/filesystem": "~2.7|~3.0",
-                "symfony/phpunit-bridge": "^3.3"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sensio\\Bundle\\GeneratorBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "This bundle generates code for you",
-            "time": "2017-03-15 01:02:10"
-        },
-        {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.3.0",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "1a09124ea479cca85fc66a6f21e59aa952ebed1f"
+                "reference": "acae7416018ebe5a7a2d79b4221203b2b8aca5d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/1a09124ea479cca85fc66a6f21e59aa952ebed1f",
-                "reference": "1a09124ea479cca85fc66a6f21e59aa952ebed1f",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/acae7416018ebe5a7a2d79b4221203b2b8aca5d3",
+                "reference": "acae7416018ebe5a7a2d79b4221203b2b8aca5d3",
                 "shasum": ""
             },
             "require": {
@@ -2581,7 +2418,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28 11:10:04"
+            "time": "2017-06-01 14:45:22"
         }
     ],
     "aliases": [],
@@ -2590,7 +2427,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.9"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }
