@@ -1,5 +1,37 @@
 import React from 'react'
 
+const CivilityPanel = props =>
+  <section className="content-panel">
+    <h3>Civility</h3>
+
+    <ul className="list-items">
+      <li className="list-item">
+        <span className="fa fa-fw fa-mars" />
+        Male
+      </li>
+
+      <li className="list-item">
+        <span className="fa fa-fw fa-user" />
+        Single, no children
+      </li>
+
+      <li className="list-item">
+        <span className="fa fa-fw fa-birthday-cake" />
+        31/08/1989
+      </li>
+
+      <li className="list-item">
+        <span className="fa fa-fw fa-map-marker" />
+        Grenoble, FRANCE
+      </li>
+    </ul>
+  </section>
+
+const MorePanel = props =>
+  <section className="content-panel">
+    <h3>Other</h3>
+  </section>
+
 const About = props =>
   <section>
     <h2 className="sr-only">About</h2>
@@ -18,13 +50,8 @@ const About = props =>
       </div>
 
       <div className="col-4">
-        <section className="content-panel">
-          <h3>Civility</h3>
-        </section>
-
-        <section className="content-panel">
-          <h3>Other</h3>
-        </section>
+        <CivilityPanel />
+        <MorePanel />
       </div>
     </div>
 

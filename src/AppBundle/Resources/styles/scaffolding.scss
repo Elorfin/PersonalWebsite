@@ -8,3 +8,17 @@ body {
 body {
   padding-left: calc(100vw - 100%); // avoids push effect on content when scrollbar appears
 }
+
+.app-container {
+  height: 100%;
+}
+
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}

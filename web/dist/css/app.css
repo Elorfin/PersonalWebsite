@@ -8975,6 +8975,19 @@ body {
 body {
   padding-left: calc(100vw - 100%); }
 
+.list-items {
+  padding: 0;
+  list-style: none; }
+  .list-items .list-item {
+    font-size: 14px;
+    background: #eaeaea;
+    padding: 5px 10px;
+    margin-bottom: 2px; }
+    .list-items .list-item:last-child {
+      margin-bottom: 0; }
+    .list-items .list-item .fa {
+      margin-right: 10px; }
+
 .app-header {
   display: flex;
   flex-direction: row;
@@ -9096,7 +9109,8 @@ body {
   margin-bottom: 30px; }
   .content-panel h3 {
     font-size: 1.25rem;
-    color: #0275d8; }
+    color: #0275d8;
+    margin-bottom: 1rem; }
   .content-panel p {
     font-family: Georgia, "Times New Roman", Times, serif;
     text-align: justify; }

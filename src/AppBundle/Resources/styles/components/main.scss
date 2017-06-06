@@ -1,17 +1,3 @@
-.app-container {
-  height: 100%;
-}
-
-.app {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-content {
-  flex: 1;
-}
-
 .content-panel {
   position: relative;
   background: #f9f9f9;
@@ -22,6 +8,7 @@
   h3 {
     font-size: $font-size-lg;
     color: $brand-primary;
+    margin-bottom: $spacer-y;
   }
 
   p {

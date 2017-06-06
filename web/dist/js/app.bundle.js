@@ -10543,6 +10543,58 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var CivilityPanel = function CivilityPanel(props) {
+  return _react2.default.createElement(
+    "section",
+    { className: "content-panel" },
+    _react2.default.createElement(
+      "h3",
+      null,
+      "Civility"
+    ),
+    _react2.default.createElement(
+      "ul",
+      { className: "list-items" },
+      _react2.default.createElement(
+        "li",
+        { className: "list-item" },
+        _react2.default.createElement("span", { className: "fa fa-fw fa-mars" }),
+        "Male"
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "list-item" },
+        _react2.default.createElement("span", { className: "fa fa-fw fa-user" }),
+        "Single, no children"
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "list-item" },
+        _react2.default.createElement("span", { className: "fa fa-fw fa-birthday-cake" }),
+        "31/08/1989"
+      ),
+      _react2.default.createElement(
+        "li",
+        { className: "list-item" },
+        _react2.default.createElement("span", { className: "fa fa-fw fa-map-marker" }),
+        "Grenoble, FRANCE"
+      )
+    )
+  );
+};
+
+var MorePanel = function MorePanel(props) {
+  return _react2.default.createElement(
+    "section",
+    { className: "content-panel" },
+    _react2.default.createElement(
+      "h3",
+      null,
+      "Other"
+    )
+  );
+};
+
 var About = function About(props) {
   return _react2.default.createElement(
     "section",
@@ -10579,24 +10631,8 @@ var About = function About(props) {
       _react2.default.createElement(
         "div",
         { className: "col-4" },
-        _react2.default.createElement(
-          "section",
-          { className: "content-panel" },
-          _react2.default.createElement(
-            "h3",
-            null,
-            "Civility"
-          )
-        ),
-        _react2.default.createElement(
-          "section",
-          { className: "content-panel" },
-          _react2.default.createElement(
-            "h3",
-            null,
-            "Other"
-          )
-        )
+        _react2.default.createElement(CivilityPanel, null),
+        _react2.default.createElement(MorePanel, null)
       )
     ),
     _react2.default.createElement(
@@ -11040,7 +11076,44 @@ var Contact = function Contact(props) {
     _react2.default.createElement(
       "div",
       { className: "row" },
-      _react2.default.createElement("div", { className: "col-8" }),
+      _react2.default.createElement(
+        "div",
+        { className: "col-8" },
+        _react2.default.createElement(
+          "form",
+          { className: "content-panel" },
+          _react2.default.createElement(
+            "h3",
+            null,
+            "Write me a message"
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "form-group" },
+            _react2.default.createElement(
+              "label",
+              { htmlFor: "" },
+              "Email"
+            ),
+            _react2.default.createElement("input", { type: "text", className: "form-control" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "form-group" },
+            _react2.default.createElement(
+              "label",
+              { htmlFor: "" },
+              "Message"
+            ),
+            _react2.default.createElement("textarea", { className: "form-control", rows: "10", placeholder: "placeholder" })
+          ),
+          _react2.default.createElement(
+            "button",
+            { type: "submit", className: "btn btn-block btn-primary" },
+            "Send"
+          )
+        )
+      ),
       _react2.default.createElement("div", { className: "col-4" })
     )
   );
