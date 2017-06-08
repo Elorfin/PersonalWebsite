@@ -10,3 +10,4 @@ Stack :
 - PHP 7
 - Symfony 3
 - React
+- Redux

@@ -1,0 +1,21 @@
+.list-items {
+  padding: 0;
+  list-style: none;
+
+  .list-item {
+    font-size: 14px; // todo not the correct place
+    /*background: #e6e6e6;*/
+    padding: 10px;
+    /*margin-bottom: 2px;*/
+    border-bottom: 1px dashed #ccc;
+
+    &:last-child {
+      /*margin-bottom: 0;*/
+      border-bottom: none;
+    }
+
+    .fa {
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.social-network-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: $font-size-h2;
+  margin: 0 $spacer-x;
+  box-shadow: $btn-box-shadow;
+
+  .social-network-icon {
+
+  }
+
+  .social-network-name {
+    display: none;
+  }
+
+  &.github {
+    background: #24292E;
+    color: white;
+  }
+
+  &.stack-overflow {
+    color: white;
+    background: #F48024;
+  }
+
+  &.linkedin {
+    color: white;
+    background: #0077B5;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

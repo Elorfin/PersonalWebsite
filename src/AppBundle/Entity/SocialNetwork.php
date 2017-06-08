@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Model\IdTrait;
+use AppBundle\Model\NameTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,11 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SocialNetwork
 {
-    private $id;
+    use IdTrait;
+    use NameTrait;
 
     private $url;
-
-    private $name;
 
     private $icon;
 }

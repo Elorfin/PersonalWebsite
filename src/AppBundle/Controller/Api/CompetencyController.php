@@ -43,7 +43,7 @@ class CompetencyController
      *
      * @return JsonResponse
      */
-    public function indexAction()
+    public function indexAction(): JsonResponse
     {
         return new JsonResponse(
             $this->manager->all()
@@ -60,7 +60,7 @@ class CompetencyController
      *
      * @return JsonResponse
      */
-    public function getAction(Competency $competency)
+    public function getAction(Competency $competency): JsonResponse
     {
         return new JsonResponse(
             $competency
@@ -77,7 +77,7 @@ class CompetencyController
      *
      * @return JsonResponse
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request): JsonResponse
     {
         try {
             return new JsonResponse(
@@ -103,7 +103,7 @@ class CompetencyController
      *
      * @return JsonResponse
      */
-    public function updateAction(Competency $competency, Request $request)
+    public function updateAction(Competency $competency, Request $request): JsonResponse
     {
         try {
             return new JsonResponse(
@@ -128,7 +128,7 @@ class CompetencyController
      *
      * @return JsonResponse
      */
-    public function deleteAction(Competency $competency)
+    public function deleteAction(Competency $competency): JsonResponse
     {
         $this->manager->delete($competency);
 

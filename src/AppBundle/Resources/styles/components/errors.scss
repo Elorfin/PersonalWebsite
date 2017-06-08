@@ -1,0 +1,61 @@
+.page-404 {
+  hr {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    width: 300px;
+  }
+
+  a {
+    .fa {
+      margin-right: 15px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    font-style: italic;
+  }
+}
+
+.error-404 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $grid-gutter-width-base;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin: 0;
+    position: relative;
+    padding-left: 32px;
+    color: $brand-danger;
+    font-size: 136px;
+
+    small {
+      color: #666;
+      font-size: 34px;
+      font-weight: 900;
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: -6px;
+      transform: rotate(-90deg);
+      text-transform: uppercase;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    padding-left: $spacer-x*2;
+    font-size: 54px;
+    text-transform: uppercase;
+
+    small {
+      color: #999;
+      text-transform: none;
+      margin-top: $spacer-y;
+      font-size: 22px;
+      display: block;
+    }
+  }
+}

@@ -1,16 +1,30 @@
-html,
-body {
-  position: relative;
+html {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 body {
+  height: 100%;
+  width: 100%;
   padding-left: calc(100vw - 100%); // avoids push effect on content when scrollbar appears
+}
+
+/* WebKit/Blink Browsers */
+::selection  {
+  color: white;
+  background: $brand-primary;
+}
+
+/* Gecko Browsers */
+::-moz-selection  {
+  color: white;
+  background: $brand-primary;
 }
 
 .app-container {
   height: 100%;
+  width: 100%;
 }
 
 .app {
@@ -21,4 +35,8 @@ body {
 
 .app-content {
   flex: 1;
+  padding-top: 30px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: $component-inset-box-shadow;
 }

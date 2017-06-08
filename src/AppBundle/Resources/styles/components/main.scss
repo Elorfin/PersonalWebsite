@@ -1,14 +1,39 @@
 .content-panel {
   position: relative;
-  background: #f9f9f9;
+  background: $content-panel-bg;
   border-radius: $border-radius;
   padding: 15px;
   margin-bottom: 30px;
 
   h3 {
+    position: relative;
     font-size: $font-size-lg;
     color: $brand-primary;
+    padding-bottom: 14px;
     margin-bottom: $spacer-y;
+
+    &:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 4px;
+      background: #ccc;
+    }
+  }
+
+  &.content-panel-success {
+    h3 {
+      color: $brand-success;
+    }
+  }
+
+  &.content-panel-danger {
+    h3 {
+      color: $brand-danger;
+    }
   }
 
   p {
@@ -26,14 +51,26 @@
     top: -27px;
     left: -27px;
     background: $brand-primary;
-    color: white;
+    color: $body-bg;
     border-radius: 50%;
     width: 54px;
     height: 54px;
     text-align: center;
     font-size: 24px;
     padding: 10px;
-    border: 5px solid white;
+    border: 5px solid $body-bg;
+  }
+
+  &.content-panel-success {
+    .panel-icon {
+      background: $brand-success;
+    }
+  }
+
+  &.content-panel-danger {
+    .panel-icon {
+      background: $brand-danger;
+    }
   }
 
   h3 {

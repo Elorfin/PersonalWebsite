@@ -1,27 +1,39 @@
 .app-footer {
-  background: #fbfbfb;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: $spacer-y 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  /*background: #f5f5f5;*/
+  border-top: 1px solid white;
+  padding: $grid-gutter-width-base 0;
+  box-shadow: $component-inset-box-shadow;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   .app-footer-column {
+    position: relative;
     flex: 1;
-    padding: $spacer-y $spacer-x;
-    border-right: 1px solid $gray-lighter;
+    padding: 0 $grid-gutter-width-base;
+    border-left: 1px dashed #ddd;
 
-    &:last-child {
-      border-right: none;
+    &:first-child {
+      border-left: none;
     }
 
     header {
+      margin: $spacer-y 0;
       color: $brand-primary;
       font-weight: bold;
       font-family: Century Gothic; // todo : embed font
     }
 
     ul {
-      margin: 0;
       padding: 0;
       list-style: none;
 

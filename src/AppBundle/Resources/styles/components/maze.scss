@@ -1,0 +1,80 @@
+$maze-control-size: 32px;
+
+.maze-container {
+  position: relative;
+  display: inline-block;
+  padding: $maze-control-size;
+  margin-bottom: $grid-gutter-width-base;
+
+  .maze-control {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    font-size: 32px;
+    line-height: 32px;
+
+    // reset default btn style
+    padding: 0;
+    border: none;
+    background: none;
+    opacity: 0.4;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    &.north {
+      height: $maze-control-size;
+      width: 80px;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+
+    &.east {
+      width: $maze-control-size;
+      height: 80px;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+
+    &.south {
+      height: $maze-control-size;
+      width: 80px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+
+    &.west {
+      width: $maze-control-size;
+      height: 80px;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+
+  .maze {
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+
+  .user-path {
+    position: absolute;
+    display: block;
+    z-index: 2;
+    top: $maze-control-size;
+    left: $maze-control-size;
+    right: $maze-control-size;
+    bottom: $maze-control-size;
+  }
+}

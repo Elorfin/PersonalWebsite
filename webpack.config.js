@@ -1,9 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const BASE_SRC_PATH = path.resolve(__dirname, 'src/AppBundle/Resources/js');
+
 module.exports = {
   entry: {
-    'app': path.resolve(__dirname, 'src/AppBundle/Resources/js/index.js')
+    'polyfill': 'babel-polyfill',
+    'app': path.resolve(BASE_SRC_PATH, 'app/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'web/dist/js'),
@@ -30,10 +33,9 @@ module.exports = {
     })
   ],
   resolve: {
-    modules: [
-      './src/AppBundle/Resources/js/',
-      'node_modules'
-    ],
+    alias: {
+      main: BASE_SRC_PATH
+    },
     extensions: ['.js', '.jsx', '.json']
   },
   devtool: false

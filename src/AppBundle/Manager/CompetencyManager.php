@@ -72,7 +72,7 @@ class CompetencyManager
     {
         $errors = $this->validate($data);
         if (!empty($errors)) {
-            throw new ValidationException('Invalid competency.', $errors);
+            throw new ValidationException('Invalid competency data.', $errors);
         }
 
         $this->om->persist($competency);

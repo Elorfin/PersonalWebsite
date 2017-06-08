@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Model\DescriptionTrait;
+use AppBundle\Model\IdTrait;
+use AppBundle\Model\NameTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,28 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Competency implements \JsonSerializable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(name="competency_name")
-     *
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="text")
-     *
-     * @var string
-     */
-    private $description;
+    use IdTrait;
+    use NameTrait;
+    use DescriptionTrait;
 
     /**
      * @ORM\Column(type="integer")
@@ -66,61 +50,11 @@ class Competency implements \JsonSerializable
     }
 
     /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set name.
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get description.
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set description.
-     *
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
      * Get mastery.
      *
      * @return int
      */
-    public function getMastery()
+    public function getMastery(): int
     {
         return $this->mastery;
     }
@@ -130,7 +64,7 @@ class Competency implements \JsonSerializable
      *
      * @param int $mastery
      */
-    public function setMastery($mastery)
+    public function setMastery(int $mastery)
     {
         $this->mastery = $mastery;
     }
@@ -140,7 +74,7 @@ class Competency implements \JsonSerializable
      *
      * @return Competency
      */
-    public function getParent()
+    public function getParent(): Competency
     {
         return $this->parent;
     }
@@ -158,9 +92,9 @@ class Competency implements \JsonSerializable
     /**
      * Get children competencies.
      *
-     * @return Competency[]
+     * @return ArrayCollection
      */
-    public function getChildren()
+    public function getChildren(): ArrayCollection
     {
         return $this->children;
     }
@@ -196,7 +130,7 @@ class Competency implements \JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
