@@ -113,7 +113,7 @@ class UserPath extends Component {
 
   draw(clear = false) {
     if (clear) {
-      this.context.clearRect(0, 0, this.width, this.height);
+      this.context.clearRect(0, 0, this.width, this.height)
     }
 
     const halfCell = this.props.cellSize / 2
@@ -123,7 +123,7 @@ class UserPath extends Component {
     this.context.beginPath()
     this.props.path.map((visitedCell, index) => {
 
-      this.context.setLineDash([4, 2]);
+      this.context.setLineDash([4, 2])
 
       const visitedPos = [
         (visitedCell[0] * this.props.cellSize) + (this.props.wallSize / 2) + halfCell,
@@ -132,9 +132,9 @@ class UserPath extends Component {
       visited.push(visitedPos)
 
       if (0 === index) {
-        this.context.moveTo(visitedPos[0], visitedPos[1]);
+        this.context.moveTo(visitedPos[0], visitedPos[1])
       } else {
-        this.context.lineTo(visitedPos[0], visitedPos[1]);
+        this.context.lineTo(visitedPos[0], visitedPos[1])
       }
 
 
@@ -222,7 +222,7 @@ class Maze extends Component {
         this.goTo(keysBinding[e.which || e.keyCode])
         e.preventDefault()
       }
-    }.bind(this));
+    }.bind(this))
   }
 
   goTo(direction) {
@@ -235,16 +235,16 @@ class Maze extends Component {
       switch (direction) {
         case NORTH:
           nextCell = [currentCell[0], currentCell[1]-1]
-          break;
+          break
         case EAST:
           nextCell = [currentCell[0]+1, currentCell[1]]
-          break;
+          break
         case SOUTH:
           nextCell = [currentCell[0], currentCell[1]+1]
-          break;
+          break
         case WEST:
           nextCell = [currentCell[0]-1, currentCell[1]]
-          break;
+          break
       }
 
       // check if the destination is still in the grid
@@ -307,7 +307,7 @@ Maze.defaultProps = {
   width: 15,
   cellSize: 20,
   wallSize: 4,
-  wallColor: 'black',
+  wallColor: '#000000',
   userColor: '#D64C00'
 }
 
