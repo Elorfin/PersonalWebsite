@@ -9,9 +9,9 @@ import {
   NORTH,
   EAST,
   SOUTH,
-  WEST
-} from './../constants'
-import { isInGrid } from './../utils'
+  WEST,
+  isInGrid
+} from './../utils'
 
 let
   grid,

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { PropTypes as T } from 'prop-types'
 
 import { generate } from './../generator/recursive-backtracker'
-import { isInGrid } from './../utils'
 import {
   NORTH,
   EAST,
   SOUTH,
   WEST,
-  keysBinding
-} from './../constants'
+  keysBinding,
+  isInGrid
+} from './../utils'
 
 class MazeStructure extends Component {
   componentDidMount() {
