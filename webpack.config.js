@@ -5,8 +5,8 @@ const BASE_SRC_PATH = path.resolve(__dirname, 'src/AppBundle/Resources/js');
 
 module.exports = {
   entry: {
-    'polyfill': 'babel-polyfill',
-    'app': path.resolve(BASE_SRC_PATH, 'app/index.js')
+    polyfill: 'babel-polyfill',
+    app: path.resolve(BASE_SRC_PATH, 'app/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'web/dist/js'),
@@ -24,7 +24,7 @@ module.exports = {
       }
     }, {
       test: /\.json$/,
-      loader: "json-loader"
+      loader: 'json-loader'
     }]
   },
   plugins: [

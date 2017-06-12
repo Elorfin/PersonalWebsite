@@ -100,10 +100,6 @@ View3D.prototype = {
         requestAnimationFrame(this.animate.bind(this));
 
         this.render();
-
-        if (this.debug) {
-            this.stats.update();
-        }
     },
 
     addScene: function () {
@@ -112,23 +108,6 @@ View3D.prototype = {
 
     addCamera: function () {
         this.camera = new Camera.POV(this.userInput);
-    },
-
-    addGrid: function () {
-        if (null !== this.scene) {
-            var gridXZ = new THREE.GridHelper(200, 8);
-            gridXZ.setColors( new THREE.Color(0xFFC0CB), new THREE.Color(0x8f8f8f) );
-            gridXZ.position.set(0,0,0);
-            this.scene.add(gridXZ);
-        }
-    },
-
-    addAxes: function () {
-        if (null !== this.scene) {
-            var axes = new THREE.AxisHelper(50);
-            axes.position.set(0,0,0);
-            this.scene.add(axes);
-        }
     },
 
     addRenderer: function () {
@@ -146,10 +125,5 @@ View3D.prototype = {
         this.renderer.gammaOutput = true;*/
 
         this.container.appendChild(this.renderer.domElement);
-    },
-
-    addStats: function () {
-        this.stats = new Stats();
-        this.container.appendChild(this.stats.domElement);
     }
 };

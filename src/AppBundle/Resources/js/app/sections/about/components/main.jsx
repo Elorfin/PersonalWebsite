@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { SocialNetworks } from 'main/app/components/social.jsx'
+
 const CivilityPanel = props =>
   <section className="content-panel">
     <h3>Civility</h3>
@@ -33,7 +35,7 @@ const MorePanel = props =>
   </section>
 
 const About = props =>
-  <section className="container">
+  <section className="container app-section">
     <h2 className="sr-only">About</h2>
 
     <div className="row">
@@ -50,6 +52,7 @@ const About = props =>
       </div>
 
       <div className="col-4">
+        <SocialNetworks />
         <CivilityPanel />
         <MorePanel />
       </div>

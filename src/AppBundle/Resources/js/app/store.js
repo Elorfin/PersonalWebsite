@@ -1,6 +1,8 @@
 import {
   createStore as baseCreate,
-  combineReducers
+  combineReducers,
+  applyMiddleware,
+  compose
 } from 'redux'
 
 import { reducer as aboutReducer } from 'main/app/sections/about/reducer'
@@ -21,9 +23,9 @@ const initialState = {
     birthDate: '1989-08-31',
     description: '',
     social: [
-      {name: 'Github', icon: 'github', url: 'https://github.com/Elorfin'},
+      {name: 'Github',         icon: 'github',         url: 'https://github.com/Elorfin'},
       {name: 'Stack Overflow', icon: 'stack-overflow', url: 'https://stackoverflow.com/users/379907/elorfin'},
-      {name: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/in/axel-penin-32645b70/'}
+      {name: 'LinkedIn',       icon: 'linkedin',       url: 'https://www.linkedin.com/in/axel-penin-32645b70/'}
     ]
   },
   competencies: [
@@ -38,9 +40,11 @@ const initialState = {
   ],
   experiences: [
     {
+      id: 1,
       type: 'project',
       name: 'Claroline',
-      description: '',
+      image: 'uploads/claroline.png',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel sem a erat commodo elementum ac eget nulla. Donec porttitor orci id nibh sollicitudin interdum ut et elit. Quisque diam diam, pretium eu eleifend quis, congue at mi.',
       competencies: [],
       details: [
         'Advanced theme feature',
@@ -49,25 +53,24 @@ const initialState = {
       ],
       links: [
 
-      ]
+      ],
+      location: ''
     },
     {
-      type: 'diploma',
-      name: 'DUT software engineering',
-      competencies: [],
-      dates: ['2011']
-    },
-    {
-      type: 'studies',
-      name: 'IUT',
-      description: '',
+      id: 5,
+      type: 'job',
+      name: 'Web dev at InnovaLangues',
+      image: 'uploads/stendhal.png',
+      dates: ['2009-09-01', '2011-09-01'],
       competencies: [],
       projects: [],
-      dates: ['2009-09-01', '2011-09-01']
+      location: ''
     },
     {
+      id: 4,
       type: 'job',
-      name: '',
+      name: 'Web dev at Captivea',
+      image: 'uploads/captivea.png',
       dates: ['2009-09-01', '2011-09-01'],
       competencies: [],
       projects: [],
@@ -75,18 +78,43 @@ const initialState = {
         'Advanced theme feature',
         'Ergonomy',
         ''
-      ]
+      ],
+      location: ''
+    },
+    {
+      id: 2,
+      type: 'diploma',
+      name: 'DUT software engineering',
+      competencies: [],
+      dates: ['2011'],
+      location: ''
+    },
+    {
+      id: 3,
+      type: 'studies',
+      name: 'IUT',
+      image: 'uploads/upmf.png',
+      description: 'Aliquam erat volutpat. Fusce feugiat urna diam, nec lacinia massa accumsan ac. Integer sagittis laoreet interdum. Suspendisse feugiat pharetra libero, nec suscipit felis auctor id.',
+      competencies: [],
+      projects: [],
+      dates: ['2009-09-01', '2011-09-01'],
+      location: ''
     }
   ]
 }
 
-export function createStore() {
+export function createStore(middleware = []) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
   return baseCreate(
     combineReducers({
       about: aboutReducer,
       competencies: competenciesReducer,
       experiences: experiencesReducer
     }),
-    initialState
+    initialState,
+    composeEnhancers(
+      applyMiddleware(...middleware)
+    )
   )
 }

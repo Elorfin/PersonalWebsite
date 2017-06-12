@@ -1,11 +1,9 @@
 .app-footer {
+  cursor: default;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
-
-  /*background: #f5f5f5;*/
   border-top: 1px solid white;
   padding: $grid-gutter-width-base 0;
   box-shadow: $component-inset-box-shadow;
@@ -30,7 +28,7 @@
       margin: $spacer-y 0;
       color: $brand-primary;
       font-weight: bold;
-      font-family: Century Gothic; // todo : embed font
+      font-family: Century Gothic, Arial, sans-serif; // todo : embed font
     }
 
     ul {

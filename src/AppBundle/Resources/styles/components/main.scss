@@ -57,8 +57,11 @@
     height: 54px;
     text-align: center;
     font-size: 24px;
-    padding: 10px;
     border: 5px solid $body-bg;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &.content-panel-success {
@@ -73,7 +76,9 @@
     }
   }
 
-  h3 {
+  h3,
+  ul,
+  p {
     margin-left: 15px;
   }
 }

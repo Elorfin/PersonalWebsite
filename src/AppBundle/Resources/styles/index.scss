@@ -9,9 +9,12 @@
 
 // import app components
 @import "./scaffolding";
+
+@import "./layout/header";
+@import "./layout/footer";
+
+@import "./components/3d";
 @import "./components/errors";
-@import "./components/header";
-@import "./components/footer";
 @import "./components/main";
 @import "./components/maze";
 @import "./components/social";

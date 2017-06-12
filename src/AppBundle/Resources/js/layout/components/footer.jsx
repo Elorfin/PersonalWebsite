@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom'
 import { sections } from 'main/app/sections/index'
 
 const VersionLink = props =>
-  <a className="app-nav-link" href={props.target}>
+  <NavLink className="app-nav-link" to={props.target}>
     <span className={`app-nav-link-icon fa fa-${props.icon}`} />
     <span className="app-nav-link-label">
       {props.label}
     </span>
-  </a>
+  </NavLink>
 
 VersionLink.propTypes = {
   icon: T.string.isRequired,
@@ -88,19 +88,19 @@ const Footer = props =>
           <VersionLink
             icon="print"
             label="PDF"
-            target="#/download"
+            target="/download"
           />
 
           <VersionLink
             icon="code"
             label="API"
-            target="#/api"
+            target="/api"
           />
 
           <VersionLink
             icon="cube"
             label="3D"
-            target="#/3d"
+            target="/3d"
           />
         </div>
 

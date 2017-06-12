@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Competencies = props =>
-  <section className="container">
+const Competencies = () =>
+  <section className="container app-section">
     <h2 className="sr-only">Competencies</h2>
     Competencies
   </section>

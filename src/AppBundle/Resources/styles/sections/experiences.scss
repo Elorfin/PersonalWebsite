@@ -1,0 +1,32 @@
+.experiences {
+
+}
+
+.experience-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.experience-content {
+  flex: 1;
+  padding-right: $grid-gutter-width-base;
+}
+
+.experience-img {
+  background: white;
+  border-radius: 50%;
+  padding: 30px;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.experience-details {
+  font-size: $font-size-sm;
+  font-style: italic;
+  color: #999;
+}

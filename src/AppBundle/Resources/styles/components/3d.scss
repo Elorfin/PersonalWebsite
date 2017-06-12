@@ -1,0 +1,66 @@
+.view-3d-container {
+  position: relative;
+  overflow: hidden; // fixme by correct calculation of the rendering size
+  font-size: 0; // remove additional space after the canvas
+}
+
+.view-3d {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.view-3d-controls {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  margin: 15px;
+}
+
+$control-btn-size: 45px;
+$control-btn-border-size: 2px;
+
+.view-3d-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+
+  border-radius: 50%;
+  border: $control-btn-border-size solid white;
+  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.75);
+
+  width: $control-btn-size;
+  height: $control-btn-size;
+  background: transparent;
+  padding: 0;
+
+  text-shadow:
+           2px 0 1px rgba(0, 0, 0, 0.75),
+          -2px 0 1px rgba(0, 0, 0, 0.75),
+           0 2px 1px rgba(0, 0, 0, 0.75),
+           0 -2px 1px rgba(0, 0, 0, 0.75),
+
+           1px 1px black,
+           -1px -1px 0 rgba(0, 0, 0, 0.75),
+           1px -1px 0 rgba(0, 0, 0, 0.75),
+           -1px 1px 0 rgba(0, 0, 0, 0.75);
+
+  & + .view-3d-btn {
+    margin-left: 10px;
+  }
+
+  .fa {
+    flex: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: $control-btn-size - ($control-btn-border-size * 2);
+    font-size: $font-size-lg;
+    color: white;
+    box-shadow: inset 0 0 1px 2px rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+  }
+}
