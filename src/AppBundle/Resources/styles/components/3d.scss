@@ -16,17 +16,24 @@
   z-index: 2;
   top: 0;
   right: 0;
-  margin: 15px;
+  margin: 0 15px;
 }
 
-$control-btn-size: 45px;
+$control-btn-spacer-x:    5px;
+$control-btn-spacer-y:    15px;
+$control-btn-size:        46px;
 $control-btn-border-size: 2px;
 
+$control-btn-hover-size: 54px;
+$control-btn-hover-border-size: 3px;
+
 .view-3d-btn {
+  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: stretch;
   flex-direction: column;
+  margin: $control-btn-spacer-y $control-btn-spacer-x;
 
   border-radius: 50%;
   border: $control-btn-border-size solid white;
@@ -38,18 +45,27 @@ $control-btn-border-size: 2px;
   padding: 0;
 
   text-shadow:
-           2px 0 1px rgba(0, 0, 0, 0.75),
-          -2px 0 1px rgba(0, 0, 0, 0.75),
-           0 2px 1px rgba(0, 0, 0, 0.75),
-           0 -2px 1px rgba(0, 0, 0, 0.75),
+           2px  0   1px rgba(0, 0, 0, 0.75),
+          -2px  0   1px rgba(0, 0, 0, 0.75),
+           0    2px 1px rgba(0, 0, 0, 0.75),
+           0   -2px 1px rgba(0, 0, 0, 0.75),
 
-           1px 1px black,
-           -1px -1px 0 rgba(0, 0, 0, 0.75),
+           1px  1px 0 rgba(0, 0, 0, 0.75),
+          -1px -1px 0 rgba(0, 0, 0, 0.75),
            1px -1px 0 rgba(0, 0, 0, 0.75),
-           -1px 1px 0 rgba(0, 0, 0, 0.75);
+          -1px  1px 0 rgba(0, 0, 0, 0.75);
 
-  & + .view-3d-btn {
-    margin-left: 10px;
+  &:hover,
+  &:focus {
+    width: $control-btn-hover-size;
+    height: $control-btn-hover-size;
+    border: $control-btn-hover-border-size solid white;
+    margin: floor($control-btn-spacer-y - ($control-btn-hover-size - $control-btn-size)/2)
+            floor($control-btn-spacer-x - ($control-btn-hover-size - $control-btn-size)/2);
+
+    .fa {
+      line-height: $control-btn-hover-size - ($control-btn-hover-border-size * 2);
+    }
   }
 
   .fa {
