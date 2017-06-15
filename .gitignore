@@ -27,3 +27,5 @@
 !/web/dist/fonts
 /web/dist/fonts/*
 !/web/dist/fonts/.gitkeep
+/web/uploads/*
+!/web/uploads/.gitkeep

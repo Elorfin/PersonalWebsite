@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * About controller.
  *
- * @DI\Service("app.controller.about")
  * @EXT\Route("/about")
  */
 class AboutController
@@ -20,6 +19,15 @@ class AboutController
     /** @var AboutManager */
     private $manager;
 
+    /**
+     * PdfController constructor.
+     *
+     * @DI\InjectParams({
+     *     "manager" = @DI\Inject("app.manager.about")
+     * })
+     *
+     * @param AboutManager $manager
+     */
     public function __construct(AboutManager $manager)
     {
         $this->manager = $manager;

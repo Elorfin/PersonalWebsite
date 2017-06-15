@@ -13,12 +13,12 @@
 @import "./layout/header";
 @import "./layout/footer";
 
-@import "./components/3d";
 @import "./components/errors";
-@import "./components/main";
+@import "./components/content-panel";
 @import "./components/maze";
 @import "./components/social";
 
+@import "./sections/3d";
 @import "./sections/about";
 @import "./sections/competencies";
 @import "./sections/experiences";

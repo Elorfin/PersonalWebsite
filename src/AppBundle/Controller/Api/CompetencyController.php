@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Competency controller.
  *
- * @DI\Service("app.controller.competency")
  * @EXT\Route("/competencies")
  */
 class CompetencyController

@@ -11,8 +11,15 @@ import {
   Mesh,
   Scene,
   TextureLoader,
-  Math as TMath
+  Math as TMath,
+  CameraHelper
 } from 'three'
+
+import {
+  GRID_HELPER,
+  AXIS_HELPER,
+  LIGHT_HELPER
+} from './constant'
 
 // todo add validation
 
@@ -41,10 +48,12 @@ function createMaterial(materialConfig) {
 function addContent(meshes, scene) {
   // Load all defined meshes
   meshes.map(meshConfig => {
+    const material = createMaterial(meshConfig.material)
+
     // create instances
     meshConfig.instances.map(shape => {
       jsonLoader.load(meshConfig.geometry, geometry => {
-        const mesh = new Mesh(geometry, createMaterial(meshConfig.material))
+        const mesh = new Mesh(geometry, material)
 
         mesh.castShadow = meshConfig.castShadow
         mesh.receiveShadow = meshConfig.receiveShadow
@@ -67,7 +76,7 @@ function addContent(meshes, scene) {
   })
 }
 
-function addLights(lights, scene, debug = false) {
+function addLights(lights, scene, showHelpers = false) {
   lights.map(lightConfig => {
     const light = new lightConfig.type(...lightConfig.color)
 
@@ -77,25 +86,27 @@ function addLights(lights, scene, debug = false) {
 
     if (lightConfig.castShadow) {
       light.castShadow = true
-      //light.shadow.bias = 0.003
-      /*if (debug) {
-        light.shadowCameraVisible = true;
-      }*/
 
-      // todo : use config
-      // define the visible area of the projected shadow
-      /*light.shadow.camera.near = 0.1
-      light.shadow.camera.far = 1000*/
+      light.shadow.camera.near = 8
+      light.shadow.camera.far = 40
+      light.shadow.camera.left = -12
+      light.shadow.camera.bottom = -16
+      light.shadow.camera.top = 16
+      light.shadow.camera.right = 16
 
-      // define the resolution of the shadow; the higher the better,
-      // but also the more expensive
-      /*light.shadow.mapSize.width = 2048
-      light.shadow.mapSize.height = 2048*/
+      light.shadow.mapSize.width = 2048
+      light.shadow.mapSize.height = 2048
+
+      if (showHelpers) {
+        scene.add(
+          new CameraHelper(light.shadow.camera)
+        )
+      }
     }
 
     scene.add(light)
 
-    if (debug) {
+    if (showHelpers) {
       // todo : find a better way to do it
       let lightHelper = null
       switch (lightConfig.type) {
@@ -119,26 +130,32 @@ function addLights(lights, scene, debug = false) {
   })
 }
 
-function addHelpers(grid, scene) {
-  // add grid
+function addGrid(grid, scene) {
   const gridXZ = new GridHelper(grid.size, grid.subdivisions, ...grid.colors)
   gridXZ.position.set(0,0,0)
-  scene.add(gridXZ)
 
-  // add axis
+  scene.add(gridXZ)
+}
+
+function addAxis(scene) {
   const axes = new AxisHelper(8)
   axes.position.set(0,0,0)
+
   scene.add(axes)
 }
 
-function build(config, debug = false) {
+function build(config) {
   const scene = new Scene()
 
-  if (debug) {
-    addHelpers(config.grid, scene)
+  if (-1 !== config.helpers.indexOf(GRID_HELPER)) {
+    addGrid(config.grid, scene)
   }
 
-  addLights(config.lights, scene, debug)
+  if (-1 !== config.helpers.indexOf(AXIS_HELPER)) {
+    addAxis(scene)
+  }
+
+  addLights(config.lights, scene, -1 !== config.helpers.indexOf(LIGHT_HELPER))
   addContent(config.meshes, scene)
 
   return scene

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { PropTypes as T } from 'prop-types'
 
 import {
-  PerspectiveCamera,
-  PCFSoftShadowMap
+  PerspectiveCamera/*,
+  PCFSoftShadowMap*/
 } from 'three'
 
 import { config } from './../config'
@@ -42,21 +42,17 @@ class View3D extends Component {
   }
 
   componentDidMount() {
-    // add & configure camera
-    this.camera = new PerspectiveCamera(45, this.container.offsetWidth / window.innerHeight, 0.1, 100)
-    this.camera.position.z = 20
-    this.camera.position.x = 0
-    this.camera.position.y = 10
+    const height = 8 // back wall height
+    const distance = 16
+    const vFOV = 2 * Math.atan( height / ( 2 * distance ) )
 
-    this.camera.lookAt({
-      x: 0,
-      y: 2,
-      z: 0
-    })
+    // add & configure camera
+    this.camera = new PerspectiveCamera(vFOV * 180 / Math.PI, this.container.offsetWidth / window.innerHeight, 10, 50)
+    this.camera.position.set(0, 6, 30)
+    this.camera.lookAt({x: 0, y: 2, z: 0})
 
     // add & configure renderer
     this.renderer = new config.render.renderer({
-      alpha: true,
       antialias: config.render.antialias
     })
     this.renderer.setSize(this.container.offsetWidth, window.innerHeight)
@@ -65,24 +61,19 @@ class View3D extends Component {
       this.renderer.setClearColor(...config.render.background)
     }
 
-    this.renderer.setPixelRatio( window.devicePixelRatio )
+    this.renderer.setPixelRatio(window.devicePixelRatio)
 
     // Enable shadow rendering
     if (config.render.shadow) {
-      //this.renderer.shadowMap = Object.assign({}, this.renderer.shadowMap, config.render.shadow)
+      this.renderer.shadowMap.enabled = config.render.shadow.enabled
+      this.renderer.shadowMap.type = config.render.shadow.type
     }
-
-    this.renderer.shadowMap.enabled = true
-    this.renderer.shadowMap.type = PCFSoftShadowMap
-    /*this.renderer.shadowMap.mapSize.width = 2048
-    this.renderer.shadowMap.mapSize.height = 2048*/
 
     this.container.appendChild(this.renderer.domElement)
 
     // create scene
-    this.scene = buildScene(config, true)
+    this.scene = buildScene(config)
 
-    //this.addLights()
     this.renderScene()
 
     window.addEventListener('resize', this.resize)

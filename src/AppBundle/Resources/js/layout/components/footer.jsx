@@ -76,7 +76,7 @@ const InternalLinksColumn = props =>
     </ul>
   </FooterColumn>
 
-const Footer = props =>
+const Footer = () =>
   <footer className="app-footer">
     <div className="container" role="presentation">
       <SocialNetworksColumn/>
@@ -85,11 +85,12 @@ const Footer = props =>
 
       <FooterColumn title="Versions">
         <div className="versions-btn-group">
-          <VersionLink
-            icon="print"
-            label="PDF"
-            target="/download"
-          />
+          <a href="http://localhost/APWebsite/web/app_dev.php/pdf" className="app-nav-link">
+            <span className="app-nav-link-icon fa fa-print" />
+            <span className="app-nav-link-label">
+              PDF
+            </span>
+          </a>
 
           <VersionLink
             icon="code"
