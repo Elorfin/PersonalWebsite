@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+/* global require */
+
+const fs = require('fs')
+const path = require('path')
+
+const SRC_DIR  = path.resolve('app/Resources/models')
+const DEST_DIR = path.resolve('web/dist/models')
+
+const IMPORT_FILES = {
+  '.json': 'models',
+  '.png': 'textures',
+  '.jpg': 'textures',
+  '.jpeg': 'textures'
+}
+
+const mapping = {
+  models: {},
+  textures: {}
+}
+
+createDestination()
+publishModels(SRC_DIR)
+
+function createDestination() {
+  if (!fs.existsSync(DEST_DIR)) {
+    fs.mkdirSync(DEST_DIR)
+  }
+
+  if (!fs.existsSync(path.resolve(DEST_DIR, 'files'))) {
+    fs.mkdirSync(path.resolve(DEST_DIR, 'files'))
+  }
+}
+
+function publishModels(currentPath) {
+  console.log('Publish models for path : '+currentPath)
+
+  fs.readdir(currentPath, (err, items) => {
+    items.map(item => {
+      const itemPath = path.resolve(currentPath, item)
+
+      if (fs.lstatSync(itemPath).isDirectory()) {
+        // recursive process child directories
+        publishModels(itemPath)
+      } else {
+        const ext = path.extname(item)
+        if (IMPORT_FILES[ext]) {
+          const baseName = path.basename(item)
+          const itemDest = path.resolve(DEST_DIR, 'files', baseName)
+
+          console.log('Publish file "'+itemPath+'" to "'+itemDest+'" as "'+IMPORT_FILES[ext]+'".')
+
+          // copy file in public dir
+          fs
+            .createReadStream(itemPath)
+            .pipe(
+              fs.createWriteStream(itemDest)
+            )
+
+
+          // add published file to mapping
+          mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))] = itemDest
+
+          dumpMapping()
+        }
+      }
+    })
+  })
+}
+
+function dumpMapping() {
+  fs.writeFileSync(path.resolve(DEST_DIR, 'mapping.json'), JSON.stringify(mapping, null, 2))
+}

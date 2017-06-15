@@ -336,7 +336,6 @@ export const config = {
         { scale: [1, 1, 1], position: [-16, 0, -8], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-12, 0, -8], rotation: [0, 90, 0] },
 
-        //{ scale: [1, 1, 1], position: [-12, 0, -10], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-8, 0, -8], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-4, 0, -8], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] },

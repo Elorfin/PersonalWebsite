@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes as T } from 'prop-types'
 
 import {
-  PerspectiveCamera/*,
-  PCFSoftShadowMap*/
+  PerspectiveCamera
 } from 'three'
 
 import { config } from './../config'
@@ -44,10 +43,10 @@ class View3D extends Component {
   componentDidMount() {
     const height = 8 // back wall height
     const distance = 16
-    const vFOV = 2 * Math.atan( height / ( 2 * distance ) )
+    const vFOV = 2 * Math.atan(height / ( 2 * distance ))
 
     // add & configure camera
-    this.camera = new PerspectiveCamera(vFOV * 180 / Math.PI, this.container.offsetWidth / window.innerHeight, 10, 50)
+    this.camera = new PerspectiveCamera(vFOV * 180 / Math.PI, this.container.offsetWidth / this.container.offsetHeight, 10, 50)
     this.camera.position.set(0, 6, 30)
     this.camera.lookAt({x: 0, y: 2, z: 0})
 
@@ -55,7 +54,7 @@ class View3D extends Component {
     this.renderer = new config.render.renderer({
       antialias: config.render.antialias
     })
-    this.renderer.setSize(this.container.offsetWidth, window.innerHeight)
+    this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight)
 
     if (config.render.background) {
       this.renderer.setClearColor(...config.render.background)
@@ -84,8 +83,9 @@ class View3D extends Component {
   }
 
   resize() {
-    this.renderer.setSize(this.container.offsetWidth, window.innerHeight)
-    this.camera.aspect = this.container.offsetWidth / window.innerHeight
+    this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight)
+
+    this.camera.aspect = this.container.offsetWidth / this.container.offsetHeight
     this.camera.updateProjectionMatrix()
   }
 

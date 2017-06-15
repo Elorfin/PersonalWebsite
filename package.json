@@ -30,6 +30,6 @@
     "sass": "sass ./src/AppBundle/Resources/styles/index.scss ./web/dist/css/app.css",
     "fonts": "cp -R ./node_modules/font-awesome/fonts/* ./web/dist/fonts",
     "eslint": "./node_modules/.bin/eslint src/AppBundle/Resources/js --fix",
-    "models": "cp -R ./app/Resources/models/* ./web/dist/models"
+    "models": "node ./bin/publish-models"
   }
 }
