@@ -25,7 +25,7 @@
     "webpack": "2.6.1"
   },
   "scripts": {
-    "build": "npm run fonts && npm run webpack && npm run sass",
+    "build": "npm run webpack && npm run fonts && npm run sass && npm run models",
     "webpack": "webpack --config webpack.config.js",
     "sass": "sass ./src/AppBundle/Resources/styles/index.scss ./web/dist/css/app.css",
     "fonts": "cp -R ./node_modules/font-awesome/fonts/* ./web/dist/fonts",

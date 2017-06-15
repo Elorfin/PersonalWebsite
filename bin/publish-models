@@ -59,8 +59,13 @@ function publishModels(currentPath) {
             )
 
 
+          if (mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))]) {
+            // a file with the same name has already been published
+            // it's a problem because dir structure is flattened in the public dir
+          }
+
           // add published file to mapping
-          mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))] = itemDest
+          mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))] = './dist/models/files/'+baseName
 
           dumpMapping()
         }

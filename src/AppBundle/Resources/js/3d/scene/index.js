@@ -6,6 +6,7 @@ import {
   PointLightHelper,
   HemisphereLight,
   HemisphereLightHelper,
+  FileLoader,
   GridHelper,
   JSONLoader,
   Mesh,
@@ -18,14 +19,31 @@ import {
 import {
   GRID_HELPER,
   AXIS_HELPER,
-  LIGHT_HELPER
+  LIGHT_HELPER,
+  TEXTURE_ASSET,
+  MODEL_ASSET
 } from './constant'
 
 // todo add validation
 
 // init three JS loaders
+const fileLoader = new FileLoader()
 const jsonLoader = new JSONLoader()
 const textureLoader = new TextureLoader()
+
+let mapping = {}
+
+function getAssetPath(asset, assetType) {
+  if (TEXTURE_ASSET === assetType || MODEL_ASSET === assetType) {
+    if (mapping[assetType][asset]) {
+      return mapping[assetType][asset]
+    } else {
+      throw new Error('Unknown asset : "'+asset+'".')
+    }
+  } else {
+    throw new Error('Unknown asset type : "'+assetType+'".')
+  }
+}
 
 function createMaterial(materialConfig) {
   let options = {}
@@ -37,7 +55,7 @@ function createMaterial(materialConfig) {
   if (materialConfig.textures) {
     for (let textureName in materialConfig.textures) {
       if (materialConfig.textures.hasOwnProperty(textureName)) {
-        options[textureName] = textureLoader.load(materialConfig.textures[textureName])
+        options[textureName] = textureLoader.load(getAssetPath(materialConfig.textures[textureName], TEXTURE_ASSET))
       }
     }
   }
@@ -52,7 +70,7 @@ function addContent(meshes, scene) {
 
     // create instances
     meshConfig.instances.map(shape => {
-      jsonLoader.load(meshConfig.geometry, geometry => {
+      jsonLoader.load(getAssetPath(meshConfig.geometry, MODEL_ASSET), geometry => {
         const mesh = new Mesh(geometry, material)
 
         mesh.castShadow = meshConfig.castShadow
@@ -155,8 +173,13 @@ function build(config) {
     addAxis(scene)
   }
 
-  addLights(config.lights, scene, -1 !== config.helpers.indexOf(LIGHT_HELPER))
-  addContent(config.meshes, scene)
+  // load statics mapping
+  fileLoader.load(config.staticAssets, assets => {
+    mapping = JSON.parse(assets)
+
+    addLights(config.lights, scene, -1 !== config.helpers.indexOf(LIGHT_HELPER))
+    addContent(config.meshes, scene)
+  })
 
   return scene
 }

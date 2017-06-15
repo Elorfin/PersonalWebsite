@@ -17,57 +17,6 @@ import {
   LIGHT_HELPER
 } from './scene/constant'
 
-const BASE_MODEL_PATH = './models'
-
-const models = {
-  SM_Floor:           BASE_MODEL_PATH+'/Building/Floor/SM_Floor.json',
-  SM_Wall:            BASE_MODEL_PATH+'/Building/Wall/SM_Wall.json',
-  SM_WallElevator:    BASE_MODEL_PATH+'/Building/Wall/SM_WallElevator.json',
-  SM_Elevator:        BASE_MODEL_PATH+'/Building/Elevator/SM_Elevator.json',
-  SM_HighTable:       BASE_MODEL_PATH+'/Furniture/HighTable/SM_HighTable.json',
-
-  SM_Cupboard:        BASE_MODEL_PATH+'/Furniture/Cupboard/SM_Cupboard.json',
-  SM_CupboardWindows: BASE_MODEL_PATH+'/Furniture/Cupboard/SM_CupboardWindows.json',
-  SM_Documents:       BASE_MODEL_PATH+'/Furniture/Cupboard/SM_Documents.json',
-
-  SM_Octocat:         BASE_MODEL_PATH+'/Social/Octocat/SM_Octocat.json',
-  SM_LinkedIn:        BASE_MODEL_PATH+'/Social/LinkedIn/SM_LinkedIn.json',
-  SM_StackOverflow:   BASE_MODEL_PATH+'/Social/StackOverflow/SM_StackOverflow.json',
-
-  SM_SmallPlant:      BASE_MODEL_PATH+'/Plant/SmallPlant/SM_SmallPlant.json',
-  SM_CoffeeMachine:   BASE_MODEL_PATH+'/Appliance/CoffeeMachine/SM_CoffeeMachine.json',
-
-  SM_Poster:          BASE_MODEL_PATH+'/Decoration/Poster/SM_Poster.json'
-}
-
-const textures = {
-  T_Wall_D:            BASE_MODEL_PATH+'/Building/Wall/Texture/T_Wall_D.png',
-  T_Wall_N:            BASE_MODEL_PATH+'/Building/Wall/Texture/T_Wall_N.png',
-  T_Wood_D:            BASE_MODEL_PATH+'/Building/Floor/Texture/T_Wood_D.png',
-  T_Wood_N:            BASE_MODEL_PATH+'/Building/Floor/Texture/T_Wood_N.png',
-  T_Carpet_D:          BASE_MODEL_PATH+'/Building/Floor/Texture/T_Carpet_D.png',
-  T_Carpet_N:          BASE_MODEL_PATH+'/Building/Floor/Texture/T_Carpet_N.png',
-  T_Elevator_D:        BASE_MODEL_PATH+'/Building/Elevator/Texture/T_Elevator_D.png',
-  T_HighTable_D:       BASE_MODEL_PATH+'/Furniture/HighTable/Texture/T_HighTable_D.png',
-  T_Cupboard_D:        BASE_MODEL_PATH+'/Furniture/Cupboard/Texture/T_Cupboard_D.png',
-  T_CupboardWindows_D: BASE_MODEL_PATH+'/Furniture/Cupboard/Texture/T_CupboardWindows_D.png',
-  T_Documents_D:       BASE_MODEL_PATH+'/Furniture/Cupboard/Texture/T_Documents_D.png',
-
-  T_Octocat_D:         BASE_MODEL_PATH+'/Social/Octocat/Texture/T_Octocat_D.png',
-  T_Octocat_N:         BASE_MODEL_PATH+'/Social/Octocat/Texture/T_Octocat_N.png',
-  T_LinkedIn_D:        BASE_MODEL_PATH+'/Social/LinkedIn/Texture/T_LinkedIn_D.png',
-  T_StackOverflow_D:   BASE_MODEL_PATH+'/Social/StackOverflow/Texture/T_StackOverflow_D.png',
-
-  T_SmallPlant_D:      BASE_MODEL_PATH+'/Plant/SmallPlant/Texture/T_SmallPlant_D.png',
-  T_SmallPlant_N:      BASE_MODEL_PATH+'/Plant/SmallPlant/Texture/T_SmallPlant_N.png',
-
-  T_CoffeeMachine_D:   BASE_MODEL_PATH+'/Appliance/CoffeeMachine/Texture/T_CoffeeMachine_D.png',
-
-  T_Poster_CommitStrip_D: BASE_MODEL_PATH+'/Decoration/Poster/Texture/T_Poster_CommitStrip_D.png',
-  T_Poster_KeepCalm_D:    BASE_MODEL_PATH+'/Decoration/Poster/Texture/T_Poster_KeepCalm_D.png',
-  T_Poster_StarWars_D:    BASE_MODEL_PATH+'/Decoration/Poster/Texture/T_Poster_StarWars_D.png'
-}
-
 const materials = {
   M_Wall: {
     type: MeshPhongMaterial,
@@ -76,8 +25,8 @@ const materials = {
       normalScale: new Vector3(.5, .5)
     },
     textures: {
-      map: textures.T_Wall_D,
-      normalMap: textures.T_Wall_N
+      map      : 'T_Wall_D',
+      normalMap: 'T_Wall_N'
     }
   },
 
@@ -87,8 +36,8 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Wood_D,
-      normalMap: textures.T_Wood_N
+      map      : 'T_Wood_D',
+      normalMap: 'T_Wood_N'
     }
   },
 
@@ -98,8 +47,8 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Carpet_D,
-      normalMap: textures.T_Carpet_N
+      map      : 'T_Carpet_D',
+      normalMap: 'T_Carpet_N'
     }
   },
 
@@ -109,7 +58,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Elevator_D
+      map: 'T_Elevator_D'
     }
   },
 
@@ -119,7 +68,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_HighTable_D
+      map: 'T_HighTable_D'
     }
   },
 
@@ -129,7 +78,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Cupboard_D
+      map: 'T_Cupboard_D'
     }
   },
 
@@ -141,7 +90,7 @@ const materials = {
       opacity: .6,
     },
     textures: {
-      map: textures.T_CupboardWindows_D
+      map: 'T_CupboardWindows_D'
     }
   },
 
@@ -151,7 +100,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Documents_D
+      map: 'T_Documents_D'
     }
   },
 
@@ -161,8 +110,8 @@ const materials = {
       shading: SmoothShading
     },
     textures: {
-      map: textures.T_Octocat_D,
-      normalMap: textures.T_Octocat_N
+      map      : 'T_Octocat_D',
+      normalMap: 'T_Octocat_N'
     }
   },
 
@@ -172,7 +121,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_LinkedIn_D
+      map: 'T_LinkedIn_D'
     }
   },
 
@@ -182,7 +131,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_StackOverflow_D
+      map: 'T_StackOverflow_D'
     }
   },
 
@@ -193,8 +142,8 @@ const materials = {
       side: DoubleSide
     },
     textures: {
-      map: textures.T_SmallPlant_D,
-      normalMap: textures.T_SmallPlant_N
+      map: 'T_SmallPlant_D',
+      normalMap: 'T_SmallPlant_N'
     }
   },
 
@@ -204,7 +153,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_CoffeeMachine_D
+      map: 'T_CoffeeMachine_D'
     }
   },
 
@@ -214,7 +163,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Poster_CommitStrip_D
+      map: 'T_Poster_CommitStrip_D'
     }
   },
   M_Poster_KeepCalm: {
@@ -223,7 +172,7 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Poster_KeepCalm_D
+      map: 'T_Poster_KeepCalm_D'
     }
   },
   M_Poster_StarWars: {
@@ -232,12 +181,14 @@ const materials = {
       shading: FlatShading
     },
     textures: {
-      map: textures.T_Poster_StarWars_D
+      map: 'T_Poster_StarWars_D'
     }
   }
 }
 
 export const config = {
+  // Mapping of the used models / textures
+  staticAssets: './dist/models/mapping.json',
   helpers: [
     /*AXIS_HELPER,*/
     GRID_HELPER,
@@ -278,7 +229,7 @@ export const config = {
 
   meshes: [
     {
-      geometry: models.SM_Floor,
+      geometry: 'SM_Floor',
       material: materials.M_Wood,
       castShadow: true,
       receiveShadow: true,
@@ -289,7 +240,7 @@ export const config = {
       ]
     },
     {
-      geometry: models.SM_Floor,
+      geometry: 'SM_Floor',
       material: materials.M_Carpet,
       castShadow: true,
       receiveShadow: true,
@@ -304,7 +255,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Elevator,
+      geometry: 'SM_Elevator',
       material: materials.M_Elevator,
       castShadow: true,
       receiveShadow: true,
@@ -314,7 +265,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_WallElevator,
+      geometry: 'SM_WallElevator',
       material: materials.M_Wall,
       castShadow: true,
       receiveShadow: true,
@@ -324,7 +275,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Wall,
+      geometry: 'SM_Wall',
       material: materials.M_Wall,
       castShadow: true,
       receiveShadow: true,
@@ -346,7 +297,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Cupboard,
+      geometry: 'SM_Cupboard',
       material: materials.M_Cupboard,
       castShadow: true,
       receiveShadow: true,
@@ -356,7 +307,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_CupboardWindows,
+      geometry: 'SM_CupboardWindows',
       material: materials.M_CupboardWindows,
       castShadow: false,
       receiveShadow: false,
@@ -366,7 +317,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Documents,
+      geometry: 'SM_Documents',
       material: materials.M_Documents,
       castShadow: true,
       receiveShadow: true,
@@ -376,7 +327,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Octocat,
+      geometry: 'SM_Octocat',
       material: materials.M_Octocat,
       castShadow: true,
       receiveShadow: true,
@@ -386,7 +337,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_LinkedIn,
+      geometry: 'SM_LinkedIn',
       material: materials.M_LinkedIn,
       castShadow: true,
       receiveShadow: true,
@@ -396,7 +347,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_StackOverflow,
+      geometry: 'SM_StackOverflow',
       material: materials.M_StackOverflow,
       castShadow: true,
       receiveShadow: true,
@@ -406,7 +357,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_SmallPlant,
+      geometry: 'SM_SmallPlant',
       material: materials.M_SmallPlant,
       castShadow: true,
       receiveShadow: true,
@@ -416,7 +367,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_CoffeeMachine,
+      geometry: 'SM_CoffeeMachine',
       material: materials.M_CoffeeMachine,
       castShadow: true,
       receiveShadow: true,
@@ -426,7 +377,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_HighTable,
+      geometry: 'SM_HighTable',
       material: materials.M_HighTable,
       castShadow: true,
       receiveShadow: true,
@@ -436,7 +387,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Poster,
+      geometry: 'SM_Poster',
       material: materials.M_Poster_CommitStrip,
       castShadow: true,
       receiveShadow: true,
@@ -445,7 +396,7 @@ export const config = {
       ]
     },
     {
-      geometry: models.SM_Poster,
+      geometry: 'SM_Poster',
       material: materials.M_Poster_StarWars,
       castShadow: true,
       receiveShadow: true,
@@ -455,7 +406,7 @@ export const config = {
     },
 
     {
-      geometry: models.SM_Poster,
+      geometry: 'SM_Poster',
       material: materials.M_Poster_KeepCalm,
       castShadow: true,
       receiveShadow: true,
