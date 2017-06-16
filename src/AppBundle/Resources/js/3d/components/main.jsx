@@ -22,6 +22,13 @@ const ViewControls = props =>
         {props.audio ? 'disable audio' : 'enable audio'}
       </span>
     </button>
+
+    <button type="button" className="view-3d-btn">
+      <span className="fa fa-fw fa-sign-out" />
+      <span className="sr-only">
+        exit to classic version
+      </span>
+    </button>
   </div>
 
 ViewControls.propTypes = {

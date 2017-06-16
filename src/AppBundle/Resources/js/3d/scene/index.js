@@ -13,7 +13,9 @@ import {
   Scene,
   TextureLoader,
   Math as TMath,
-  CameraHelper
+  CameraHelper,
+  FlatShading,
+  MeshPhongMaterial
 } from 'three'
 
 import {
@@ -33,6 +35,18 @@ const textureLoader = new TextureLoader()
 
 let mapping = {}
 
+const defaultMaterialConfig = {
+  type: MeshPhongMaterial,
+  options: {
+    shading: FlatShading
+  }
+}
+
+const defaultMeshConfig = {
+  castShadow: true,
+  receiveShadow: true
+}
+
 function getAssetPath(asset, assetType) {
   if (TEXTURE_ASSET === assetType || MODEL_ASSET === assetType) {
     if (mapping[assetType][asset]) {
@@ -46,35 +60,41 @@ function getAssetPath(asset, assetType) {
 }
 
 function createMaterial(materialConfig) {
+  // todo default deep
+  const config = Object.assign({}, defaultMaterialConfig, materialConfig)
+
   let options = {}
-  if (materialConfig.options) {
-    options = Object.assign({}, options, materialConfig.options)
+  if (config.options) {
+    options = Object.assign({}, options, config.options)
   }
 
   // Load texture files if any
   if (materialConfig.textures) {
     for (let textureName in materialConfig.textures) {
       if (materialConfig.textures.hasOwnProperty(textureName)) {
-        options[textureName] = textureLoader.load(getAssetPath(materialConfig.textures[textureName], TEXTURE_ASSET))
+        options[textureName] = textureLoader.load(
+          getAssetPath(materialConfig.textures[textureName], TEXTURE_ASSET)
+        )
       }
     }
   }
 
-  return new materialConfig.type(options)
+  return new config.type(options)
 }
 
 function addContent(meshes, scene) {
   // Load all defined meshes
   meshes.map(meshConfig => {
-    const material = createMaterial(meshConfig.material)
+    const config = Object.assign({}, defaultMeshConfig, meshConfig)
+    const material = createMaterial(config.material)
 
     // create instances
     meshConfig.instances.map(shape => {
-      jsonLoader.load(getAssetPath(meshConfig.geometry, MODEL_ASSET), geometry => {
+      jsonLoader.load(getAssetPath(config.geometry, MODEL_ASSET), geometry => {
         const mesh = new Mesh(geometry, material)
 
-        mesh.castShadow = meshConfig.castShadow
-        mesh.receiveShadow = meshConfig.receiveShadow
+        mesh.castShadow = config.castShadow
+        mesh.receiveShadow = config.receiveShadow
 
         if (shape.scale) {
           mesh.scale.set(...shape.scale)
@@ -105,7 +125,7 @@ function addLights(lights, scene, showHelpers = false) {
     if (lightConfig.castShadow) {
       light.castShadow = true
 
-      light.shadow.camera.near = 8
+      light.shadow.camera.near = 4
       light.shadow.camera.far = 40
       light.shadow.camera.left = -12
       light.shadow.camera.bottom = -16

@@ -28,6 +28,6 @@ export const experienceTypes = {
 export const SECTION_EXPERIENCES = {
   icon: 'suitcase',
   label: 'Experiences',
-  target: '/experience',
+  target: '/classic/experience',
   component: Experiences
 }

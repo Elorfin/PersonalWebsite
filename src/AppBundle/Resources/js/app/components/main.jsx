@@ -15,24 +15,30 @@ import { NotFound } from 'main/layout/components/not-found.jsx'
 
 import { View3D } from 'main/3d/components/main.jsx'
 
+const ClassicApp = () =>
+  <main className="app classic-app">
+    <Header />
+
+    <div className="app-content" role="presentation">
+      <Switch>
+        <Route key="default" exact={true} path="" component={defaultSection.component} />
+        <Route key="default2" exact={true} path="/" component={defaultSection.component} />
+        {sections.map((section, index) =>
+          <Route key={index} path={section.target} component={section.component} />
+        )}
+      </Switch>
+    </div>
+
+    <Footer />
+  </main>
+
 const MainApp = () =>
   <Router history={hashHistory}>
-    <main className="app">
-      <Header />
-
-      <div className="app-content" role="presentation">
-        <Switch>
-          <Route key="default" exact={true} path="/" component={defaultSection.component} />
-          {sections.map((section, index) =>
-            <Route key={index} path={section.target} component={section.component} />
-          )}
-          <Route key="view-3d" path="/3d" component={View3D} />
-          <Route key="error-404" component={NotFound} />
-        </Switch>
-      </div>
-
-      <Footer />
-    </main>
+    <Switch>
+      <Route key="classic" path="/classic" component={ClassicApp} />
+      <Route key="view-3d" path="/3d" component={View3D} />
+      <Route key="error-404" component={NotFound} />
+    </Switch>
   </Router>
 
 export {MainApp}

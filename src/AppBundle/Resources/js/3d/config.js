@@ -3,7 +3,6 @@ import {
   DirectionalLight,
   DoubleSide,
   HemisphereLight,
-  MeshPhongMaterial,
   PCFSoftShadowMap,
   SmoothShading,
   FlatShading,
@@ -19,7 +18,6 @@ import {
 
 const materials = {
   M_Wall: {
-    type: MeshPhongMaterial,
     options: {
       shading: FlatShading,
       normalScale: new Vector3(.5, .5)
@@ -30,11 +28,19 @@ const materials = {
     }
   },
 
-  M_Wood: {
-    type: MeshPhongMaterial,
+  M_BayWindow: {
     options: {
-      shading: FlatShading
+      shading: FlatShading,
+      side: DoubleSide,
+      transparent: true
     },
+    textures: {
+      map: 'T_BayWindow_D',
+      alphaMap: 'T_BayWindow_A'
+    }
+  },
+
+  M_Wood: {
     textures: {
       map      : 'T_Wood_D',
       normalMap: 'T_Wood_N'
@@ -42,10 +48,6 @@ const materials = {
   },
 
   M_Carpet: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map      : 'T_Carpet_D',
       normalMap: 'T_Carpet_N'
@@ -53,37 +55,41 @@ const materials = {
   },
 
   M_Elevator: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_Elevator_D'
     }
   },
 
   M_HighTable: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_HighTable_D'
     }
   },
 
+  M_Cabinet: {
+    textures: {
+      map: 'T_Cabinet_D'
+    }
+  },
+
+  M_CabinetDoor: {
+    /*options: {
+      shading: FlatShading,
+      transparent: true,
+      opacity: .6,
+    },*/
+    textures: {
+      map: 'T_CabinetDoor_D'
+    }
+  },
+
   M_Cupboard: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_Cupboard_D'
     }
   },
 
   M_CupboardWindows: {
-    type: MeshPhongMaterial,
     options: {
       shading: FlatShading,
       transparent: true,
@@ -95,7 +101,6 @@ const materials = {
   },
 
   M_Documents: {
-    type: MeshPhongMaterial,
     options: {
       shading: FlatShading
     },
@@ -105,7 +110,6 @@ const materials = {
   },
 
   M_Octocat: {
-    type: MeshPhongMaterial,
     options: {
       shading: SmoothShading
     },
@@ -116,27 +120,18 @@ const materials = {
   },
 
   M_LinkedIn: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_LinkedIn_D'
     }
   },
 
   M_StackOverflow: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_StackOverflow_D'
     }
   },
 
   M_SmallPlant: {
-    type: MeshPhongMaterial,
     options: {
       shading: SmoothShading,
       side: DoubleSide
@@ -148,38 +143,22 @@ const materials = {
   },
 
   M_CoffeeMachine: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_CoffeeMachine_D'
     }
   },
 
   M_Poster_CommitStrip: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_Poster_CommitStrip_D'
     }
   },
   M_Poster_KeepCalm: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_Poster_KeepCalm_D'
     }
   },
   M_Poster_StarWars: {
-    type: MeshPhongMaterial,
-    options: {
-      shading: FlatShading
-    },
     textures: {
       map: 'T_Poster_StarWars_D'
     }
@@ -231,34 +210,33 @@ export const config = {
     {
       geometry: 'SM_Floor',
       material: materials.M_Wood,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [-16, 0, -16], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [-16, 0, -8], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [-16, 0, 0], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [-16, 0, -12], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 0, 0] }
       ]
     },
     {
       geometry: 'SM_Floor',
       material: materials.M_Carpet,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [0, 0, 0], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [8, 0, -8], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [8, 0, 0], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [-8, 0, -8], rotation: [0, 0, 0] },
-        { scale: [1, 1, 1], position: [-8, 0, 0], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [-8, 0, -12], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [0, 0, -12], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [8, 0, -12], rotation: [0, 0, 0] },
+
+        { scale: [1, 1, 1], position: [-8, 0, -4], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [0, 0, -4], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [8, 0, -4], rotation: [0, 0, 0] },
+
+        { scale: [1, 1, 1], position: [-8, 0, 4], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [0, 0, 4], rotation: [0, 0, 0] },
+        { scale: [1, 1, 1], position: [8, 0, 4], rotation: [0, 0, 0] }
       ]
     },
 
     {
       geometry: 'SM_Elevator',
       material: materials.M_Elevator,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] }
       ]
@@ -267,25 +245,37 @@ export const config = {
     {
       geometry: 'SM_WallElevator',
       material: materials.M_Wall,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] },
       ]
     },
 
     {
+      geometry: 'SM_BayWindow',
+      material: materials.M_BayWindow,
+      instances: [
+        { scale: [1, 1, 1], position: [16, 0, -4], rotation: [0, 90, 0] },
+        { scale: [1, 1, 1], position: [16, 0, 0], rotation: [0, 90, 0] },
+        { scale: [1, 1, 1], position: [16, 0, 4], rotation: [0, 90, 0] },
+        { scale: [1, 1, 1], position: [16, 0, 8], rotation: [0, 90, 0] },
+        { scale: [1, 1, 1], position: [16, 0, 12], rotation: [0, 90, 0] }
+      ]
+    },
+
+    {
       geometry: 'SM_Wall',
       material: materials.M_Wall,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
+        // left wall
         { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 90, 0] },
         { scale: [1, 1, 1], position: [-16, 0, 0], rotation: [0, 90, 0] },
         { scale: [1, 1, 1], position: [-16, 0, 8], rotation: [0, 90, 0] },
+        { scale: [1, 1, 1], position: [-16, 0, 12], rotation: [0, 90, 0] },
 
         { scale: [1, 1, 1], position: [-16, 0, -8], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-12, 0, -8], rotation: [0, 90, 0] },
+
+        { scale: [1, 1, 1], position: [-12, 0, -12], rotation: [0, 0, 0] },
 
         { scale: [1, 1, 1], position: [-8, 0, -8], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-4, 0, -8], rotation: [0, 0, 0] },
@@ -297,10 +287,35 @@ export const config = {
     },
 
     {
+      geometry: 'SM_Cabinet',
+      material: materials.M_Cabinet,
+      instances: [
+        { scale: [1, 1, 1], position: [-3.1, 0, -8], rotation: [0, 0, 0] }
+      ]
+    },
+
+    {
+      geometry: 'SM_CabinetDoor',
+      material: materials.M_CabinetDoor,
+      instances: [
+        { scale: [1, 1, 1], position: [-3.1, 0.375, -6.5], rotation: [0, 0, 0] },
+        { scale: [-1, -1, 1], position: [-0.1, 5.625, -6.5], rotation: [0, 0, 0] }
+      ]
+    },
+
+    {
+      geometry: 'SM_CupboardWindows',
+      material: materials.M_CupboardWindows,
+      castShadow: false,
+      receiveShadow: false,
+      instances: [
+        { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
+      ]
+    },
+
+    {
       geometry: 'SM_Cupboard',
       material: materials.M_Cupboard,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -319,8 +334,6 @@ export const config = {
     {
       geometry: 'SM_Documents',
       material: materials.M_Documents,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -329,48 +342,38 @@ export const config = {
     {
       geometry: 'SM_Octocat',
       material: materials.M_Octocat,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [1.75, 3, -7.5], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [1.95, 3, -7.5], rotation: [0, 0, 0] }
       ]
     },
 
     {
       geometry: 'SM_LinkedIn',
       material: materials.M_LinkedIn,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [2.5, 3, -7.5], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [2.7, 3, -7.5], rotation: [0, 0, 0] }
       ]
     },
 
     {
       geometry: 'SM_StackOverflow',
       material: materials.M_StackOverflow,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [3.25, 3, -7.5], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [3.45, 3, -7.5], rotation: [0, 0, 0] }
       ]
     },
 
     {
       geometry: 'SM_SmallPlant',
       material: materials.M_SmallPlant,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
-        { scale: [1, 1, 1], position: [0.5, 3, -7], rotation: [0, 0, 0] }
+        { scale: [1, 1, 1], position: [0.7, 3, -7], rotation: [0, 0, 0] }
       ]
     },
 
     {
       geometry: 'SM_CoffeeMachine',
       material: materials.M_CoffeeMachine,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [-15.5, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -379,8 +382,6 @@ export const config = {
     {
       geometry: 'SM_HighTable',
       material: materials.M_HighTable,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [-14.9, 0, -3], rotation: [0, 45, 0] }
       ]
@@ -389,8 +390,6 @@ export const config = {
     {
       geometry: 'SM_Poster',
       material: materials.M_Poster_CommitStrip,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [5.4, 3.5, -8], rotation: [0, 0, -2] }
       ]
@@ -398,8 +397,6 @@ export const config = {
     {
       geometry: 'SM_Poster',
       material: materials.M_Poster_StarWars,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [8.2, 4.1, -8], rotation: [0, 0, 1] }
       ]
@@ -408,8 +405,6 @@ export const config = {
     {
       geometry: 'SM_Poster',
       material: materials.M_Poster_KeepCalm,
-      castShadow: true,
-      receiveShadow: true,
       instances: [
         { scale: [1, 1, 1], position: [10.8, 3.8, -8], rotation: [0, 0, -4] }
       ]

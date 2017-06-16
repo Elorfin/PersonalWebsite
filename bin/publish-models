@@ -9,6 +9,7 @@ const SRC_DIR  = path.resolve('app/Resources/models')
 const DEST_DIR = path.resolve('web/dist/models')
 
 const IMPORT_FILES = {
+  '.js': 'models',
   '.json': 'models',
   '.png': 'textures',
   '.jpg': 'textures',
@@ -47,7 +48,12 @@ function publishModels(currentPath) {
         const ext = path.extname(item)
         if (IMPORT_FILES[ext]) {
           const baseName = path.basename(item)
-          const itemDest = path.resolve(DEST_DIR, 'files', baseName)
+          const name = baseName.slice(0, -(ext.length))
+
+          // because the blender exporter I use has wrong ext
+          const destName = name+('.js' === ext ? '.json':ext)
+
+          const itemDest = path.resolve(DEST_DIR, 'files', destName)
 
           console.log('Publish file "'+itemPath+'" to "'+itemDest+'" as "'+IMPORT_FILES[ext]+'".')
 
@@ -59,13 +65,14 @@ function publishModels(currentPath) {
             )
 
 
-          if (mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))]) {
+          if (mapping[IMPORT_FILES[ext]][name]) {
             // a file with the same name has already been published
             // it's a problem because dir structure is flattened in the public dir
+            throw new Error('Duplicated asset name : '+baseName)
           }
 
           // add published file to mapping
-          mapping[IMPORT_FILES[ext]][baseName.slice(0, -(ext.length))] = './dist/models/files/'+baseName
+          mapping[IMPORT_FILES[ext]][name] = './dist/models/files/'+destName
 
           dumpMapping()
         }
