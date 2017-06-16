@@ -16,7 +16,9 @@ My online curriculum vitae
 
 - Symfony 3
 - Webpack
+- Babel
 - SASS
+- Lodash
 - React
 - Redux
 

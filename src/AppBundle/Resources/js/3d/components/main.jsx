@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { PropTypes as T } from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 import {
   PerspectiveCamera
 } from 'three'
 
+import { defaultSection } from 'main/app/sections/index'
 import { config } from './../config'
 import { build as buildScene } from './../scene/index'
 
@@ -23,12 +25,12 @@ const ViewControls = props =>
       </span>
     </button>
 
-    <button type="button" className="view-3d-btn">
+    <NavLink className="view-3d-btn" to={defaultSection.target}>
       <span className="fa fa-fw fa-sign-out" />
       <span className="sr-only">
         exit to classic version
       </span>
-    </button>
+    </NavLink>
   </div>
 
 ViewControls.propTypes = {

@@ -10,12 +10,6 @@ import {
   WebGLRenderer
 } from 'three'
 
-import {
-  GRID_HELPER,
-  AXIS_HELPER,
-  LIGHT_HELPER
-} from './scene/constant'
-
 const materials = {
   M_Wall: {
     options: {
@@ -73,11 +67,6 @@ const materials = {
   },
 
   M_CabinetDoor: {
-    /*options: {
-      shading: FlatShading,
-      transparent: true,
-      opacity: .6,
-    },*/
     textures: {
       map: 'T_CabinetDoor_D'
     }
@@ -168,11 +157,11 @@ const materials = {
 export const config = {
   // Mapping of the used models / textures
   staticAssets: './dist/models/mapping.json',
-  helpers: [
-    /*AXIS_HELPER,*/
-    GRID_HELPER,
-    /*LIGHT_HELPER*/
-  ],
+  helpers: {
+    lights: false,
+    axis: false,
+    grid: true
+  },
   grid: {
     colors: [0xff0000, 0x8f8f8f],
     subdivisions: 40,
@@ -206,10 +195,12 @@ export const config = {
     }
   ],
 
+  materials: materials,
+
   meshes: [
     {
       geometry: 'SM_Floor',
-      material: materials.M_Wood,
+      material: 'M_Wood',
       instances: [
         { scale: [1, 1, 1], position: [-16, 0, -12], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 0, 0] },
@@ -218,7 +209,7 @@ export const config = {
     },
     {
       geometry: 'SM_Floor',
-      material: materials.M_Carpet,
+      material: 'M_Carpet',
       instances: [
         { scale: [1, 1, 1], position: [-8, 0, -12], rotation: [0, 0, 0] },
         { scale: [1, 1, 1], position: [0, 0, -12], rotation: [0, 0, 0] },
@@ -236,7 +227,7 @@ export const config = {
 
     {
       geometry: 'SM_Elevator',
-      material: materials.M_Elevator,
+      material: 'M_Elevator',
       instances: [
         { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] }
       ]
@@ -244,7 +235,7 @@ export const config = {
 
     {
       geometry: 'SM_WallElevator',
-      material: materials.M_Wall,
+      material: 'M_Wall',
       instances: [
         { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] },
       ]
@@ -252,7 +243,7 @@ export const config = {
 
     {
       geometry: 'SM_BayWindow',
-      material: materials.M_BayWindow,
+      material: 'M_BayWindow',
       instances: [
         { scale: [1, 1, 1], position: [16, 0, -4], rotation: [0, 90, 0] },
         { scale: [1, 1, 1], position: [16, 0, 0], rotation: [0, 90, 0] },
@@ -264,7 +255,7 @@ export const config = {
 
     {
       geometry: 'SM_Wall',
-      material: materials.M_Wall,
+      material: 'M_Wall',
       instances: [
         // left wall
         { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 90, 0] },
@@ -288,7 +279,7 @@ export const config = {
 
     {
       geometry: 'SM_Cabinet',
-      material: materials.M_Cabinet,
+      material: 'M_Cabinet',
       instances: [
         { scale: [1, 1, 1], position: [-3.1, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -296,7 +287,7 @@ export const config = {
 
     {
       geometry: 'SM_CabinetDoor',
-      material: materials.M_CabinetDoor,
+      material: 'M_CabinetDoor',
       instances: [
         { scale: [1, 1, 1], position: [-3.1, 0.375, -6.5], rotation: [0, 0, 0] },
         { scale: [-1, -1, 1], position: [-0.1, 5.625, -6.5], rotation: [0, 0, 0] }
@@ -305,7 +296,7 @@ export const config = {
 
     {
       geometry: 'SM_CupboardWindows',
-      material: materials.M_CupboardWindows,
+      material: 'M_CupboardWindows',
       castShadow: false,
       receiveShadow: false,
       instances: [
@@ -315,17 +306,7 @@ export const config = {
 
     {
       geometry: 'SM_Cupboard',
-      material: materials.M_Cupboard,
-      instances: [
-        { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
-      ]
-    },
-
-    {
-      geometry: 'SM_CupboardWindows',
-      material: materials.M_CupboardWindows,
-      castShadow: false,
-      receiveShadow: false,
+      material: 'M_Cupboard',
       instances: [
         { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -333,7 +314,7 @@ export const config = {
 
     {
       geometry: 'SM_Documents',
-      material: materials.M_Documents,
+      material: 'M_Documents',
       instances: [
         { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -341,7 +322,7 @@ export const config = {
 
     {
       geometry: 'SM_Octocat',
-      material: materials.M_Octocat,
+      material: 'M_Octocat',
       instances: [
         { scale: [1, 1, 1], position: [1.95, 3, -7.5], rotation: [0, 0, 0] }
       ]
@@ -349,7 +330,7 @@ export const config = {
 
     {
       geometry: 'SM_LinkedIn',
-      material: materials.M_LinkedIn,
+      material: 'M_LinkedIn',
       instances: [
         { scale: [1, 1, 1], position: [2.7, 3, -7.5], rotation: [0, 0, 0] }
       ]
@@ -357,7 +338,7 @@ export const config = {
 
     {
       geometry: 'SM_StackOverflow',
-      material: materials.M_StackOverflow,
+      material: 'M_StackOverflow',
       instances: [
         { scale: [1, 1, 1], position: [3.45, 3, -7.5], rotation: [0, 0, 0] }
       ]
@@ -365,7 +346,7 @@ export const config = {
 
     {
       geometry: 'SM_SmallPlant',
-      material: materials.M_SmallPlant,
+      material: 'M_SmallPlant',
       instances: [
         { scale: [1, 1, 1], position: [0.7, 3, -7], rotation: [0, 0, 0] }
       ]
@@ -373,7 +354,7 @@ export const config = {
 
     {
       geometry: 'SM_CoffeeMachine',
-      material: materials.M_CoffeeMachine,
+      material: 'M_CoffeeMachine',
       instances: [
         { scale: [1, 1, 1], position: [-15.5, 0, -8], rotation: [0, 0, 0] }
       ]
@@ -381,7 +362,7 @@ export const config = {
 
     {
       geometry: 'SM_HighTable',
-      material: materials.M_HighTable,
+      material: 'M_HighTable',
       instances: [
         { scale: [1, 1, 1], position: [-14.9, 0, -3], rotation: [0, 45, 0] }
       ]
@@ -389,14 +370,14 @@ export const config = {
 
     {
       geometry: 'SM_Poster',
-      material: materials.M_Poster_CommitStrip,
+      material: 'M_Poster_CommitStrip',
       instances: [
         { scale: [1, 1, 1], position: [5.4, 3.5, -8], rotation: [0, 0, -2] }
       ]
     },
     {
       geometry: 'SM_Poster',
-      material: materials.M_Poster_StarWars,
+      material: 'M_Poster_StarWars',
       instances: [
         { scale: [1, 1, 1], position: [8.2, 4.1, -8], rotation: [0, 0, 1] }
       ]
@@ -404,7 +385,7 @@ export const config = {
 
     {
       geometry: 'SM_Poster',
-      material: materials.M_Poster_KeepCalm,
+      material: 'M_Poster_KeepCalm',
       instances: [
         { scale: [1, 1, 1], position: [10.8, 3.8, -8], rotation: [0, 0, -4] }
       ]

@@ -64,6 +64,7 @@ $control-btn-hover-border-size: 3px;
 
   &:hover,
   &:focus {
+    text-decoration: none;
     width: $control-btn-hover-size;
     height: $control-btn-hover-size;
     border: $control-btn-hover-border-size solid white;
