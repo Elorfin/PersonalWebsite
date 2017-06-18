@@ -1,9 +1,5 @@
 .view-3d-container {
-  //position: relative;
-  //overflow: hidden; // fixme by correct calculation of the rendering size
   font-size: 0; // remove additional space after the canvas
-
-  // fixme temp fullscreen
   position: absolute;
   top: 0;
   left: 0;
