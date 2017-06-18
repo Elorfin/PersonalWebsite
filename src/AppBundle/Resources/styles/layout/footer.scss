@@ -28,7 +28,7 @@
       margin: $spacer-y 0;
       color: $brand-primary;
       font-weight: bold;
-      font-family: Century Gothic, Arial, sans-serif; // todo : embed font
+      font-family: $headings-font-family;
     }
 
     ul {
