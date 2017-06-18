@@ -1,3 +1,5 @@
+import merge from 'lodash/merge'
+
 import {
   CameraHelper,
   DirectionalLight,
@@ -8,9 +10,14 @@ import {
   PointLightHelper
 } from 'three'
 
+const defaultLightConfig = {
+  options: []
+}
+
 function add(scene, lights, showHelpers = false) {
-  lights.map(lightConfig => {
-    const light = new lightConfig.type(...lightConfig.color)
+  lights.map(config => {
+    const lightConfig = merge({}, defaultLightConfig, config)
+    const light = new lightConfig.type(...lightConfig.options)
 
     if (lightConfig.position) {
       light.position.set(...lightConfig.position)
@@ -19,15 +26,27 @@ function add(scene, lights, showHelpers = false) {
     if (lightConfig.castShadow) {
       light.castShadow = true
 
-      light.shadow.camera.near = 4
-      light.shadow.camera.far = 40
-      light.shadow.camera.left = -12
-      light.shadow.camera.bottom = -16
-      light.shadow.camera.top = 16
-      light.shadow.camera.right = 16
 
-      light.shadow.mapSize.width = 2048
-      light.shadow.mapSize.height = 2048
+
+      if (lightConfig.shadow) {
+        // light has custom shadow config
+        if (lightConfig.shadow.bias) {
+          light.shadow.bias = lightConfig.shadow.bias
+        }
+
+        if (lightConfig.shadow.camera) {
+          for (let prop in lightConfig.shadow.camera) {
+            if (lightConfig.shadow.camera.hasOwnProperty(prop)) {
+              light.shadow.camera[prop] = lightConfig.shadow.camera[prop]
+            }
+          }
+        }
+
+        if (lightConfig.shadow.mapSize) {
+          light.shadow.mapSize.width = lightConfig.shadow.mapSize
+          light.shadow.mapSize.height = lightConfig.shadow.mapSize
+        }
+      }
 
       if (showHelpers) {
         scene.add(

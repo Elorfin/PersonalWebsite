@@ -7,7 +7,7 @@ import {
 } from 'three'
 
 import { defaultSection } from 'main/app/sections/index'
-import { config } from './../config'
+import { config } from './../config/index'
 import { build as buildScene } from './../scene/index'
 
 window.requestAnimationFrame =
@@ -56,8 +56,10 @@ class View3D extends Component {
 
     // add & configure camera
     this.camera = new PerspectiveCamera(vFOV * 180 / Math.PI, this.container.offsetWidth / this.container.offsetHeight, 10, 50)
-    this.camera.position.set(0, 6, 30)
-    this.camera.lookAt({x: 0, y: 2, z: 0})
+    this.camera.position.set(...config.camera.position)
+    if (config.camera.lookAt) {
+      this.camera.lookAt(config.camera.lookAt)
+    }
 
     // add & configure renderer
     this.renderer = new config.render.renderer({
