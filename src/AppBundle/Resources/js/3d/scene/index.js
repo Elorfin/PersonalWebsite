@@ -20,6 +20,16 @@ const defaultConfig = {
   meshes: {}
 }
 
+function canRender() {
+  try {
+    const canvas = document.createElement('canvas')
+
+    return !!( window.WebGLRenderingContext && ( canvas.getContext('webgl') || canvas.getContext('experimental-webgl') ) )
+  } catch (e) {
+    return false
+  }
+}
+
 function build(config) {
   const scene = new Scene()
   const sceneConfig = merge({}, defaultConfig, config)
@@ -44,5 +54,6 @@ function build(config) {
 }
 
 export {
+  canRender,
   build
 }

@@ -8,13 +8,28 @@ import {
 
 import { defaultSection } from 'main/app/sections/index'
 import { config } from './../config/index'
-import { build as buildScene } from './../scene/index'
+import { canRender, build as buildScene } from './../scene/index'
 
 window.requestAnimationFrame =
   window.requestAnimationFrame
   || window.mozRequestAnimationFrame
   || window.webkitRequestAnimationFrame
   || window.msRequestAnimationFrame
+
+const BrowserSupportError = () =>
+  <div className="view-3d-support">
+    {window.WebGLRenderingContext ? (
+      <p>
+        Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.
+      </p>
+    ) : (
+      <p>
+        Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.
+        <br/>
+        Find out how to get it <a href="http://get.webgl.org/">here</a>.
+      </p>
+    )}
+  </div>
 
 const ViewControls = props =>
   <div className="view-3d-controls">
@@ -38,18 +53,34 @@ ViewControls.propTypes = {
   toggleAudio: T.func.isRequired
 }
 
-/**
- * @todo check WebGL support (https://github.com/mrdoob/three.js/blob/master/examples/js/Detector.js)
- */
 class View3D extends Component {
   constructor(props) {
     super(props)
 
+    this.browserCompatible = canRender()
+
     this.renderScene = this.renderScene.bind(this)
-    this.resize = this.resize.bind(this)
+    this.createScene = this.createScene.bind(this)
+    this.resize      = this.resize.bind(this)
   }
 
   componentDidMount() {
+    if (this.browserCompatible) {
+      this.createScene()
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize)
+  }
+
+  renderScene() {
+    window.requestAnimationFrame(this.renderScene)
+
+    this.renderer.render(this.scene, this.camera)
+  }
+
+  createScene() {
     const height = 8 // back wall height
     const distance = 16
     const vFOV = 2 * Math.atan(height / ( 2 * distance ))
@@ -89,10 +120,6 @@ class View3D extends Component {
     window.addEventListener('resize', this.resize)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize)
-  }
-
   resize() {
     this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight)
 
@@ -100,14 +127,10 @@ class View3D extends Component {
     this.camera.updateProjectionMatrix()
   }
 
-  renderScene() {
-    window.requestAnimationFrame(this.renderScene)
-
-    this.renderer.render(this.scene, this.camera)
-  }
-
   render() {
-    return (
+    return !this.browserCompatible ? (
+      <BrowserSupportError />
+    ) : (
       <div className="view-3d-container">
         <ViewControls
           audio={false}
