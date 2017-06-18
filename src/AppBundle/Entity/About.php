@@ -40,6 +40,11 @@ class About implements \JsonSerializable
      */
     private $status;
 
+    /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
     private $hiringStatus;
 
     /**
@@ -49,21 +54,70 @@ class About implements \JsonSerializable
      */
     private $birthDate;
 
+    /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
     private $gender;
 
+    /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
     private $location;
 
+    /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
     private $maritalStatus;
 
+    /**
+     * @ORM\Column(type="smallint")
+     *
+     * @var int
+     */
     private $children = 0;
 
     private $more;
 
+    /**
+     * @ORM\Column(type="date")
+     *
+     * @var \DateTime
+     */
     private $lastUpdate;
 
+    /**
+     * About constructor.
+     */
     public function __construct()
     {
+        $this->lastUpdate = new \DateTime();
         $this->more = new ArrayCollection();
+    }
+
+    /**
+     * Get avatar url.
+     *
+     * @return string
+     */
+    public function getAvatar(): string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set avatar url.
+     *
+     * @param string $avatar
+     */
+    public function setAvatar(string $avatar)
+    {
+        $this->avatar = $avatar;
     }
 
     /**
@@ -127,6 +181,26 @@ class About implements \JsonSerializable
     }
 
     /**
+     * Get gender.
+     *
+     * @return string
+     */
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set gender.
+     *
+     * @param string $gender
+     */
+    public function setGender(string $gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
      * Get status.
      *
      * @return string
@@ -146,14 +220,122 @@ class About implements \JsonSerializable
         $this->status = $status;
     }
 
+    /**
+     * Get hiring status.
+     *
+     * @return string
+     */
+    public function getHiringStatus(): string
+    {
+        return $this->hiringStatus;
+    }
+
+    /**
+     * Set hiring status.
+     *
+     * @param string $hiringStatus
+     */
+    public function setHiringStatus(string $hiringStatus)
+    {
+        $this->hiringStatus = $hiringStatus;
+    }
+
+    /**
+     * Get location.
+     *
+     * @return string
+     */
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set location.
+     *
+     * @param string $location
+     */
+    public function setLocation(string $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get marital status.
+     *
+     * @return string
+     */
+    public function getMaritalStatus(): string
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * Set marital status.
+     *
+     * @param string $maritalStatus
+     */
+    public function setMaritalStatus(string $maritalStatus)
+    {
+        $this->maritalStatus = $maritalStatus;
+    }
+
+    /**
+     * Get children.
+     *
+     * @return int
+     */
+    public function getChildren(): int
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set children.
+     *
+     * @param int $children
+     */
+    public function setChildren(int $children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * Get last update data.
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdate(): \DateTime
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set last update data.
+     *
+     * @param \DateTime $lastUpdate
+     */
+    public function setLastUpdate(\DateTime $lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+    }
+
     public function jsonSerialize(): array
     {
         return [
+            'lastUpdate' => $this->lastUpdate,
+            'avatar' => $this->avatar,
             'status' => $this->status,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
+            'gender' => $this->gender,
             'birthDate' => !empty($this->birthDate) ? $this->birthDate->format(\DateTime::ISO8601) : null,
             'description' => $this->description,
+            'hiringStatus' => $this->hiringStatus,
+            'location' => $this->location,
+            'maritalStatus' => $this->maritalStatus,
+            'children' => $this->children,
+            'more' => $this->more
         ];
     }
 }
