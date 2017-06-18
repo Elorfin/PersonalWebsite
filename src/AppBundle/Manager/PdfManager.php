@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Manager;
+namespace APWebsite\AppBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use FPDF;

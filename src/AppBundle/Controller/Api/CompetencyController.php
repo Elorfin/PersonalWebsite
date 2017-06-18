@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Controller\Api;
+namespace APWebsite\AppBundle\Controller\Api;
 
-use AppBundle\Entity\Competency;
-use AppBundle\Manager\CompetencyManager;
+use APWebsite\AppBundle\Entity\Competency;
+use APWebsite\AppBundle\Manager\CompetencyManager;
 use AppBundle\Validation\ValidationException;
 use JMS\DiExtraBundle\Annotation as DI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as EXT;

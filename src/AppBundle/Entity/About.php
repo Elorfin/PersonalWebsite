@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace APWebsite\AppBundle\Entity;
 
-use AppBundle\Model\DescriptionTrait;
-use AppBundle\Model\IdTrait;
+use APWebsite\AppBundle\Model\DescriptionTrait;
+use APWebsite\AppBundle\Model\IdTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 

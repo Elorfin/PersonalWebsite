@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Controller\Api;
+namespace APWebsite\AppBundle\Controller\Api;
 
-use AppBundle\Manager\AboutManager;
-use AppBundle\Validation\ValidationException;
+use APWebsite\AppBundle\Manager\AboutManager;
+use APWebsite\AppBundle\Validation\ValidationException;
 use JMS\DiExtraBundle\Annotation as DI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as EXT;
 use Symfony\Component\HttpFoundation\JsonResponse;

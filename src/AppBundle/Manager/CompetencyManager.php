@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Manager;
+namespace APWebsite\AppBundle\Manager;
 
-use AppBundle\Entity\Competency;
-use AppBundle\Validation\ValidationException;
+use APWebsite\AppBundle\Entity\Competency;
+use APWebsite\AppBundle\Validation\ValidationException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use JMS\DiExtraBundle\Annotation as DI;

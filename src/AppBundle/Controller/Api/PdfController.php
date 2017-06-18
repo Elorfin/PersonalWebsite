@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller\Api;
+namespace APWebsite\AppBundle\Controller\Api;
 
-use AppBundle\Manager\PdfManager;
+use APWebsite\AppBundle\Manager\PdfManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as EXT;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model;
+namespace APWebsite\AppBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 

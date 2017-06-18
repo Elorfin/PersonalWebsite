@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Validation;
+namespace APWebsite\AppBundle\Validation;
 
 class ValidationException extends \Exception
 {

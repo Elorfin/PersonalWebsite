@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Manager;
+namespace APWebsite\AppBundle\Manager;
 
-use AppBundle\Entity\About;
-use AppBundle\Validation\ValidationException;
+use APWebsite\AppBundle\Entity\About;
+use APWebsite\AppBundle\Validation\ValidationException;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class AboutManager

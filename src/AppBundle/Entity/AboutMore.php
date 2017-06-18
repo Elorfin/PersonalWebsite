@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace APWebsite\AppBundle\Entity;
 
-use AppBundle\Model\IdTrait;
+use APWebsite\AppBundle\Model\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
