@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { defaultSection } from 'main/app/sections/index'
 import { Maze } from 'main/maze/components/maze.jsx'
 
 const NotFound = props =>
@@ -25,7 +26,7 @@ const NotFound = props =>
           Now, you can get your way back to home and try to not get lost again.
         </p>
 
-        <NavLink to="/about" className="btn btn-lg btn-primary">
+        <NavLink to={defaultSection.target} className="btn btn-lg btn-primary">
           <span className="fa fa-home" />
           Go back to home
         </NavLink>
