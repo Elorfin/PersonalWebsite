@@ -21,8 +21,8 @@ const ClassicApp = () =>
 
     <div className="app-content" role="presentation">
       <Switch>
-        <Route key="default" exact={true} path="" component={defaultSection.component} />
-        <Route key="default2" exact={true} path="/" component={defaultSection.component} />
+        <Route key="default" exact={true} path="/classic" component={defaultSection.component} />
+        <Route key="default2" exact={true} path="/classic/" component={defaultSection.component} />
         {sections.map((section, index) =>
           <Route key={index} path={section.target} component={section.component} />
         )}
@@ -35,6 +35,7 @@ const ClassicApp = () =>
 const MainApp = () =>
   <Router history={hashHistory}>
     <Switch>
+      {/*<Route key="default-main" exact={true} path="" component={ClassicApp} />*/}
       <Route key="classic" path="/classic" component={ClassicApp} />
       <Route key="view-3d" path="/3d" component={View3D} />
       <Route key="error-404" component={NotFound} />
