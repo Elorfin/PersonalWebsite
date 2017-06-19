@@ -1,16 +1,20 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
-const BASE_SRC_PATH = path.resolve(__dirname, 'src/AppBundle/Resources/js');
+const BASE_SRC_PATH = path.resolve(__dirname, 'src/AppBundle/Resources/js')
 
 module.exports = {
   entry: {
-    polyfill: 'babel-polyfill',
+    polyfills: 'babel-polyfill',
     app: path.resolve(BASE_SRC_PATH, 'app/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'web/dist/js'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+    publicPath: 'dist/js'
+  },
+  devServer: {
+    contentBase: 'web',
   },
   module: {
     rules: [{
@@ -28,6 +32,11 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      filename: 'common.bundle.js',
+      minChunks: 2,
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })
@@ -39,4 +48,4 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json']
   },
   devtool: false
-};
+}
