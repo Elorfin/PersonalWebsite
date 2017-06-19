@@ -16,6 +16,8 @@ window.requestAnimationFrame =
   || window.webkitRequestAnimationFrame
   || window.msRequestAnimationFrame
 
+window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame
+
 const BrowserSupportError = () =>
   <div className="view-3d-support">
     {window.WebGLRenderingContext ? (
@@ -65,17 +67,32 @@ class View3D extends Component {
   }
 
   componentDidMount() {
+    // load three-js scene
     if (this.browserCompatible) {
       this.createScene()
+      this.renderScene()
+
+      window.addEventListener('resize', this.resize)
     }
   }
 
   componentWillUnmount() {
+    // cancel animation
+    if (this.animateScene) {
+      window.cancelAnimationFrame(this.animateScene)
+    }
+
+    // remove events
     window.removeEventListener('resize', this.resize)
+
+    // break reference to three-js objects (and let's garbage collector do his work)
+    this.camera   = null
+    this.renderer = null
+    this.scene    = null
   }
 
   renderScene() {
-    window.requestAnimationFrame(this.renderScene)
+    this.animateScene = window.requestAnimationFrame(this.renderScene)
 
     this.renderer.render(this.scene, this.camera)
   }
@@ -114,10 +131,6 @@ class View3D extends Component {
 
     // create scene
     this.scene = buildScene(config)
-
-    this.renderScene()
-
-    window.addEventListener('resize', this.resize)
   }
 
   resize() {
