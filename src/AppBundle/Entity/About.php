@@ -326,16 +326,18 @@ class About implements \JsonSerializable
             'lastUpdate' => $this->lastUpdate,
             'avatar' => $this->avatar,
             'status' => $this->status,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'gender' => $this->gender,
-            'birthDate' => !empty($this->birthDate) ? $this->birthDate->format(\DateTime::ISO8601) : null,
-            'description' => $this->description,
             'hiringStatus' => $this->hiringStatus,
-            'location' => $this->location,
-            'maritalStatus' => $this->maritalStatus,
-            'children' => $this->children,
-            'more' => $this->more
+            'description' => $this->description,
+            'civility' => [
+                'firstName' => $this->firstName,
+                'lastName' => $this->lastName,
+                'gender' => $this->gender,
+                'birthDate' => !empty($this->birthDate) ? $this->birthDate->format(\DateTime::ISO8601) : null,
+                'location' => $this->location,
+                'maritalStatus' => $this->maritalStatus,
+                'children' => $this->children,
+            ],
+            'more' => $this->more,
         ];
     }
 }

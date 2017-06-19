@@ -41,7 +41,7 @@ class CompetencyManager
      *
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->repository->findAll();
     }
@@ -53,7 +53,7 @@ class CompetencyManager
      *
      * @return Competency
      */
-    public function create(array $data)
+    public function create(array $data): Competency
     {
         return $this->update(new Competency(), $data);
     }
@@ -68,7 +68,7 @@ class CompetencyManager
      *
      * @throws ValidationException
      */
-    public function update(Competency $competency, array $data)
+    public function update(Competency $competency, array $data): Competency
     {
         $errors = $this->validate($data);
         if (!empty($errors)) {
@@ -88,7 +88,7 @@ class CompetencyManager
      *
      * @return array
      */
-    public function validate(array $data)
+    public function validate(array $data): array
     {
         $errors = [];
 

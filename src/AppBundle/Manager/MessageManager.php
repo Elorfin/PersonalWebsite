@@ -2,23 +2,23 @@
 
 namespace APWebsite\AppBundle\Manager;
 
-use APWebsite\AppBundle\Entity\About;
+use APWebsite\AppBundle\Entity\Message;
 use APWebsite\AppBundle\Validation\ValidationException;
 use Doctrine\Common\Persistence\ObjectManager;
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
- * About manager.
+ * Message manager.
  *
- * @DI\Service("app.manager.about")
+ * @DI\Service("app.manager.message")
  */
-class AboutManager
+class MessageManager
 {
     /** @var ObjectManager */
     private $om;
 
     /**
-     * AboutManager constructor.
+     * MessageManager constructor.
      *
      * @DI\InjectParams({
      *     "om" = @DI\Inject("doctrine.orm.entity_manager")
@@ -31,35 +31,37 @@ class AboutManager
         $this->om = $om;
     }
 
-    public function get(): About
-    {
-        // There is only one record in this table
-        $records = $this->om->getRepository('AppBundle::About')->findAll();
-
-        return !empty($records) ? $records[0] : null;
-    }
-
-    public function update(array $data): About
+    public function create(array $data): Message
     {
         $errors = $this->validate($data);
         if (!empty($errors)) {
             throw new ValidationException('Invalid about data.', $errors);
         }
 
-        $about = $this->get();
-        if (empty($about)) {
-            $about = new About();
-        }
+        $message = new Message();
 
-        $this->om->persist($about);
+        $message->setEmail($data['email']);
+        $message->setMessage($data['message']);
+
+        $this->om->persist($message);
         $this->om->flush();
 
-        return $about;
+        return $message;
     }
 
     public function validate(array $data): array
     {
         $errors = [];
+
+        if (empty($data['email'])) {
+            $errors['email'] = 'can not be empty';
+        } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'is not a valid email';
+        }
+
+        if (empty($data['message'])) {
+            $errors['message'] = 'can not be empty';
+        }
 
         return $errors;
     }
