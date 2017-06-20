@@ -29,7 +29,7 @@
   "scripts": {
     "build": "npm run webpack && npm run fonts && npm run sass && npm run models",
     "webpack": "webpack --config webpack.config.js",
-    "watch": "webpack-dev-server --open",
+    "watch": "webpack-dev-server",
     "sass": "sass ./src/AppBundle/Resources/styles/index.scss ./web/dist/css/app.css",
     "fonts": "cp -R ./node_modules/font-awesome/fonts/* ./web/dist/fonts",
     "eslint": "./node_modules/.bin/eslint src/AppBundle/Resources/js --fix",
