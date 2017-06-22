@@ -2,7 +2,7 @@ import React from 'react'
 
 import { SocialNetworks } from 'main/app/components/social.jsx'
 
-const CivilityPanel = props =>
+const CivilityPanel = () =>
   <section className="content-panel">
     <h3>Civility</h3>
 
@@ -29,12 +29,12 @@ const CivilityPanel = props =>
     </ul>
   </section>
 
-const MorePanel = props =>
+const MorePanel = () =>
   <section className="content-panel">
     <h3>Other</h3>
   </section>
 
-const About = props =>
+const About = () =>
   <section className="container app-section">
     <h2 className="sr-only">About</h2>
 

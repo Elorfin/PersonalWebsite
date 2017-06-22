@@ -61,17 +61,17 @@ function add(scene, lights, showHelpers = false) {
       // todo : find a better way to do it
       let lightHelper = null
       switch (lightConfig.type) {
-      case PointLight:
-        lightHelper = PointLightHelper
-        break
+        case PointLight:
+          lightHelper = PointLightHelper
+          break
 
-      case DirectionalLight:
-        lightHelper = DirectionalLightHelper
-        break
+        case DirectionalLight:
+          lightHelper = DirectionalLightHelper
+          break
 
-      case HemisphereLight:
-        lightHelper = HemisphereLightHelper
-        break
+        case HemisphereLight:
+          lightHelper = HemisphereLightHelper
+          break
       }
 
       if (lightHelper) {

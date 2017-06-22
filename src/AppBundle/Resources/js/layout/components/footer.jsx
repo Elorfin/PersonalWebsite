@@ -29,7 +29,7 @@ FooterColumn.propTypes = {
   children: T.node.isRequired
 }
 
-const SocialNetworksColumn = props =>
+const SocialNetworksColumn = () =>
   <FooterColumn title="Social networks">
     <ul>
       <li>
@@ -53,7 +53,7 @@ const SocialNetworksColumn = props =>
     </ul>
   </FooterColumn>
 
-const InternalLinksColumn = props =>
+const InternalLinksColumn = () =>
   <FooterColumn title="Internal links">
     <ul>
       {sections.map((section, index) =>

@@ -63,13 +63,13 @@ const markVisited = cellPosition => {
  */
 const getNeighbours = cellPosition => [
   // north
-  [cellPosition[0], cellPosition[1]-1,   NORTH],
+  [cellPosition[0], cellPosition[1]-1, NORTH],
   // east
-  [cellPosition[0]+1,   cellPosition[1], EAST],
+  [cellPosition[0]+1, cellPosition[1], EAST],
   // south
-  [cellPosition[0], cellPosition[1]+1,   SOUTH],
+  [cellPosition[0], cellPosition[1]+1, SOUTH],
   // west
-  [cellPosition[0]-1,   cellPosition[1], WEST]
+  [cellPosition[0]-1, cellPosition[1], WEST]
 ]
 
 /**
@@ -89,22 +89,22 @@ const getRandomNeighbour = currentPosition => {
 
 const openWalls = (cell, neighbour) => {
   switch (neighbour[2]) {
-  case NORTH:
-    cells[cell[0]][cell[1]][NORTH] = 1
-    cells[neighbour[0]][neighbour[1]][SOUTH] = 1
-    break
-  case EAST:
-    cells[cell[0]][cell[1]][EAST] = 1
-    cells[neighbour[0]][neighbour[1]][WEST] = 1
-    break
-  case SOUTH:
-    cells[cell[0]][cell[1]][SOUTH] = 1
-    cells[neighbour[0]][neighbour[1]][NORTH] = 1
-    break
-  case WEST:
-    cells[cell[0]][cell[1]][WEST] = 1
-    cells[neighbour[0]][neighbour[1]][EAST] = 1
-    break
+    case NORTH:
+      cells[cell[0]][cell[1]][NORTH] = 1
+      cells[neighbour[0]][neighbour[1]][SOUTH] = 1
+      break
+    case EAST:
+      cells[cell[0]][cell[1]][EAST] = 1
+      cells[neighbour[0]][neighbour[1]][WEST] = 1
+      break
+    case SOUTH:
+      cells[cell[0]][cell[1]][SOUTH] = 1
+      cells[neighbour[0]][neighbour[1]][NORTH] = 1
+      break
+    case WEST:
+      cells[cell[0]][cell[1]][WEST] = 1
+      cells[neighbour[0]][neighbour[1]][EAST] = 1
+      break
   }
 }
 

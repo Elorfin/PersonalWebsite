@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { defaultSection } from 'main/app/sections/index'
 import { Maze } from 'main/maze/components/maze.jsx'
 
-const NotFound = props =>
+const NotFound = () =>
   <div className="container app-section page-404">
     <div className="error-404" role="presentation">
       <h2>
