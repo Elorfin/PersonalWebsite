@@ -1,3 +1,5 @@
+/* global module, require, process __dirname */
+
 const path = require('path')
 const webpack = require('webpack')
 
