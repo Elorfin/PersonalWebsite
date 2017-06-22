@@ -187,6 +187,10 @@ class UserPath extends Component {
 }
 
 UserPath.propTypes = {
+  width: T.number.isRequired,
+  height: T.number.isRequired,
+  cellSize: T.number.isRequired,
+  wallSize: T.number.isRequired,
   path: T.arrayOf(
     T.arrayOf(
       T.number

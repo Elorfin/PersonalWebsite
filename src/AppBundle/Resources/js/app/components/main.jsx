@@ -2,7 +2,6 @@ import React from 'react'
 import {
   hashHistory,
   HashRouter as Router,
-  Redirect,
   Route,
   Switch
 } from 'react-router-dom'
