@@ -61,6 +61,17 @@ class AboutManager
     {
         $errors = [];
 
+        if (!empty($data['civility'])) {
+            if (empty($data['civility']['firstName'])) {
+                $errors['civility.firstName'] = 'can not be empty';
+            }
+            if (empty($data['civility']['lastName'])) {
+                $errors['civility.lastName'] = 'can not be empty';
+            }
+        } else {
+            $errors['civility'] = 'is required';
+        }
+
         return $errors;
     }
 }
