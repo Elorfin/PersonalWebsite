@@ -6,7 +6,7 @@ import { select } from 'main/app/selectors'
 
 import { experienceTypes } from 'main/app/sections/experiences/index'
 
-const Experiences = props =>
+const ExperienceSection = props =>
   <section className="container app-section experiences">
     <h2 className="sr-only">Experiences</h2>
 
@@ -39,7 +39,7 @@ const Experiences = props =>
     )}
   </section>
 
-Experiences.propTypes = {
+ExperienceSection.propTypes = {
   experiences: T.arrayOf(T.shape({
     id: T.number.isRequired,
     name: T.string.isRequired,
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const ExperiencesContainer = connect(mapStateToProps)(Experiences)
+const ExperiencesContainer = connect(mapStateToProps)(ExperienceSection)
 
 export {
   ExperiencesContainer as Experiences

@@ -45,7 +45,9 @@ const initialState = {
       name: 'Claroline',
       image: 'uploads/claroline.png',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel sem a erat commodo elementum ac eget nulla. Donec porttitor orci id nibh sollicitudin interdum ut et elit. Quisque diam diam, pretium eu eleifend quis, congue at mi.',
-      competencies: [],
+      competencies: [
+        {name: 'PHP'}
+      ],
       details: [
         'Advanced theme feature',
         'Ergonomy',

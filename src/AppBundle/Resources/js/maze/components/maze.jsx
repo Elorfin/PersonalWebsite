@@ -45,7 +45,7 @@ class MazeStructure extends Component {
     ]
 
     // start drawing in the top left corner
-    this.context.moveTo(currentPos[0], currentPos[1]);
+    this.context.moveTo(currentPos[0], currentPos[1])
 
     // go to top right corner
     this.drawWall(currentPos[0] + cellSize, currentPos[1], doors[0])
@@ -122,7 +122,6 @@ class UserPath extends Component {
     // draw path
     this.context.beginPath()
     this.props.path.map((visitedCell, index) => {
-
       this.context.setLineDash([4, 2])
 
       const visitedPos = [
@@ -136,8 +135,6 @@ class UserPath extends Component {
       } else {
         this.context.lineTo(visitedPos[0], visitedPos[1])
       }
-
-
     })
 
     this.context.strokeStyle = this.props.userColor
@@ -151,7 +148,7 @@ class UserPath extends Component {
 
       this.context.beginPath()
 
-      this.context.setLineDash([]);
+      this.context.setLineDash([])
       this.context.arc(
         cell[0],
         cell[1],
@@ -168,7 +165,7 @@ class UserPath extends Component {
       } else {
         this.context.strokeStyle = this.props.userColor
         this.context.lineWidth = 2
-        this.context.fillStyle = "#F4F4F4"
+        this.context.fillStyle = '#F4F4F4'
         this.context.fill()
         this.context.stroke()
       }

@@ -8,20 +8,19 @@ import {
 const lights = [
   {
     type: HemisphereLight,
-    options: [0xbbbbbb, 0x000000, .5]
+    options: [0xBBBBBB, 0x000000, .5]
   },
   {
     type: AmbientLight,
-    options: [0xffffff, .3]
+    options: [0xFFFFFF, .3]
   },
 
   // sun
   {
     type: DirectionalLight,
-    options: [0xfff2d8, .5],
+    options: [0xFFF2D8, .5],
     castShadow: true,
     shadow: {
-      //bias: .09,
       camera: {
         near: 4,
         far: 40,
@@ -37,7 +36,7 @@ const lights = [
 
   {
     type: PointLight,
-    options: [0xffffff, .25, 50, 2],
+    options: [0xFFFFFF, .25, 50, 2],
     castShadow: true,
     shadow: {
       camera: {
@@ -46,12 +45,12 @@ const lights = [
       },
       mapSize: 1024
     },
-    position: [-12, 7.9, 2]
+    position: [-12, 7.9, -1]
   },
 
   {
     type: PointLight,
-    options: [0xffffff, .25, 50, 2],
+    options: [0xFFFFFF, .25, 50, 2],
     castShadow: true,
     shadow: {
       camera: {
@@ -60,7 +59,7 @@ const lights = [
       },
       mapSize: 1024
     },
-    position: [-12, 7.9, 10]
+    position: [-12, 7.9, 7]
   }
 ]
 

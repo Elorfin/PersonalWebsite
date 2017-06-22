@@ -5,9 +5,18 @@ import {
 } from 'three'
 
 const materials = {
+  M_Sky: {
+    options: {
+      side: DoubleSide,
+      shading: SmoothShading
+    },
+    textures: {
+      map: 'T_Sky_D'
+    }
+  },
+
   M_Wall: {
     options: {
-      //side: DoubleSide,
       normalScale: new Vector3(.5, .5)
     },
     textures: {
@@ -19,37 +28,34 @@ const materials = {
   M_Ceiling: {
     options: {
       color: 0xffffff
-    },
-    /*textures: {
-     map: 'T_Ceiling_D'
-     }*/
+    }
   },
 
   M_Window: {
     options: {
       side: DoubleSide,
       transparent: true,
-      opacity: .4,
+      opacity: .3,
       color: 0xd1f7fa
+    }
+  },
+
+  M_Door: {
+    textures: {
+      map: 'T_Door_D'
     }
   },
 
   M_BayWindow: {
     options: {
       color: 0x262626
-    },
-    /*textures: {
-     map: 'T_BayWindow_D',
-     }*/
+    }
   },
 
   M_BayWindowLarge: {
     options: {
       color: 0x262626
-    },
-    /*textures: {
-     map: 'T_BayWindowLarge_D',
-     }*/
+    }
   },
 
   M_Wood: {
@@ -75,10 +81,7 @@ const materials = {
   M_Computer: {
     options: {
       color: 0x262626
-    },
-    /*textures: {
-     map: 'T_Ceiling_D'
-     }*/
+    }
   },
 
   M_HighTable: {

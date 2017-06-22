@@ -75,6 +75,24 @@ const meshes = [
     ]
   },
 
+  // office door
+  {
+    geometry: 'SM_DoorFrame',
+    material: 'M_BayWindow',
+    instances: [
+      { scale: [1, 1, 1], position: [-8, 0, -4], rotation: [0, 90, 0] }
+    ]
+  },
+
+  {
+    geometry: 'SM_Door',
+    material: 'M_Door',
+    instances: [
+      { scale: [1, 1, 1], position: [-7.625, 0, -7.125], rotation: [0, 180, 0] }
+    ]
+  },
+
+  // left bay (indoor)
   {
     geometry: 'SM_BayWindowLarge',
     material: 'M_BayWindowLarge',
@@ -84,6 +102,7 @@ const meshes = [
     ]
   },
 
+  // right bay (outdoor)
   {
     geometry: 'SM_BayWindow',
     material: 'M_BayWindow',
@@ -96,6 +115,7 @@ const meshes = [
     ]
   },
 
+  // windows
   {
     geometry: () => new PlaneGeometry(1, 8),
     material: 'M_Window',
@@ -105,7 +125,7 @@ const meshes = [
       { scale: [16, 1, 1], position: [-7.75, 4, 4], rotation: [0, 90, 0] },
 
       // outdoor (right)
-      { scale: [20, 1, 1], position: [16.25, 4, 2], rotation: [0, 90, 0] },
+      { scale: [20, 1, 1], position: [16.25, 4, 2], rotation: [0, 90, 0] }
     ]
   },
 

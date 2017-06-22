@@ -23,7 +23,7 @@ NavigationLink.propTypes = {
   target: T.string.isRequired
 }
 
-const Navigation = props =>
+const Navigation = () =>
   <nav className="app-nav">
     {sections.map((section, index) =>
       <NavigationLink
@@ -35,7 +35,7 @@ const Navigation = props =>
     )}
   </nav>
 
-const LanguageMenu = props =>
+const LanguageMenu = () =>
   <a href="" className="lang-select">
     <img src="bundles/app/images/lang/en.png" />
     english
@@ -43,13 +43,13 @@ const LanguageMenu = props =>
     <span className="fa fa-caret-down" />
   </a>
 
-const Header = props =>
+const Header = () =>
   <header className="app-header">
     <div className="container" role="presentation">
       <LoadingBar/>
 
       <div className="app-brand">
-        <img className="app-logo" src="./bundles/app/images/avatar.jpg" alt="avatar" />
+        <img className="app-logo" src="./uploads/avatar.jpg" alt="avatar" />
 
         <h1 className="app-title">
           Axel Penin
