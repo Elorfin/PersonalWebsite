@@ -2,7 +2,8 @@ import {
   AmbientLight,
   DirectionalLight,
   HemisphereLight,
-  PointLight
+  PointLight,
+  SpotLight
 } from 'three'
 
 const lights = [
@@ -60,9 +61,35 @@ const lights = [
       mapSize: 1024
     },
     position: [-12, 7.9, 7]
+  },
+
+  // desk lamp
+  {
+    type: SpotLight,
+    options: [0xECE3AC, 1, 20, Math.PI/4, .5],
+    castShadow: true,
+    shadow: {
+      camera: {
+        near: .1,
+        far: 4
+      }
+    },
+    position: [6.725, 3.7, 6],
+    target: [7.275, 0, 6]
+  }
+]
+
+const meshes = [
+  {
+    geometry: 'SM_DeskLamp',
+    material: 'M_DeskLamp',
+    instances: [
+      {scale: [1, 1, 1], position: [6, 2, 6], rotation: [0, 0, 0]}
+    ]
   }
 ]
 
 export {
-  lights
+  lights,
+  meshes
 }

@@ -78,6 +78,12 @@ const materials = {
     }
   },
 
+  M_DeskLamp: {
+    options: {
+      color: 0x999999
+    }
+  },
+
   M_Computer: {
     options: {
       color: 0x262626

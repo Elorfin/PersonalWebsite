@@ -7,11 +7,36 @@ import {
   HemisphereLight,
   HemisphereLightHelper,
   PointLight,
-  PointLightHelper
+  PointLightHelper,
+  SpotLight,
+  SpotLightHelper
 } from 'three'
 
 const defaultLightConfig = {
   options: []
+}
+
+function addHelper(scene, light) {
+  let lightHelper = null
+  if (light instanceof DirectionalLight) {
+    lightHelper = DirectionalLightHelper
+  } else if (light instanceof HemisphereLight) {
+    lightHelper = HemisphereLightHelper
+  } else if (light instanceof PointLight) {
+    lightHelper = PointLightHelper
+  } else if (light instanceof SpotLight) {
+    lightHelper = SpotLightHelper
+  }
+
+  if (lightHelper) {
+    scene.add(new lightHelper(light))
+  }
+
+  if (light.castShadow) {
+    scene.add(
+      new CameraHelper(light.shadow.camera)
+    )
+  }
 }
 
 function add(scene, lights, showHelpers = false) {
@@ -23,10 +48,13 @@ function add(scene, lights, showHelpers = false) {
       light.position.set(...lightConfig.position)
     }
 
+    if (lightConfig.target) {
+      light.target.position.set(...lightConfig.target)
+      light.target.updateMatrixWorld()
+    }
+
     if (lightConfig.castShadow) {
       light.castShadow = true
-
-
 
       if (lightConfig.shadow) {
         // light has custom shadow config
@@ -47,36 +75,12 @@ function add(scene, lights, showHelpers = false) {
           light.shadow.mapSize.height = lightConfig.shadow.mapSize
         }
       }
-
-      if (showHelpers) {
-        scene.add(
-          new CameraHelper(light.shadow.camera)
-        )
-      }
     }
 
     scene.add(light)
 
     if (showHelpers) {
-      // todo : find a better way to do it
-      let lightHelper = null
-      switch (lightConfig.type) {
-        case PointLight:
-          lightHelper = PointLightHelper
-          break
-
-        case DirectionalLight:
-          lightHelper = DirectionalLightHelper
-          break
-
-        case HemisphereLight:
-          lightHelper = HemisphereLightHelper
-          break
-      }
-
-      if (lightHelper) {
-        scene.add(new lightHelper(light))
-      }
+      addHelper(scene, light)
     }
   })
 }

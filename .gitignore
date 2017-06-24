@@ -1,6 +1,7 @@
 /.web-server-pid
 /app/config/parameters.yml
-/app/Resources/models/*.blend+
+/app/Resources/models/*.blend1
+/app/Resources/models/*.blend2
 /build/
 /phpunit.xml
 /var/*

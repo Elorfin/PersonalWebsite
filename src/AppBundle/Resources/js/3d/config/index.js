@@ -3,7 +3,7 @@ import {
   WebGLRenderer
 } from 'three'
 
-import { lights } from './lights'
+import { lights, meshes as lightsMeshes } from './lights'
 import { materials } from './materials'
 
 import { meshes as buildingMeshes } from './building'
@@ -40,13 +40,18 @@ export const config = {
 
   camera: {
     position: [0, 4, 28],
-    lookAt: {x: 0, y: 4, z: 0}
+    lookAt: {
+      x: 0,
+      y: 4,
+      z: 0
+    }
   },
 
   lights: lights,
   materials: materials,
   meshes: [
     ...buildingMeshes,
+    ...lightsMeshes,
     ...furnitureMeshes,
     ...appliancesMeshes,
     ...decorationsMeshes
