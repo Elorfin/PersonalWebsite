@@ -1,6 +1,6 @@
 import merge from 'lodash/merge'
 
-import { Scene } from 'three'
+import { Scene, FogExp2 } from 'three'
 
 import { loadMapping } from './content/assets'
 import { registerMaterials } from './content/materials'
@@ -13,7 +13,8 @@ const defaultConfig = {
   helpers: {
     grid: false,
     axis: false,
-    lights: false
+    lights: false,
+    stats: false
   },
   materials: {},
   lights: {},
@@ -24,7 +25,8 @@ function canRender() {
   try {
     const canvas = document.createElement('canvas')
 
-    return !!( window.WebGLRenderingContext && ( canvas.getContext('webgl') || canvas.getContext('experimental-webgl') ) )
+    return !!(window.WebGLRenderingContext
+              && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) )
   } catch (e) {
     return false
   }
@@ -41,6 +43,9 @@ function build(config) {
   if (sceneConfig.helpers.axis) {
     addAxis(scene)
   }
+
+
+  //scene.fog = new FogExp2(0xffffff, 0.00025)
 
   registerMaterials(sceneConfig.materials)
 

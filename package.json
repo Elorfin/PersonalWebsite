@@ -12,7 +12,8 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
     "reselect": "^3.0.1",
-    "three": "^0.86.0"
+    "three": "^0.86.0",
+    "stats.js": "^0.17.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

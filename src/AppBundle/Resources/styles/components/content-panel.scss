@@ -6,6 +6,7 @@
   margin-bottom: 30px;
 
   h3 {
+    text-align: left;
     position: relative;
     font-size: $font-size-lg;
     color: $brand-primary;
@@ -24,22 +25,13 @@
     }
   }
 
-  &.content-panel-success {
-    h3 {
-      color: $brand-success;
-    }
-  }
-
-  &.content-panel-danger {
-    h3 {
-      color: $brand-danger;
-    }
-  }
-
   p {
     font-family: $font-family-serif;
     text-align: justify;
   }
+
+  &.content-panel-success h3 { color: $brand-success; }
+  &.content-panel-danger  h3 { color: $brand-danger; }
 }
 
 .content-panel-icon {
@@ -64,21 +56,12 @@
     justify-content: center;
   }
 
-  &.content-panel-success {
-    .panel-icon {
-      background: $brand-success;
-    }
-  }
-
-  &.content-panel-danger {
-    .panel-icon {
-      background: $brand-danger;
-    }
-  }
-
   h3,
   ul,
   p {
     margin-left: 15px;
   }
+
+  &.content-panel-success .panel-icon { background: $brand-success; }
+  &.content-panel-danger  .panel-icon { background: $brand-danger; }
 }

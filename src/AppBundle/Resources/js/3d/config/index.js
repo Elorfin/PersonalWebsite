@@ -6,9 +6,9 @@ import {
 import { lights, meshes as lightsMeshes } from './lights'
 import { materials } from './materials'
 
-import { meshes as buildingMeshes } from './building'
-import { meshes as furnitureMeshes } from './furniture'
-import { meshes as appliancesMeshes } from './appliances'
+import { meshes as buildingMeshes }    from './building'
+import { meshes as furnitureMeshes }   from './furniture'
+import { meshes as appliancesMeshes }  from './appliances'
 import { meshes as decorationsMeshes } from './decorations'
 
 export const config = {
@@ -17,9 +17,10 @@ export const config = {
 
   // dev debug options
   helpers: {
-    grid: true,
+    grid: false,
     axis: false,
-    lights: false
+    lights: false,
+    stats: true
   },
 
   grid: {
@@ -40,11 +41,7 @@ export const config = {
 
   camera: {
     position: [0, 4, 28],
-    lookAt: {
-      x: 0,
-      y: 4,
-      z: 0
-    }
+    lookAt: { x: 0, y: 4, z: 0 }
   },
 
   lights: lights,

@@ -5,27 +5,30 @@ import {
   compose
 } from 'redux'
 
+import { reducer as layoutReducer } from 'main/layout/reducer'
 import { reducer as aboutReducer } from 'main/app/sections/about/reducer'
 import { reducer as competenciesReducer } from 'main/app/sections/competencies/reducer'
 import { reducer as experiencesReducer } from 'main/app/sections/experiences/reducer'
 
 const initialState = {
-  /*ui: {
+  layout: {
     lang: 'en',
     theme: 'light',
     admin: false,
     isBooting: false,
     isFetching: false
-  },*/
+  },
   about: {
+    lastUpdate: '04/06/2017',
     firstName: 'Axel',
     lastName: 'Penin',
     birthDate: '1989-08-31',
-    description: '',
+    hiringStatus: 'active',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel sem a erat commodo elementum ac eget nulla. Donec porttitor orci id nibh sollicitudin interdum ut et elit. Quisque diam diam, pretium eu eleifend quis, congue at mi. Quisque at enim ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum elit non magna porta commodo. Mauris convallis ut libero id vulputate. Donec eu blandit odio. Nulla mi lorem, fringilla vitae ultricies cursus, ultricies at turpis. Phasellus nibh lorem, auctor et nunc in, dictum fringilla odio. Aliquam erat volutpat. Fusce feugiat urna diam, nec lacinia massa accumsan ac. Integer sagittis laoreet interdum. Suspendisse feugiat pharetra libero, nec suscipit felis auctor id.\n\nEtiam molestie vehicula nibh. Donec a sapien et sem cursus congue vel faucibus tortor. Ut et cursus ligula. In in lorem eleifend, condimentum libero in, vulputate nulla. Praesent quis ipsum sit amet leo tristique facilisis. Duis vitae felis odio. Fusce malesuada elementum eros ut placerat. Donec eros libero, bibendum sed dignissim sit amet, interdum a eros. Nam congue venenatis diam eu tristique. Sed molestie non diam ac rutrum. Mauris ut risus nec mauris bibendum luctus.',
     social: [
-      {name: 'Github',         icon: 'github',         url: 'https://github.com/Elorfin'},
-      {name: 'Stack Overflow', icon: 'stack-overflow', url: 'https://stackoverflow.com/users/379907/elorfin'},
-      {name: 'LinkedIn',       icon: 'linkedin',       url: 'https://www.linkedin.com/in/axel-penin-32645b70/'}
+      {name: 'Github',         class: 'github',         icon: 'github-alt', url: 'https://github.com/Elorfin'},
+      {name: 'Stack Overflow', class: 'stack-overflow', url: 'https://stackoverflow.com/users/379907/elorfin'},
+      {name: 'LinkedIn',       class: 'linkedin',       url: 'https://www.linkedin.com/in/axel-penin-32645b70/'}
     ]
   },
   competencies: [
@@ -110,6 +113,7 @@ export function createStore(middleware = []) {
 
   return baseCreate(
     combineReducers({
+      layout: layoutReducer,
       about: aboutReducer,
       competencies: competenciesReducer,
       experiences: experiencesReducer

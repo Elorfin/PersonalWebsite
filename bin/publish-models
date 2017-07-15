@@ -46,8 +46,9 @@ function publishModels(currentPath) {
         publishModels(itemPath)
       } else {
         const ext = path.extname(item)
-        if (IMPORT_FILES[ext]) {
-          const baseName = path.basename(item)
+        const baseName = path.basename(item)
+
+        if (IMPORT_FILES[ext] && 0 !== baseName.indexOf('UV_')) {
           const name = baseName.slice(0, -(ext.length))
 
           // because the blender exporter I use has wrong ext
@@ -63,7 +64,6 @@ function publishModels(currentPath) {
             .pipe(
               fs.createWriteStream(itemDest)
             )
-
 
           if (mapping[IMPORT_FILES[ext]][name]) {
             // a file with the same name has already been published

@@ -8,8 +8,8 @@ import {
 
 import { sections, defaultSection } from 'main/app/sections/index'
 
-import { Footer }   from 'main/layout/components/footer.jsx'
-import { Header }   from 'main/layout/components/header.jsx'
+import { Footer }   from 'main/layout/footer/containers/footer.jsx'
+import { Header }   from 'main/layout/header/containers/header.jsx'
 import { NotFound } from 'main/layout/components/not-found.jsx'
 
 import { View3D } from 'main/3d/components/main.jsx'

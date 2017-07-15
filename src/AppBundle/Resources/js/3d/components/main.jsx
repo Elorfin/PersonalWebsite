@@ -5,6 +5,9 @@ import { NavLink } from 'react-router-dom'
 import {
   PerspectiveCamera
 } from 'three'
+import {
+  default as Stats
+} from 'stats.js/src/Stats'
 
 import { defaultSection } from 'main/app/sections/index'
 import { config } from './../config/index'
@@ -61,8 +64,8 @@ class View3D extends Component {
 
     this.browserCompatible = canRender()
 
-    this.renderScene = this.renderScene.bind(this)
     this.createScene = this.createScene.bind(this)
+    this.renderScene = this.renderScene.bind(this)
     this.resize      = this.resize.bind(this)
   }
 
@@ -89,12 +92,7 @@ class View3D extends Component {
     this.camera   = null
     this.renderer = null
     this.scene    = null
-  }
-
-  renderScene() {
-    this.animateScene = window.requestAnimationFrame(this.renderScene)
-
-    this.renderer.render(this.scene, this.camera)
+    this.stats    = null
   }
 
   createScene() {
@@ -131,6 +129,37 @@ class View3D extends Component {
 
     // create scene
     this.scene = buildScene(config)
+
+    if (config.helpers.stats) {
+      this.stats = new Stats()
+      //this.stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+      /*this.stats.showPanel(1)
+      this.stats.showPanel(2)*/
+      this.container.appendChild(this.stats.dom)
+
+      // the lib does not permit to display the 3 panels at once
+      // so we just hack it (force display all panels + disable toggle event)
+      // this is slightly ugly
+      this.stats.dom.className = 'view-3d-stats'
+      for (let i = 0; i < this.stats.dom.children.length; i++) {
+        this.stats.dom.children[i].className = 'view-3d-stats-panel'
+        this.stats.dom.children[i].style.display = 'inline-block'
+      }
+      this.stats.dom.addEventListener('click', e => {
+        for (let i = 0; i < this.stats.dom.children.length; i++) {
+          this.stats.dom.children[i].style.display = 'inline-block'
+        }
+        e.preventDefault()
+      }, false)
+    }
+  }
+
+  renderScene() {
+    this.stats.begin()
+    this.renderer.render(this.scene, this.camera)
+    this.stats.end()
+
+    this.animateScene = window.requestAnimationFrame(this.renderScene)
   }
 
   resize() {

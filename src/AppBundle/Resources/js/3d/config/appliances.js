@@ -4,7 +4,7 @@ const meshes = [
     geometry: 'SM_CoffeeMachine',
     material: 'M_CoffeeMachine',
     instances: [
-      { scale: [1, 1, 1], position: [-15.5, 0, -8], rotation: [0, 0, 0] }
+      { scale: [1, 1, 1], position: [-15.5, 0, -7.8], rotation: [0, 0, 0] }
     ]
   },
 

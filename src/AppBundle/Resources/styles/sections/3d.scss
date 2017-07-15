@@ -1,3 +1,12 @@
+
+$control-btn-spacer-x:    5px;
+$control-btn-spacer-y:    15px;
+$control-btn-size:        46px;
+$control-btn-border-size: 2px;
+
+$control-btn-hover-size: 54px;
+$control-btn-hover-border-size: 3px;
+
 .view-3d-container {
   font-size: 0; // remove additional space after the canvas
   position: absolute;
@@ -15,6 +24,14 @@
   height: 100%;
 }
 
+.view-3d-stats {
+  margin: 0 15px;
+}
+
+.view-3d-stats-panel {
+  margin: $control-btn-spacer-y $control-btn-spacer-x;
+}
+
 .view-3d-controls {
   position: absolute;
   z-index: 2;
@@ -22,14 +39,6 @@
   right: 0;
   margin: 0 15px;
 }
-
-$control-btn-spacer-x:    5px;
-$control-btn-spacer-y:    15px;
-$control-btn-size:        46px;
-$control-btn-border-size: 2px;
-
-$control-btn-hover-size: 54px;
-$control-btn-hover-border-size: 3px;
 
 .view-3d-btn {
   cursor: pointer;

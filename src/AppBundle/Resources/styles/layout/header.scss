@@ -23,13 +23,56 @@
   flex-direction: row;
   align-items: center;
 
+  > div {
+    position: relative;
+    /*padding-left: 6px;
+    padding-bottom: 6px;*/
+  }
+
   .app-logo {
+    position: relative;
+    /*z-index: 2;*/
     width: 100px;
     height: 100px;
     border-radius: 100%;
 
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 0 1px white;
+  }
+
+  .hiring-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    /*border-bottom-left-radius: 56px;*/
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+    &.active {
+      /*background: $brand-success;*/
+      background: lighten($brand-success, 40%);
+      border-color: $brand-success;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, .4),
+                  inset 0 0 4px 2px lighten($brand-success, 10%);
+    }
+
+    &.open {
+      /*background: $brand-warning;*/
+      background: lighten($brand-warning, 40%);
+      border-color: $brand-warning;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, .4),
+                  inset 0 0 4px 2px lighten($brand-warning, 10%);
+    }
+
+    &.busy {
+      /*background: $brand-danger;*/
+      background: lighten($brand-danger, 40%);
+      border-color: $brand-danger;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, .4),
+                  inset 0 0 4px 2px lighten($brand-danger, 10%);
+    }
   }
 
   .app-title {
@@ -49,8 +92,16 @@
   text-align: right;
 }
 
-.lang-select {
+.lang-select,
+.theme-select {
   line-height: 1;
+}
+
+.theme-select {
+  display: inline-block;
+}
+
+.lang-select {
   display: inline-flex;
   align-items: center;
   color: $gray-light;
