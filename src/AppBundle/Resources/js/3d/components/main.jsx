@@ -117,7 +117,7 @@ class View3D extends Component {
       this.renderer.setClearColor(...config.render.background)
     }
 
-    this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
 
     // Enable shadow rendering
     if (config.render.shadow) {
@@ -127,14 +127,15 @@ class View3D extends Component {
 
     this.container.appendChild(this.renderer.domElement)
 
+    const options = {
+      anisotropy: this.renderer.getMaxAnisotropy()
+    }
+
     // create scene
-    this.scene = buildScene(config)
+    this.scene = buildScene(config, options)
 
     if (config.helpers.stats) {
       this.stats = new Stats()
-      //this.stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
-      /*this.stats.showPanel(1)
-      this.stats.showPanel(2)*/
       this.container.appendChild(this.stats.dom)
 
       // the lib does not permit to display the 3 panels at once

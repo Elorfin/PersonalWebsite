@@ -21,6 +21,11 @@ const defaultConfig = {
   meshes: {}
 }
 
+/**
+ * Checks if the current client support WebCL rendering.
+ *
+ * @returns {boolean}
+ */
 function canRender() {
   try {
     const canvas = document.createElement('canvas')
@@ -32,6 +37,13 @@ function canRender() {
   }
 }
 
+/**
+ * Creates a new scene based on config.
+ *
+ * @param {object} config
+ *
+ * @returns {Scene}
+ */
 function build(config) {
   const scene = new Scene()
   const sceneConfig = merge({}, defaultConfig, config)
@@ -44,8 +56,7 @@ function build(config) {
     addAxis(scene)
   }
 
-
-  //scene.fog = new FogExp2(0xffffff, 0.00025)
+  //scene.fog = new FogExp2(0xffffff, 0.0015)
 
   registerMaterials(sceneConfig.materials)
 

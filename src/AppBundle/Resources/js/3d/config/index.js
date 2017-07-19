@@ -7,6 +7,7 @@ import { lights, meshes as lightsMeshes } from './lights'
 import { materials } from './materials'
 
 import { meshes as buildingMeshes }    from './building'
+import { meshes as skyMeshes }         from './sky'
 import { meshes as furnitureMeshes }   from './furniture'
 import { meshes as appliancesMeshes }  from './appliances'
 import { meshes as decorationsMeshes } from './decorations'
@@ -42,11 +43,16 @@ export const config = {
   camera: {
     position: [0, 4, 28],
     lookAt: { x: 0, y: 4, z: 0 }
+
+    // top-down camera
+    /*position: [0, 48, 0],
+    lookAt: { x: 0, y: 0, z: 0 }*/
   },
 
   lights: lights,
   materials: materials,
   meshes: [
+    ...skyMeshes,
     ...buildingMeshes,
     ...lightsMeshes,
     ...furnitureMeshes,

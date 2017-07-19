@@ -12,7 +12,7 @@ const meshes = [
     geometry: 'SM_Computer',
     material: 'M_Computer',
     instances: [
-      { scale: [1, 1, 1], position: [7.7, 2, 4.2], rotation: [0, 55, 0] }
+      { scale: [1, 1, 1], position: [6.7, 2, 4.2], rotation: [0, 55, 0] }
     ]
   }
 ]

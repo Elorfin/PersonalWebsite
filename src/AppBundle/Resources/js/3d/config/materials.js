@@ -1,13 +1,11 @@
 import {
   DoubleSide,
-  SmoothShading,
-  Vector3
+  SmoothShading
 } from 'three'
 
 const materials = {
   M_Sky: {
     options: {
-      side: DoubleSide,
       shading: SmoothShading
     },
     textures: {
@@ -16,9 +14,6 @@ const materials = {
   },
 
   M_Wall: {
-    options: {
-      normalScale: new Vector3(.5, .5)
-    },
     textures: {
       map      : 'T_Wall_D',
       normalMap: 'T_Wall_N'
@@ -27,7 +22,42 @@ const materials = {
 
   M_Ceiling: {
     options: {
-      color: 0xffffff
+      side: DoubleSide
+    },
+    textures: {
+      map      : 'T_Ceiling_D',
+      normalMap: 'T_Ceiling_N'
+    }
+  },
+
+  M_Wood: {
+    textures: {
+      map      : 'T_Wood_D',
+      normalMap: 'T_Wood_N'
+    }
+  },
+  M_Carpet: {
+    textures: {
+      map      : 'T_Carpet_D',
+      normalMap: 'T_Carpet_N'
+    }
+  },
+
+  M_NeonLight: {
+    options: {
+      side: DoubleSide
+    },
+    textures: {
+      map: 'T_NeonLight_D'
+    }
+  },
+
+  M_Ventilation: {
+    options: {
+      side: DoubleSide
+    },
+    textures: {
+      map: 'T_Ventilation_D'
     }
   },
 
@@ -36,7 +66,7 @@ const materials = {
       side: DoubleSide,
       transparent: true,
       opacity: .3,
-      color: 0xd1f7fa
+      color: 0xD1F7FA
     }
   },
 
@@ -52,23 +82,10 @@ const materials = {
     }
   },
 
-  M_BayWindowLarge: {
-    options: {
-      color: 0x262626
-    }
-  },
-
-  M_Wood: {
+  M_BulletinBoard: {
     textures: {
-      map      : 'T_Wood_D',
-      normalMap: 'T_Wood_N'
-    }
-  },
-
-  M_Carpet: {
-    textures: {
-      map      : 'T_Carpet_D',
-      normalMap: 'T_Carpet_N'
+      map      : 'T_BulletinBoard_D',
+      normalMap: 'T_BulletinBoard_N'
     }
   },
 
@@ -78,9 +95,15 @@ const materials = {
     }
   },
 
+  M_Extinguisher: {
+    textures: {
+      map: 'T_Extinguisher_D'
+    }
+  },
+
   M_DeskLamp: {
     options: {
-      color: 0x999999
+      color: 0x888888
     }
   },
 
@@ -96,6 +119,12 @@ const materials = {
     }
   },
 
+  M_CoffeeMachine: {
+    textures: {
+      map: 'T_CoffeeMachine_D'
+    }
+  },
+
   M_Cabinet: {
     textures: {
       map: 'T_Cabinet_D'
@@ -108,9 +137,22 @@ const materials = {
     }
   },
 
+  M_Trash: {
+    options: {
+      shading: SmoothShading,
+      color: 0x888888
+    }
+  },
+
   M_Desk: {
     options: {
       color: 0x888888
+    }
+  },
+
+  M_Whiteboard: {
+    textures: {
+      map: 'T_Whiteboard_D'
     }
   },
 
@@ -169,9 +211,9 @@ const materials = {
     }
   },
 
-  M_CoffeeMachine: {
+  M_Pictures: {
     textures: {
-      map: 'T_CoffeeMachine_D'
+      map: 'T_Pictures_D'
     }
   },
 

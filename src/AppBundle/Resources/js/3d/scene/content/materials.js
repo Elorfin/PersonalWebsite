@@ -40,7 +40,15 @@ function createMaterialInstance(name) {
   if (materialConfig.textures) {
     for (let textureName in materialConfig.textures) {
       if (materialConfig.textures.hasOwnProperty(textureName)) {
-        constructorOptions[textureName] = getTexture(materialConfig.textures[textureName])
+        const texture = getTexture(materialConfig.textures[textureName])
+        if ('map' === textureName) {
+          texture.anisotropy = 16 // todo : use value form renderer.getMaxAnisotropy()
+        } else {
+          texture.anisotropy = 2 // this is an arbitrary value for now to fix normal map
+        }
+
+
+        constructorOptions[textureName] = texture
       }
     }
   }
