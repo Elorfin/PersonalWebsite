@@ -22,6 +22,7 @@ My online curriculum vitae
 - Lodash
 - React
 - Redux
+- ThreeJS
 
 ## Installation
 
