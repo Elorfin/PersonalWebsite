@@ -1,17 +1,21 @@
 import { PlaneBufferGeometry } from 'three'
 
+import { default as SM_Ceiling }        from 'models/Building/Ceiling/SM_Ceiling'
+import { default as SM_Ventilation }    from 'models/Building/Ventilation/SM_Ventilation'
+import { default as SM_Elevator }       from 'models/Building/Elevator/SM_Elevator'
+import { default as SM_Extinguisher }   from 'models/Building/Extinguisher/SM_Extinguisher'
+import { default as SM_Wall }           from 'models/Building/Wall/SM_Wall'
+import { default as SM_WallDoor }       from 'models/Building/Wall/SM_WallDoor'
+import { default as SM_WallElevator }   from 'models/Building/Wall/SM_WallElevator'
+import { default as SM_Door }           from 'models/Building/Door/SM_Door'
+import { default as SM_DoorFrame }      from 'models/Building/Door/SM_DoorFrame'
+import { default as SM_BayWindowLarge } from 'models/Building/Window/SM_BayWindowLarge'
+import { default as SM_BayWindow }      from 'models/Building/Window/SM_BayWindow'
+
 const meshes = [
   // ceiling
-  /*{
-    geometry: () => new PlaneBufferGeometry(32, 24),
-    material: 'M_Ceiling',
-    instances: [
-      { scale: [1, 1, 1], position: [0, 8, 0], rotation: [90, 0, 0] }
-    ]
-  },*/
-
   {
-    geometry: 'SM_Ceiling',
+    geometry: SM_Ceiling,
     material: 'M_Ceiling',
     instances: [
       { scale: [1, 1, 1], position: [8, 8, -8], rotation: [0, 0, 0] },
@@ -32,7 +36,7 @@ const meshes = [
   },
 
   {
-    geometry: 'SM_Ventilation',
+    geometry: SM_Ventilation,
     material: 'M_Ventilation',
     instances: [
       { scale: [1, 1, 1], position: [-10, 8, -4], rotation: [0, 0, 0] },
@@ -56,24 +60,31 @@ const meshes = [
     ]
   },
 
+  // walls
   {
-    geometry: 'SM_Elevator',
-    material: 'M_Elevator',
+    geometry: SM_Wall,
+    material: 'M_Wall',
     instances: [
-      { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] }
+      // left wall
+      { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 90, 0] },
+      { scale: [1, 1, 1], position: [-16, 0, 0], rotation: [0, 90, 0] },
+      { scale: [1, 1, 1], position: [-16, 0, 8], rotation: [0, 90, 0] },
+      { scale: [1, 1, 1], position: [-16, 0, 12], rotation: [0, 90, 0] },
+
+      // bottom wall
+      { scale: [1, 1, 1], position: [-16, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [-12, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [-8, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [-4, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [4, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [8, 0, -8], rotation: [0, 0, 0] },
+      { scale: [1, 1, 1], position: [12, 0, -8], rotation: [0, 0, 0] }
     ]
   },
 
   {
-    geometry: 'SM_Extinguisher',
-    material: 'M_Extinguisher',
-    instances: [
-      { scale: [1, 1, 1], position: [-16, 3, 6], rotation: [0, 90, 0] }
-    ]
-  },
-
-  {
-    geometry: 'SM_WallElevator',
+    geometry: SM_WallElevator,
     material: 'M_Wall',
     instances: [
       { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] },
@@ -81,7 +92,7 @@ const meshes = [
   },
 
   {
-    geometry: 'SM_WallDoor',
+    geometry: SM_WallDoor,
     material: 'M_Wall',
     instances: [
       { scale: [1, 1, 1], position: [-7.6, 0, -4], rotation: [0, 90, 0] },
@@ -89,16 +100,32 @@ const meshes = [
     ]
   },
 
+  {
+    geometry: SM_Elevator,
+    material: 'M_Elevator',
+    instances: [
+      { scale: [1, 1, 1], position: [-16, 0, 4], rotation: [0, 90, 0] }
+    ]
+  },
+
+  {
+    geometry: SM_Extinguisher,
+    material: 'M_Extinguisher',
+    instances: [
+      { scale: [1, 1, 1], position: [-16, 3, 6], rotation: [0, 90, 0] }
+    ]
+  },
+
   // office door
   {
-    geometry: 'SM_DoorFrame',
+    geometry: SM_DoorFrame,
     material: 'M_BayWindow',
     instances: [
       { scale: [1, 1, 1], position: [-8, 0, -4], rotation: [0, 90, 0] }
     ]
   },
   {
-    geometry: 'SM_Door',
+    geometry: SM_Door,
     material: 'M_Door',
     instances: [
       { scale: [1, 1, 1], position: [-7.625, 0, -7.125], rotation: [0, 180, 0] }
@@ -107,7 +134,7 @@ const meshes = [
 
   // left bay (indoor)
   {
-    geometry: 'SM_BayWindowLarge',
+    geometry: SM_BayWindowLarge,
     material: 'M_BayWindow',
     instances: [
       { scale: [1, 1, 1], position: [-8, 0, 4], rotation: [0, 90, 0] },
@@ -117,7 +144,7 @@ const meshes = [
 
   // right bay (outdoor)
   {
-    geometry: 'SM_BayWindow',
+    geometry: SM_BayWindow,
     material: 'M_BayWindow',
     instances: [
       { scale: [1, 1, 1], position: [16, 0, -4], rotation: [0, 90, 0] },
@@ -139,28 +166,6 @@ const meshes = [
 
       // outdoor (right)
       { scale: [20, 1, 1], position: [16.25, 4, 2], rotation: [0, 90, 0] }
-    ]
-  },
-
-  {
-    geometry: 'SM_Wall',
-    material: 'M_Wall',
-    instances: [
-      // left wall
-      { scale: [1, 1, 1], position: [-16, 0, -4], rotation: [0, 90, 0] },
-      { scale: [1, 1, 1], position: [-16, 0, 0], rotation: [0, 90, 0] },
-      { scale: [1, 1, 1], position: [-16, 0, 8], rotation: [0, 90, 0] },
-      { scale: [1, 1, 1], position: [-16, 0, 12], rotation: [0, 90, 0] },
-
-      // bottom wall
-      { scale: [1, 1, 1], position: [-16, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [-12, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [-8, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [-4, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [4, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [8, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [12, 0, -8], rotation: [0, 0, 0] }
     ]
   }
 ]

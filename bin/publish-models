@@ -9,8 +9,8 @@ const SRC_DIR  = path.resolve('app/Resources/models')
 const DEST_DIR = path.resolve('web/dist/models')
 
 const IMPORT_FILES = {
-  '.js': 'models',
-  '.json': 'models',
+  /*'.js': 'models',
+  '.json': 'models',*/
   '.png': 'textures',
   '.jpg': 'textures',
   '.jpeg': 'textures'

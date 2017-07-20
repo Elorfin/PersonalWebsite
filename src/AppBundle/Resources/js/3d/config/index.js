@@ -7,7 +7,6 @@ import { lights, meshes as lightsMeshes } from './lights'
 import { materials } from './materials'
 
 import { meshes as buildingMeshes }    from './building'
-import { meshes as skyMeshes }         from './sky'
 import { meshes as furnitureMeshes }   from './furniture'
 import { meshes as appliancesMeshes }  from './appliances'
 import { meshes as decorationsMeshes } from './decorations'
@@ -52,7 +51,6 @@ export const config = {
   lights: lights,
   materials: materials,
   meshes: [
-    ...skyMeshes,
     ...buildingMeshes,
     ...lightsMeshes,
     ...furnitureMeshes,

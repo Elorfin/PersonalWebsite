@@ -2,8 +2,17 @@ import merge from 'lodash/merge'
 
 import {
   Mesh,
-  Math as TMath
+  Math as TMath,
+  BufferGeometry,
+  Geometry
 } from 'three'
+
+import {
+  parseModel,
+  parseSkin,
+  parseMorphing,
+  parseAnimations
+} from './../parser'
 
 import { getModel } from './assets'
 import { getMaterialInstance } from './materials'
@@ -43,19 +52,33 @@ function add(scene, meshes) {
 
     // create instances
     meshConfig.instances.map(shape => {
-      if (typeof meshConfig.geometry === 'function') {
-        scene.add(
-          createMesh(
-            new meshConfig.geometry(),
-            material,
-            Object.assign({}, shape, {
-              castShadow: meshConfig.castShadow,
-              receiveShadow: meshConfig.receiveShadow
-            })
+      switch (typeof meshConfig.geometry) {
+        case 'function':
+          scene.add(
+            createMesh(
+              new meshConfig.geometry(),
+              material,
+              Object.assign({}, shape, {
+                castShadow: meshConfig.castShadow,
+                receiveShadow: meshConfig.receiveShadow
+              })
+            )
           )
-        )
-      } else {
-        getModel(meshConfig.geometry).then(geometry => {
+
+          break
+
+
+        case 'object':
+          const geometry = new Geometry()
+
+          parseModel(meshConfig.geometry, geometry)
+          parseSkin(meshConfig.geometry, geometry)
+          parseMorphing(meshConfig.geometry, geometry)
+          parseAnimations( meshConfig.geometry, geometry )
+
+          geometry.computeFaceNormals()
+          geometry.computeBoundingSphere()
+
           scene.add(
             createMesh(
               geometry,
@@ -66,7 +89,24 @@ function add(scene, meshes) {
               })
             )
           )
-        })
+
+          break
+
+        case 'string':
+          getModel(meshConfig.geometry).then(geometry => {
+            scene.add(
+              createMesh(
+                geometry,
+                material,
+                Object.assign({}, shape, {
+                  castShadow: meshConfig.castShadow,
+                  receiveShadow: meshConfig.receiveShadow
+                })
+              )
+            )
+          })
+
+          break
       }
     })
   })

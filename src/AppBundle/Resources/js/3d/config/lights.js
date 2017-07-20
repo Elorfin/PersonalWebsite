@@ -5,6 +5,9 @@ import {
   SpotLight
 } from 'three'
 
+import { default as SM_NeonLight } from 'models/Light/NeonLight/SM_NeonLight'
+import { default as SM_DeskLamp }  from 'models/Light/DeskLamp/SM_DeskLamp'
+
 const lights = [
   {
     type: AmbientLight,
@@ -76,7 +79,7 @@ const lights = [
 
 const meshes = [
   {
-    geometry: 'SM_NeonLight',
+    geometry: SM_NeonLight,
     material: 'M_NeonLight',
     instances: [
       // hall
@@ -92,7 +95,7 @@ const meshes = [
   },
 
   {
-    geometry: 'SM_DeskLamp',
+    geometry: SM_DeskLamp,
     material: 'M_DeskLamp',
     instances: [
       {scale: [1, 1, 1], position: [5.25, 2, 6], rotation: [0, 0, 0]}
