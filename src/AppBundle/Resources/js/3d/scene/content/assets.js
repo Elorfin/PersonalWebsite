@@ -1,10 +1,8 @@
 import {
   FileLoader,
-  JSONLoader,
   TextureLoader
 } from 'three'
 
-const MODEL_ASSET   = 'models'
 const TEXTURE_ASSET = 'textures'
 
 // path mapping for assets
@@ -13,14 +11,12 @@ let assetMap = {}
 // stash loaded static assets
 // mostly to avoid multiple AJAX call when building the scene
 const loadedAssets = {
-  [TEXTURE_ASSET]: {},
-  [MODEL_ASSET]  : {},
+  [TEXTURE_ASSET]: {}
 }
 
 // init three JS loaders
 const loaders = {
-  [TEXTURE_ASSET]: new TextureLoader(),
-  [MODEL_ASSET]  : new JSONLoader(),
+  [TEXTURE_ASSET]: new TextureLoader()
 }
 
 function loadMapping(mappingFilePath) {
@@ -35,7 +31,7 @@ function loadMapping(mappingFilePath) {
 }
 
 function getAssetPath(name, type) {
-  if (TEXTURE_ASSET === type || MODEL_ASSET === type) {
+  if (-1 !== Object.keys(loaders).indexOf(type)) {
     if (assetMap[type][name]) {
       return assetMap[type][name]
     } else {
@@ -59,22 +55,7 @@ function getTexture(name, callback = () => true) {
   return getAsset(name, TEXTURE_ASSET, callback)
 }
 
-// encapsulate JSON loader into a Promise
-// this permits to link all objects which share the same geometry to one AJAX call
-function getModel(name) {
-  if (!loadedAssets[MODEL_ASSET][name]) {
-    loadedAssets[MODEL_ASSET][name] = new Promise(resolve => {
-      loaders[MODEL_ASSET].load(getAssetPath(name, MODEL_ASSET), (geometry) => {
-        resolve(geometry)
-      })
-    })
-  }
-
-  return loadedAssets[MODEL_ASSET][name]
-}
-
 export {
   loadMapping,
-  getTexture,
-  getModel
+  getTexture
 }

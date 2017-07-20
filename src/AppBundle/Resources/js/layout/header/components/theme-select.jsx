@@ -1,5 +1,4 @@
 import React from 'react'
-import { PropTypes as T } from 'prop-types'
 
 const ThemeSelect = () =>
   <div className="theme-select">

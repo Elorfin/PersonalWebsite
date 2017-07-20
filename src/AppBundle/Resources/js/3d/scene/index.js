@@ -1,6 +1,6 @@
 import merge from 'lodash/merge'
 
-import { Scene, FogExp2 } from 'three'
+import { Scene } from 'three'
 
 import { loadMapping } from './content/assets'
 import { registerMaterials } from './content/materials'
@@ -55,8 +55,6 @@ function build(config) {
   if (sceneConfig.helpers.axis) {
     addAxis(scene)
   }
-
-  //scene.fog = new FogExp2(0xffffff, 0.0015)
 
   registerMaterials(sceneConfig.materials)
 
