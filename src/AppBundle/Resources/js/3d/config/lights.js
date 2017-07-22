@@ -15,7 +15,8 @@ const lights = [
   },
 
   // sun
-  {
+  // we loose 20FPS if it's enabled !!!
+  /*{
     type: DirectionalLight,
     options: [0xFFF2D8, .5],
     castShadow: true,
@@ -33,7 +34,7 @@ const lights = [
     instances: [
       {position: [16, 16, 4]}
     ]
-  },
+  },*/
 
   // neon lights
   {
@@ -80,6 +81,7 @@ const lights = [
 
 const meshes = [
   {
+    name: 'SM_NeonLight',
     geometry: SM_NeonLight,
     material: 'M_NeonLight',
     instances: [
@@ -96,6 +98,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_DeskLamp',
     geometry: SM_DeskLamp,
     material: 'M_DeskLamp',
     instances: [

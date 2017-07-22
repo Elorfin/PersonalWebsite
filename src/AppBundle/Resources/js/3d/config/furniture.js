@@ -13,6 +13,7 @@ import { default as SM_Whiteboard }      from 'models/Furniture/Whiteboard/SM_Wh
 const meshes = [
   // hall
   {
+    name: 'SM_BulletinBoard',
     geometry: SM_BulletinBoard,
     material: 'M_BulletinBoard',
     instances: [
@@ -21,6 +22,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_HighTable',
     geometry: SM_HighTable,
     material: 'M_HighTable',
     instances: [
@@ -30,6 +32,7 @@ const meshes = [
 
   // office
   {
+    name: 'SM_Whiteboard',
     geometry: SM_Whiteboard,
     material: 'M_Whiteboard',
     instances: [
@@ -38,6 +41,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Trash',
     geometry: SM_Trash,
     material: 'M_Trash',
     instances: [
@@ -46,6 +50,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_DrawingTable',
     geometry: SM_DrawingTable,
     material: 'M_DrawingTable',
     instances: [
@@ -54,6 +59,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Desk',
     geometry: SM_Desk,
     material: 'M_Desk',
     instances: [
@@ -62,6 +68,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Cabinet',
     geometry: SM_Cabinet,
     material: 'M_Cabinet',
     instances: [
@@ -69,6 +76,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_CabinetDoor',
     geometry: SM_CabinetDoor,
     material: 'M_CabinetDoor',
     instances: [
@@ -78,6 +86,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_CupboardWindows',
     geometry: SM_CupboardWindows,
     material: 'M_CupboardWindows',
     receiveShadow: false,
@@ -86,6 +95,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_Cupboard',
     geometry: SM_Cupboard,
     material: 'M_Cupboard',
     instances: [
@@ -93,6 +103,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_Documents',
     geometry: SM_Documents,
     material: 'M_Documents',
     instances: [

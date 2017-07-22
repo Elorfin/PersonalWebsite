@@ -3,6 +3,7 @@ import { default as SM_Computer }      from 'models/Appliance/Computer/SM_Comput
 
 const meshes = [
   {
+    name: 'SM_CoffeeMachine',
     geometry: SM_CoffeeMachine,
     material: 'M_CoffeeMachine',
     instances: [
@@ -11,6 +12,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Computer',
     geometry: SM_Computer,
     material: 'M_Computer',
     instances: [

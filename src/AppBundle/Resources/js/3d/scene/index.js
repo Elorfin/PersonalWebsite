@@ -1,13 +1,15 @@
 import merge from 'lodash/merge'
 
 import { Scene } from 'three'
+import {
+  default as Stats
+} from 'stats.js/src/Stats'
 
 import { loadMapping } from './content/assets'
 import { registerMaterials } from './content/materials'
 import { add as addLights } from './content/lights'
 import { add as addMeshes } from './content/meshes'
-import { add as addAxis } from './helpers/axis'
-import { add as addGrid } from './helpers/grid'
+import { addAxis, addGrid } from './helpers'
 
 const defaultConfig = {
   helpers: {
@@ -21,20 +23,27 @@ const defaultConfig = {
   meshes: {}
 }
 
-/**
- * Checks if the current client support WebCL rendering.
- *
- * @returns {boolean}
- */
-function canRender() {
-  try {
-    const canvas = document.createElement('canvas')
+function addStats(container) {
+  const stats = new Stats()
 
-    return !!(window.WebGLRenderingContext
-              && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) )
-  } catch (e) {
-    return false
+  container.appendChild(stats.dom)
+
+  // the lib does not permit to display the 3 panels at once
+  // so we just hack it (force display all panels + disable toggle event)
+  // this is slightly ugly
+  stats.dom.className = 'view-3d-stats'
+  for (let i = 0; i < stats.dom.children.length; i++) {
+    stats.dom.children[i].className = 'view-3d-stats-panel'
+    stats.dom.children[i].style.display = 'inline-block'
   }
+  stats.dom.addEventListener('click', e => {
+    for (let i = 0; i < stats.dom.children.length; i++) {
+      stats.dom.children[i].style.display = 'inline-block'
+    }
+    e.preventDefault()
+  }, false)
+
+  return stats
 }
 
 /**
@@ -44,7 +53,7 @@ function canRender() {
  *
  * @returns {Scene}
  */
-function build(config) {
+function buildScene(config) {
   const scene = new Scene()
   const sceneConfig = merge({}, defaultConfig, config)
 
@@ -67,7 +76,63 @@ function build(config) {
   return scene
 }
 
+/**
+ * Checks if the current client support WebCL rendering.
+ *
+ * @returns {boolean}
+ */
+function canRender() {
+  try {
+    const canvas = document.createElement('canvas')
+
+    return !!(
+      window.WebGLRenderingContext
+      && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    )
+  } catch (e) {
+    return false
+  }
+}
+
+/**
+ * Creates a new renderer based on config
+ * and appends it to the DOM.
+ *
+ * @param {HTMLElement} container
+ * @param {object}      rendererConfig
+ *
+ * @returns {object} the three js renderer instance
+ */
+function createRenderer(container, rendererConfig) {
+  // Instantiate the configured renderer
+  const renderer = new rendererConfig.renderer({
+    antialias: rendererConfig.antialias
+  })
+
+  // Configure renderer
+  renderer.setSize(container.offsetWidth, container.offsetHeight)
+
+  if (rendererConfig.background) {
+    renderer.setClearColor(...rendererConfig.background)
+  }
+
+  renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
+
+  // Enable shadow rendering
+  if (rendererConfig.shadow) {
+    renderer.shadowMap.enabled = rendererConfig.shadow.enabled
+    renderer.shadowMap.type    = rendererConfig.shadow.type
+  }
+
+  // Add the renderer to the DOM
+  container.appendChild(renderer.domElement)
+
+  return renderer
+}
+
 export {
+  addStats,
+  buildScene,
   canRender,
-  build
+  createRenderer
 }

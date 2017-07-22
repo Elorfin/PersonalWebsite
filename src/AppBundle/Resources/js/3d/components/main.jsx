@@ -3,15 +3,20 @@ import { PropTypes as T } from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
 import {
-  PerspectiveCamera
+  PerspectiveCamera,
+  Vector3,
+  Color,
+  Raycaster
 } from 'three'
-import {
-  default as Stats
-} from 'stats.js/src/Stats'
 
 import { defaultSection } from 'main/app/sections/index'
 import { config } from './../config/index'
-import { canRender, build as buildScene } from './../scene/index'
+import {
+  addStats,
+  buildScene,
+  canRender,
+  createRenderer
+} from './../scene/index'
 
 window.requestAnimationFrame =
   window.requestAnimationFrame
@@ -64,9 +69,11 @@ class View3D extends Component {
 
     this.browserCompatible = canRender()
 
-    this.createScene = this.createScene.bind(this)
-    this.renderScene = this.renderScene.bind(this)
-    this.resize      = this.resize.bind(this)
+    this.createScene  = this.createScene.bind(this)
+    this.renderScene  = this.renderScene.bind(this)
+    this.resize       = this.resize.bind(this)
+    this.pointObjects = this.pointObjects.bind(this)
+    this.clickObject  = this.clickObject.bind(this)
   }
 
   componentDidMount() {
@@ -75,7 +82,15 @@ class View3D extends Component {
       this.createScene()
       this.renderScene()
 
+      this.mouseVector = new Vector3()
+      this.rayCaster   = new Raycaster()
+      this.highlighted = null
+
+      // add events
       window.addEventListener('resize', this.resize)
+      // user interactions
+      window.addEventListener('mousemove', this.pointObjects)
+      this.container.addEventListener('click', this.clickObject)
     }
   }
 
@@ -87,20 +102,66 @@ class View3D extends Component {
 
     // remove events
     window.removeEventListener('resize', this.resize)
+    window.removeEventListener('mousemove', this.pointObjects)
+    this.container.removeEventListener('click', this.clickObject)
 
-    // break reference to three-js objects (and let's garbage collector do his work)
-    this.camera   = null
-    this.renderer = null
-    this.scene    = null
-    this.stats    = null
+    // break reference to three-js objects (and let's garbage collector do its work)
+    this.camera    = null
+    this.renderer  = null
+    this.scene     = null
+    this.stats     = null
+    this.rayCaster = null
+  }
+
+  pointObjects(e) {
+    // calculate new mouse position
+    this.mouseVector.x =  ((e.clientX - this.container.offsetLeft) / this.container.clientWidth) * 2 - 1
+    this.mouseVector.y = -((e.clientY - this.container.offsetTop) / this.container.clientHeight) * 2 + 1
+
+    // update ray caster
+    this.rayCaster.setFromCamera(this.mouseVector, this.camera)
+
+    const intersects = this.rayCaster.intersectObjects(this.scene.children)
+
+    let newHighlighted = null
+    if (0 < intersects.length) {
+      // only highlight the first object
+      newHighlighted = intersects[0].object
+    }
+
+    // reset previous highlighted object if needed
+    if (this.highlighted && (!newHighlighted || this.highlighted !== newHighlighted.id)) {
+      let oldHighlighted = this.scene.getObjectById(this.highlighted)
+
+      // reset to default
+      // this might be a problem for mesh that uses emissive
+      oldHighlighted.material.emissive = new Color(0x000000)
+      oldHighlighted.material.emissiveIntensity = 1
+    }
+
+    this.highlighted = null
+    // set current highlighted object if needed
+    if (newHighlighted) {
+      this.highlighted = newHighlighted.id
+
+      newHighlighted.material.emissive = new Color(0xFFFFFF)
+      newHighlighted.material.emissiveIntensity = .2 // 1 is default
+    }
+
+    // change mouse cursor
+    this.container.style.cursor = this.highlighted ? 'pointer' : 'default'
+  }
+
+  clickObject(e) {
+
   }
 
   createScene() {
-    const height = 8 // back wall height
-    const distance = 16
-    const vFOV = 2 * Math.atan(height / ( 2 * distance ))
-
     // add & configure camera
+    const height   = 8 // back wall height
+    const distance = 16
+    const vFOV     = 2 * Math.atan(height / ( 2 * distance ))
+
     this.camera = new PerspectiveCamera(vFOV * 180 / Math.PI, this.container.offsetWidth / this.container.offsetHeight, 10, 50)
     this.camera.position.set(...config.camera.position)
     if (config.camera.lookAt) {
@@ -108,50 +169,14 @@ class View3D extends Component {
     }
 
     // add & configure renderer
-    this.renderer = new config.render.renderer({
-      antialias: config.render.antialias
-    })
-    this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight)
-
-    if (config.render.background) {
-      this.renderer.setClearColor(...config.render.background)
-    }
-
-    this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
-
-    // Enable shadow rendering
-    if (config.render.shadow) {
-      this.renderer.shadowMap.enabled = config.render.shadow.enabled
-      this.renderer.shadowMap.type = config.render.shadow.type
-    }
-
-    this.container.appendChild(this.renderer.domElement)
-
-    const options = {
-      anisotropy: this.renderer.getMaxAnisotropy()
-    }
+    this.renderer = createRenderer(this.container, config.render)
 
     // create scene
-    this.scene = buildScene(config, options)
+    this.scene = buildScene(config)
 
+    // add stats if enabled
     if (config.helpers.stats) {
-      this.stats = new Stats()
-      this.container.appendChild(this.stats.dom)
-
-      // the lib does not permit to display the 3 panels at once
-      // so we just hack it (force display all panels + disable toggle event)
-      // this is slightly ugly
-      this.stats.dom.className = 'view-3d-stats'
-      for (let i = 0; i < this.stats.dom.children.length; i++) {
-        this.stats.dom.children[i].className = 'view-3d-stats-panel'
-        this.stats.dom.children[i].style.display = 'inline-block'
-      }
-      this.stats.dom.addEventListener('click', e => {
-        for (let i = 0; i < this.stats.dom.children.length; i++) {
-          this.stats.dom.children[i].style.display = 'inline-block'
-        }
-        e.preventDefault()
-      }, false)
+      this.stats = addStats(this.container)
     }
   }
 

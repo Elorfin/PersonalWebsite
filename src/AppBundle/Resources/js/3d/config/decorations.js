@@ -7,6 +7,7 @@ import { default as SM_StackOverflow } from 'models/Social/StackOverflow/SM_Stac
 
 const meshes = [
   {
+    name: 'SM_Pictures',
     geometry: SM_Pictures,
     material: 'M_Pictures',
     instances: [
@@ -16,6 +17,7 @@ const meshes = [
 
   // plants
   {
+    name: 'SM_SmallPlant',
     geometry: SM_SmallPlant,
     material: 'M_SmallPlant',
     instances: [
@@ -25,6 +27,7 @@ const meshes = [
 
   // social items
   {
+    name: 'SM_Octocat',
     geometry: SM_Octocat,
     material: 'M_Octocat',
     instances: [
@@ -32,6 +35,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_LinkedIn',
     geometry: SM_LinkedIn,
     material: 'M_LinkedIn',
     instances: [
@@ -39,6 +43,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_StackOverflow',
     geometry: SM_StackOverflow,
     material: 'M_StackOverflow',
     instances: [
@@ -48,6 +53,7 @@ const meshes = [
 
   // posters
   {
+    name: 'SM_Poster_SuperMario',
     geometry: SM_Poster,
     material: 'M_Poster_SuperMario',
     instances: [
@@ -56,6 +62,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Poster_CommitStrip',
     geometry: SM_Poster,
     material: 'M_Poster_CommitStrip',
     instances: [
@@ -63,6 +70,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_Poster_StarWars',
     geometry: SM_Poster,
     material: 'M_Poster_StarWars',
     instances: [
@@ -70,6 +78,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_Poster_KeepCalm',
     geometry: SM_Poster,
     material: 'M_Poster_KeepCalm',
     instances: [

@@ -76,6 +76,12 @@ const materials = {
     }
   },
 
+  M_DoorFrame: {
+    options: {
+      color: 0x262626
+    }
+  },
+
   M_BayWindow: {
     options: {
       color: 0x262626

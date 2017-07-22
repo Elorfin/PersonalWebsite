@@ -15,6 +15,7 @@ import { default as SM_BayWindow }      from 'models/Building/Window/SM_BayWindo
 const meshes = [
   // ceiling
   {
+    name: 'SM_Ceiling',
     geometry: SM_Ceiling,
     material: 'M_Ceiling',
     instances: [
@@ -36,6 +37,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Ventilation',
     geometry: SM_Ventilation,
     material: 'M_Ventilation',
     instances: [
@@ -46,6 +48,7 @@ const meshes = [
 
   // floor
   {
+    name: 'SM_CarpetFloor',
     geometry: () => new PlaneBufferGeometry(24, 20),
     material: 'M_Carpet',
     instances: [
@@ -53,6 +56,7 @@ const meshes = [
     ]
   },
   {
+    name: 'SM_WoodFloor',
     geometry: () => new PlaneBufferGeometry(8, 20),
     material: 'M_Wood',
     instances: [
@@ -62,6 +66,7 @@ const meshes = [
 
   // walls
   {
+    name: 'SM_Wall',
     geometry: SM_Wall,
     material: 'M_Wall',
     instances: [
@@ -84,6 +89,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_WallElevator',
     geometry: SM_WallElevator,
     material: 'M_Wall',
     instances: [
@@ -92,6 +98,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_WallDoor',
     geometry: SM_WallDoor,
     material: 'M_Wall',
     instances: [
@@ -101,6 +108,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Elevator',
     geometry: SM_Elevator,
     material: 'M_Elevator',
     instances: [
@@ -109,6 +117,7 @@ const meshes = [
   },
 
   {
+    name: 'SM_Extinguisher',
     geometry: SM_Extinguisher,
     material: 'M_Extinguisher',
     instances: [
@@ -118,13 +127,15 @@ const meshes = [
 
   // office door
   {
+    name: 'SM_DoorFrame',
     geometry: SM_DoorFrame,
-    material: 'M_BayWindow',
+    material: 'M_DoorFrame',
     instances: [
       { scale: [1, 1, 1], position: [-8, 0, -4], rotation: [0, 90, 0] }
     ]
   },
   {
+    name: 'SM_Door',
     geometry: SM_Door,
     material: 'M_Door',
     instances: [
@@ -134,6 +145,7 @@ const meshes = [
 
   // left bay (indoor)
   {
+    name: 'SM_BayWindowLarge',
     geometry: SM_BayWindowLarge,
     material: 'M_BayWindow',
     instances: [
@@ -144,6 +156,7 @@ const meshes = [
 
   // right bay (outdoor)
   {
+    name: 'SM_BayWindow',
     geometry: SM_BayWindow,
     material: 'M_BayWindow',
     instances: [
@@ -157,6 +170,7 @@ const meshes = [
 
   // windows
   {
+    name: 'SM_Window',
     geometry: () => new PlaneBufferGeometry(1, 8),
     material: 'M_Window',
     castShadow: false,

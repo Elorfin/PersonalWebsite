@@ -21,10 +21,11 @@ const defaultMeshConfig = {
   instances: {}
 }
 
-function createMesh(geometry, material, config) {
+function createMesh(name, geometry, material, config) {
   const mesh = new Mesh(geometry, material)
 
-  mesh.castShadow = config.castShadow
+  mesh.name          = name
+  mesh.castShadow    = config.castShadow
   mesh.receiveShadow = config.receiveShadow
 
   if (config.scale) {
@@ -62,19 +63,21 @@ function add(scene, meshes) {
     const meshConfig = merge({}, defaultMeshConfig, config)
     const material = config.material ? getMaterialInstance(config.material) : null
 
-    // create instances
-    meshConfig.instances.map(shape => {
-      let meshGeometry
-      if (typeof meshConfig.geometry === 'function') {
-        // Geometry constructor
-        meshGeometry = new meshConfig.geometry()
-      } else {
-        // Geometry definition object
-        meshGeometry = createModelGeometry(meshConfig.geometry)
-      }
+    // get geometry
+    let meshGeometry
+    if (typeof meshConfig.geometry === 'function') {
+      // Geometry constructor
+      meshGeometry = new meshConfig.geometry()
+    } else {
+      // Geometry definition object
+      meshGeometry = createModelGeometry(meshConfig.geometry)
+    }
 
+    // create instances
+    meshConfig.instances.map((shape, idx) => {
       scene.add(
         createMesh(
+          meshConfig.name + '_' + idx,
           meshGeometry,
           material,
           Object.assign({}, shape, {

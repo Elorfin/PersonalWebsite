@@ -335,7 +335,7 @@ function parseAnimations(json, geometry) {
 
   // parse implicit morph animations
   if (geometry.morphTargets) {
-    // TODO: Figure out what an appropraite FPS is for morph target animations -- defaulting to 10, but really it is completely arbitrary.
+    // TODO: Figure out what an appropriate FPS is for morph target animations -- defaulting to 10, but really it is completely arbitrary.
     const morphAnimationClips = AnimationClip.CreateClipsFromMorphTargetSequences(geometry.morphTargets, 10)
     outputAnimations = outputAnimations.concat(morphAnimationClips)
   }
