@@ -7,7 +7,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  padding-left: calc(100vw - 100%); // avoids push effect on content when scrollbar appears
+  //padding-left: calc(100vw - 100%); // avoids push effect on content when scrollbar appears
 }
 
 ::selection  {

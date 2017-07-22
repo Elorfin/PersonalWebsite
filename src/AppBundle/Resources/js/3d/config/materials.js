@@ -144,6 +144,12 @@ const materials = {
     }
   },
 
+  M_DrawingTable: {
+    textures: {
+      map: 'T_DrawingTable_D'
+    }
+  },
+
   M_Desk: {
     options: {
       color: 0x888888

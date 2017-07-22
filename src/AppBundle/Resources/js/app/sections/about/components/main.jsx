@@ -76,54 +76,73 @@ AboutPanel.propTypes = {
 }
 
 const About = props =>
-  <section className="container app-section">
-    <h2 className="sr-only">About</h2>
+  <div>
+    <section className="desktop-banner-container">
+      <div className="desktop-banner container">
+        <h2>3D desktop</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-    <div className="row">
-      <div className="col-8">
-        <AboutPanel description={props.description} />
+        <div className="desktop-banner-btns">
+          <a href="" className="desktop-cancel">
+            No, thanks.
+          </a>
+
+          <a href="" className="desktop-open">
+            Try it now ! <span className="fa fa-arrow-right" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section className="container app-section">
+      <h2 className="sr-only">About</h2>
+
+      <div className="row">
+        <div className="col-8">
+          <AboutPanel description={props.description} />
+        </div>
+
+        <div className="col-4">
+          <SocialNetworks />
+          <CivilityPanel />
+          <MorePanel />
+        </div>
       </div>
 
-      <div className="col-4">
-        <SocialNetworks />
-        <CivilityPanel />
-        <MorePanel />
+      <div className="row">
+        <div className="col">
+          <section className="content-panel content-panel-success content-panel-icon">
+            <span className="panel-icon fa fa-plus" />
+
+            <h3 className="text-success">What I like</h3>
+
+            <ul>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Nulla mi lorem, fringilla</li>
+              <li>Donec eu blandit odio</li>
+              <li>Mauris ut risus nec mauris bibendum luctus.</li>
+              <li>Mauris convallis ut libero id vulputate. Donec eu blandit odio.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div className="col">
+          <section className="content-panel content-panel-danger content-panel-icon">
+            <span className="panel-icon fa fa-minus" />
+
+            <h3 className="text-danger">What I dislike</h3>
+
+            <ul>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Nulla mi lorem, fringilla</li>
+              <li>Donec eu blandit odio</li>
+              <li>Sed molestie non diam ac rutrum.</li>
+            </ul>
+          </section>
+        </div>
       </div>
-    </div>
-
-    <div className="row">
-      <div className="col">
-        <section className="content-panel content-panel-success content-panel-icon">
-          <span className="panel-icon fa fa-plus" />
-
-          <h3 className="text-success">What I like</h3>
-
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Nulla mi lorem, fringilla</li>
-            <li>Donec eu blandit odio</li>
-            <li>Mauris ut risus nec mauris bibendum luctus.</li>
-            <li>Mauris convallis ut libero id vulputate. Donec eu blandit odio.</li>
-          </ul>
-        </section>
-      </div>
-
-      <div className="col">
-        <section className="content-panel content-panel-danger content-panel-icon">
-          <span className="panel-icon fa fa-minus" />
-
-          <h3 className="text-danger">What I dislike</h3>
-
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Nulla mi lorem, fringilla</li>
-            <li>Donec eu blandit odio</li>
-            <li>Sed molestie non diam ac rutrum.</li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
 About.propTypes = {
   description: T.string.isRequired

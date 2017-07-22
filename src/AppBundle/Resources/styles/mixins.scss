@@ -1,0 +1,14 @@
+
+@mixin text-overlay() {
+  color: white;
+  text-shadow:
+          2px  0   1px rgba(0, 0, 0, 0.75),
+          -2px  0   1px rgba(0, 0, 0, 0.75),
+          0    2px 1px rgba(0, 0, 0, 0.75),
+          0   -2px 1px rgba(0, 0, 0, 0.75),
+
+          1px  1px 0 rgba(0, 0, 0, 0.75),
+          -1px -1px 0 rgba(0, 0, 0, 0.75),
+          1px -1px 0 rgba(0, 0, 0, 0.75),
+          -1px  1px 0 rgba(0, 0, 0, 0.75);
+}

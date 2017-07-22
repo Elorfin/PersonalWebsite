@@ -57,16 +57,7 @@ $control-btn-hover-border-size: 3px;
   background: transparent;
   padding: 0;
 
-  text-shadow:
-           2px  0   1px rgba(0, 0, 0, 0.75),
-          -2px  0   1px rgba(0, 0, 0, 0.75),
-           0    2px 1px rgba(0, 0, 0, 0.75),
-           0   -2px 1px rgba(0, 0, 0, 0.75),
-
-           1px  1px 0 rgba(0, 0, 0, 0.75),
-          -1px -1px 0 rgba(0, 0, 0, 0.75),
-           1px -1px 0 rgba(0, 0, 0, 0.75),
-          -1px  1px 0 rgba(0, 0, 0, 0.75);
+  @include text-overlay();
 
   &:hover,
   &:focus {

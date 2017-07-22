@@ -5,6 +5,7 @@ import { default as SM_Cupboard }        from 'models/Furniture/Cupboard/SM_Cupb
 import { default as SM_CupboardWindows } from 'models/Furniture/Cupboard/SM_CupboardWindows'
 import { default as SM_Documents }       from 'models/Furniture/Cupboard/SM_Documents'
 import { default as SM_Desk }            from 'models/Furniture/Desk/SM_Desk'
+import { default as SM_DrawingTable }    from 'models/Furniture/DrawingTable/SM_DrawingTable'
 import { default as SM_HighTable }       from 'models/Furniture/HighTable/SM_HighTable'
 import { default as SM_Trash }           from 'models/Furniture/Trash/SM_Trash'
 import { default as SM_Whiteboard }      from 'models/Furniture/Whiteboard/SM_Whiteboard'
@@ -41,6 +42,14 @@ const meshes = [
     material: 'M_Trash',
     instances: [
       { scale: [1, 1, 1], position: [7.5, 0, 8.5], rotation: [0, 0, 0] }
+    ]
+  },
+
+  {
+    geometry: SM_DrawingTable,
+    material: 'M_DrawingTable',
+    instances: [
+      { scale: [1, 1, 1], position: [-2, 0, 1], rotation: [0, -0, 0] }
     ]
   },
 

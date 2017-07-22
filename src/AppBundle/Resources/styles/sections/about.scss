@@ -16,3 +16,74 @@
     }
   }
 }
+
+.desktop-banner-container {
+  margin-top: -2px; // hack to hide top bar borders
+  border-bottom: 1px solid white;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  background: url(/bundles/app/images/desktop.png) no-repeat center center;
+  background-size: 100% auto;
+  box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.desktop-banner {
+  font-size: $font-size-lg;
+  padding-top:    45px;
+  padding-bottom: 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+
+  @include text-overlay();
+
+  h2 {
+    font-size: $font-size-h1;
+  }
+
+  p {
+
+  }
+}
+
+.desktop-banner-btns {
+  margin-top: auto;
+  text-align: right;
+
+  a {
+    padding: $btn-padding-y-lg $btn-padding-x-lg;
+    border: 1px solid transparent;
+
+    @include text-overlay();
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .desktop-cancel {
+    /*margin-right: 30px;*/
+  }
+
+  .desktop-open {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $font-size-h4;
+    width: 20%;
+
+
+    border-radius: 50px;
+    border-color: white;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.75),
+    inset 0 0 1px 2px rgba(0, 0, 0, 0.75);
+
+
+
+
+  }
+}

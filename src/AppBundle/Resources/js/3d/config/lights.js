@@ -69,7 +69,8 @@ const lights = [
       camera: {
         near: .1,
         far: 4
-      }
+      },
+      mapSize: 256
     },
     instances: [
       {position: [5.975, 3.7, 6], target: [6.525, 0, 6]}
