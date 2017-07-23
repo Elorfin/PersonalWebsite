@@ -1,15 +1,13 @@
 import merge from 'lodash/merge'
 
 import { Scene } from 'three'
-import {
-  default as Stats
-} from 'stats.js/src/Stats'
+import { default as Stats } from 'stats.js/src/Stats'
 
-import { loadMapping } from './content/assets'
-import { registerMaterials } from './content/materials'
-import { add as addLights } from './content/lights'
-import { add as addMeshes } from './content/meshes'
-import { addAxis, addGrid } from './helpers'
+import { loadMapping }       from './build/assets'
+import { registerMaterials } from './build/materials'
+import { add as addLights }  from './build/lights'
+import { add as addMeshes }  from './build/meshes'
+import { addAxis, addGrid }  from './build/helpers'
 
 const defaultConfig = {
   helpers: {
@@ -94,6 +92,16 @@ function canRender() {
   }
 }
 
+function resetBrowserAnimation() {
+  window.requestAnimationFrame =
+    window.requestAnimationFrame
+    || window.mozRequestAnimationFrame
+    || window.webkitRequestAnimationFrame
+    || window.msRequestAnimationFrame
+
+  window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame
+}
+
 /**
  * Creates a new renderer based on config
  * and appends it to the DOM.
@@ -130,9 +138,30 @@ function createRenderer(container, rendererConfig) {
   return renderer
 }
 
+/**
+ * Creates a new camera based on config.
+ *
+ * @param {HTMLElement} container
+ * @param {object}      cameraConfig
+ *
+ * @return {Camera}
+ */
+function createCamera(container, cameraConfig) {
+  const camera = new cameraConfig.instance(container)
+
+  camera.position.set(...cameraConfig.position)
+  if (cameraConfig.lookAt) {
+    camera.lookAt(cameraConfig.lookAt)
+  }
+
+  return camera
+}
+
 export {
   addStats,
   buildScene,
   canRender,
-  createRenderer
+  createCamera,
+  createRenderer,
+  resetBrowserAnimation
 }

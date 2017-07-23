@@ -1,5 +1,6 @@
 import {
   PCFSoftShadowMap,
+  PerspectiveCamera,
   WebGLRenderer
 } from 'three'
 
@@ -40,6 +41,13 @@ export const config = {
   },
 
   camera: {
+    instance: (container) => {
+      const height   = 8 // back wall height
+      const distance = 16
+      const vFOV     = 2 * Math.atan(height / ( 2 * distance ))
+
+      return new PerspectiveCamera(vFOV * 180 / Math.PI, container.offsetWidth / container.offsetHeight, 10, 50)
+    },
     position: [0, 4, 28],
     lookAt: { x: 0, y: 4, z: 0 }
 

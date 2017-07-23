@@ -2,17 +2,10 @@ import merge from 'lodash/merge'
 
 import {
   Mesh,
-  Math as TMath,
-  Geometry
+  Math as TMath
 } from 'three'
 
-import {
-  parseModel,
-  parseSkin,
-  parseMorphing,
-  parseAnimations
-} from './../parser'
-
+import { getGeometryFromObject } from './../parser/raw-object-parser'
 import { getMaterialInstance } from './materials'
 
 const defaultMeshConfig = {
@@ -43,20 +36,6 @@ function createMesh(name, geometry, material, config) {
   return mesh
 }
 
-function createModelGeometry(rawGeometry) {
-  const geometry = new Geometry()
-
-  parseModel(rawGeometry, geometry)
-  parseSkin(rawGeometry, geometry)
-  parseMorphing(rawGeometry, geometry)
-  parseAnimations(rawGeometry, geometry )
-
-  geometry.computeFaceNormals()
-  geometry.computeBoundingSphere()
-
-  return geometry
-}
-
 function add(scene, meshes) {
   // Load all defined meshes
   meshes.map(config => {
@@ -70,7 +49,7 @@ function add(scene, meshes) {
       meshGeometry = new meshConfig.geometry()
     } else {
       // Geometry definition object
-      meshGeometry = createModelGeometry(meshConfig.geometry)
+      meshGeometry = getGeometryFromObject(meshConfig.geometry)
     }
 
     // create instances

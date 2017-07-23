@@ -54,7 +54,7 @@ const meshes = [
     geometry: SM_DrawingTable,
     material: 'M_DrawingTable',
     instances: [
-      { scale: [1, 1, 1], position: [-2, 0, 1], rotation: [0, -0, 0] }
+      { scale: [1, 1, 1], position: [14, 0, -6.2], rotation: [0, -58, 0] }
     ]
   },
 

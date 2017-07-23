@@ -2,16 +2,39 @@ import {
   AnimationClip,
   Color,
   Face3,
+  Geometry,
   Vector2,
   Vector3,
   Vector4
 } from 'three'
 
-function isBitSet( value, position ) {
+/**
+ * Creates Three Geometry from plain JS object definition.
+ * NB. It's a huge copy/paste of JSONLoader.
+ *
+ * @param {object} rawGeometry
+ *
+ * @returns {Geometry}
+ */
+function getGeometryFromObject(rawGeometry) {
+  const geometry = new Geometry()
+
+  parseModel(rawGeometry, geometry)
+  parseSkin(rawGeometry, geometry)
+  parseMorphing(rawGeometry, geometry)
+  parseAnimations(rawGeometry, geometry )
+
+  geometry.computeFaceNormals()
+  geometry.computeBoundingSphere()
+
+  return geometry
+}
+
+function isBitSet(value, position) {
   return value & (1 << position)
 }
 
-function parseModel( json, geometry ) {
+function parseModel(json, geometry) {
   let fi,
 
     offset, zLength,
@@ -67,7 +90,7 @@ function parseModel( json, geometry ) {
   zLength = faces.length
 
   while (offset < zLength) {
-    type = faces[offset ++]
+    type = faces[offset++]
 
     isQuad = isBitSet(type, 0)
     hasMaterial = isBitSet(type, 1)
@@ -100,14 +123,14 @@ function parseModel( json, geometry ) {
       fi = geometry.faces.length
 
       if (hasFaceVertexUv) {
-        for (let i = 0; i < nUvLayers; i ++) {
+        for (let i = 0; i < nUvLayers; i++) {
           uvLayer = json.uvs[i]
 
           geometry.faceVertexUvs[i][fi] = []
           geometry.faceVertexUvs[i][fi + 1] = []
 
           for (let j = 0; j < 4; j ++ ) {
-            uvIndex = faces[offset ++]
+            uvIndex = faces[offset++]
 
             u = uvLayer[uvIndex * 2]
             v = uvLayer[uvIndex * 2 + 1]
@@ -125,11 +148,11 @@ function parseModel( json, geometry ) {
       }
 
       if (hasFaceNormal) {
-        normalIndex = faces[offset ++] * 3
+        normalIndex = faces[offset++] * 3
 
         faceA.normal.set(
-          normals[normalIndex ++],
-          normals[normalIndex ++],
+          normals[normalIndex++],
+          normals[normalIndex++],
           normals[normalIndex]
         )
 
@@ -137,8 +160,8 @@ function parseModel( json, geometry ) {
       }
 
       if (hasFaceVertexNormal) {
-        for (let i = 0; i < 4; i ++) {
-          normalIndex = faces[ offset ++ ] * 3
+        for (let i = 0; i < 4; i++) {
+          normalIndex = faces[offset++] * 3
 
           normal = new Vector3(
             normals[normalIndex++],
@@ -164,7 +187,7 @@ function parseModel( json, geometry ) {
       }
 
       if (hasFaceVertexColor) {
-        for (let i = 0; i < 4; i ++) {
+        for (let i = 0; i < 4; i++) {
           colorIndex = faces[offset++]
           hex = colors[colorIndex]
 
@@ -194,7 +217,7 @@ function parseModel( json, geometry ) {
       fi = geometry.faces.length
 
       if (hasFaceVertexUv) {
-        for (let i = 0; i < nUvLayers; i ++) {
+        for (let i = 0; i < nUvLayers; i++) {
           uvLayer = json.uvs[i]
           geometry.faceVertexUvs[i][fi] = []
 
@@ -222,7 +245,7 @@ function parseModel( json, geometry ) {
       }
 
       if (hasFaceVertexNormal) {
-        for (let i = 0; i < 3; i ++) {
+        for (let i = 0; i < 3; i++) {
           normalIndex = faces[offset++] * 3
 
           normal = new Vector3(
@@ -241,7 +264,7 @@ function parseModel( json, geometry ) {
       }
 
       if (hasFaceVertexColor) {
-        for (let i = 0; i < 3; i ++) {
+        for (let i = 0; i < 3; i++) {
           colorIndex = faces[offset++]
           face.vertexColors.push(new Color(colors[colorIndex]))
         }
@@ -278,30 +301,32 @@ function parseSkin(json, geometry) {
   }
 
   geometry.bones = json.bones
-
-  if (geometry.bones && geometry.bones.length > 0 && (geometry.skinWeights.length !== geometry.skinIndices.length || geometry.skinIndices.length !== geometry.vertices.length)) {
-    console.warn( 'When skinning, number of vertices (' + geometry.vertices.length + '), skinIndices (' +
-      geometry.skinIndices.length + '), and skinWeights (' + geometry.skinWeights.length + ') should match.' )
+  if (geometry.bones && geometry.bones.length > 0
+    && (geometry.skinWeights.length !== geometry.skinIndices.length || geometry.skinIndices.length !== geometry.vertices.length)) {
+    throw new Error(
+      'When skinning, number of vertices ('+geometry.vertices.length+'), skinIndices ('+
+      geometry.skinIndices.length+'), and skinWeights ('+geometry.skinWeights.length+') should match.'
+    )
   }
 }
 
 function parseMorphing(json, geometry) {
   const scale = json.scale
 
-  if ( json.morphTargets !== undefined ) {
-    for ( let i = 0, l = json.morphTargets.length; i < l; i ++ ) {
-      geometry.morphTargets[ i ] = {}
-      geometry.morphTargets[ i ].name = json.morphTargets[ i ].name
-      geometry.morphTargets[ i ].vertices = []
+  if (json.morphTargets !== undefined) {
+    for (let i = 0, l = json.morphTargets.length; i < l; i++) {
+      geometry.morphTargets[i] = {}
+      geometry.morphTargets[i].name = json.morphTargets[i].name
+      geometry.morphTargets[i].vertices = []
 
-      const dstVertices = geometry.morphTargets[ i ].vertices
-      const srcVertices = json.morphTargets[ i ].vertices
+      const dstVertices = geometry.morphTargets[i].vertices
+      const srcVertices = json.morphTargets[i].vertices
 
-      for ( let v = 0, vl = srcVertices.length; v < vl; v += 3 ) {
+      for (let v = 0, vl = srcVertices.length; v < vl; v += 3) {
         const vertex = new Vector3()
-        vertex.x = srcVertices[ v ] * scale
-        vertex.y = srcVertices[ v + 1 ] * scale
-        vertex.z = srcVertices[ v + 2 ] * scale
+        vertex.x = srcVertices[v] * scale
+        vertex.y = srcVertices[v + 1] * scale
+        vertex.z = srcVertices[v + 2] * scale
 
         dstVertices.push( vertex )
       }
@@ -315,7 +340,7 @@ function parseAnimations(json, geometry) {
   // parse old style Bone/Hierarchy animations
   let animations = []
   if (json.animation !== undefined) {
-    animations.push( json.animation )
+    animations.push(json.animation)
   }
 
   if (json.animations !== undefined) {
@@ -326,7 +351,7 @@ function parseAnimations(json, geometry) {
     }
   }
 
-  for (let i = 0; i < animations.length; i ++) {
+  for (let i = 0; i < animations.length; i++) {
     let clip = AnimationClip.parseAnimation(animations[i], geometry.bones)
     if (clip) {
       outputAnimations.push(clip)
@@ -346,8 +371,5 @@ function parseAnimations(json, geometry) {
 }
 
 export {
-  parseModel,
-  parseSkin,
-  parseMorphing,
-  parseAnimations
+  getGeometryFromObject
 }
