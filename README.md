@@ -35,10 +35,9 @@ $ git clone git@github.com:Elorfin/PersonalWebsite.git
 ### Install API
 
 ```
-$ cp -v app/config/parameters.yml.dist app/config/parameters.yml
-$ vi app/config/parameters.yml
-
 $ composer install
+
+$ vi app/config/parameters.yml
 
 $ php bin/console doctrine:database:create
 $ php bin/console doctrine:schema:update --dump-sql
