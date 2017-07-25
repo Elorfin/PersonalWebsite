@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+import {
+  AnimationMixer,
+  AudioListener,
+  Clock
+} from 'three'
+
 import { config } from './../config/index'
 import {
   addStats,
@@ -9,7 +15,7 @@ import {
   resetBrowserAnimation
 } from './../scene/index'
 
-import { getPointedObjects } from './../scene/interactions/point-mesh'
+import { getPointedObjects }         from './../scene/interactions/point-mesh'
 import { highlight, clearHighlight } from './../scene/interactions/highlight-mesh'
 
 resetBrowserAnimation()
@@ -52,10 +58,13 @@ class Scene extends Component {
     this.container.removeEventListener('click', this.clickObject)
 
     // break reference to three-js objects (and let's garbage collector do its work)
-    this.camera   = null
-    this.renderer = null
-    this.scene    = null
-    this.stats    = null
+    this.clock          = null
+    this.camera         = null
+    this.renderer       = null
+    this.scene          = null
+    this.stats          = null
+    this.animationMixer = null
+    this.audioListener  = null
   }
 
   pointObject(e) {
@@ -64,6 +73,8 @@ class Scene extends Component {
       (e.clientY - this.container.offsetTop) / this.container.clientHeight,
       this.camera,
       this.scene
+    ).filter(
+      inter => inter.object.userData.click
     )
 
     if (0 < intersects.length) {
@@ -76,18 +87,31 @@ class Scene extends Component {
   }
 
   clickObject(e) {
+    const intersects = getPointedObjects(
+      (e.clientX - this.container.offsetLeft) / this.container.clientWidth,
+      (e.clientY - this.container.offsetTop) / this.container.clientHeight,
+      this.camera,
+      this.scene
+    ).filter(
+      inter => inter.object.userData.click
+    )
 
+    if (0 < intersects.length) {
+      const meshConfig = config.meshes.find(mesh => mesh.name === intersects[0].object.name)
+      meshConfig.onClick(intersects[0].object, this.scene, this.animationMixer)
+    }
   }
 
   createScene() {
-    // add & configure camera
-    this.camera = createCamera(this.container, config.camera)
-
-    // add & configure renderer
+    this.clock    = new Clock()
     this.renderer = createRenderer(this.container, config.render)
+    this.camera   = createCamera(this.container, config.camera)
 
-    // create scene
-    this.scene = buildScene(config)
+    this.audioListener  = new AudioListener()
+    this.camera.add(this.audioListener)
+
+    this.scene    = buildScene(config, this.audioListener)
+    this.animationMixer = new AnimationMixer(this.scene)
 
     // add stats if enabled
     if (config.helpers.stats) {
@@ -100,6 +124,7 @@ class Scene extends Component {
       this.stats.begin()
     }
 
+    this.animationMixer.update(this.clock.getDelta() * this.animationMixer.timeScale)
     this.renderer.render(this.scene, this.camera)
 
     if (this.stats) {

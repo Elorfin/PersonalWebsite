@@ -1,4 +1,10 @@
-import { PlaneBufferGeometry } from 'three'
+import {
+  AnimationClip,
+  NumberKeyframeTrack,
+  PlaneBufferGeometry,
+  LoopOnce,
+  Math as TMath
+} from 'three'
 
 import { default as SM_Ceiling }        from 'models/Building/Ceiling/SM_Ceiling'
 import { default as SM_Ventilation }    from 'models/Building/Ventilation/SM_Ventilation'
@@ -138,9 +144,46 @@ const meshes = [
     name: 'SM_Door',
     geometry: SM_Door,
     material: 'M_Door',
+    onClick: (mesh, scene, animationMixer) => {
+      const action = animationMixer
+        .clipAction(!mesh.userData.opened ? 'open' : 'close', mesh)
+        .setLoop(LoopOnce, 0)
+      const sound = mesh.getObjectByName(!mesh.userData.opened ? 'A_DoorOpen' : 'A_DoorClose')
+      action.clampWhenFinished = true
+
+      if (mesh.currentAnimation) {
+        if (mesh.currentAnimation.isRunning()) {
+          action.crossFadeFrom(mesh.currentAnimation, .1)
+          mesh.fadeAnimation = mesh.currentAnimation
+        } else {
+          if (mesh.fadeAnimation) {
+            mesh.fadeAnimation.stopWarping().stopFading().stop()
+          }
+          mesh.currentAnimation.stopWarping().stopFading().stop()
+        }
+      }
+
+      action.play()
+      sound.play()
+
+      mesh.userData.opened = !mesh.userData.opened
+      mesh.currentAnimation = action
+    },
+    sounds: [
+      'A_DoorOpen',
+      'A_DoorClose'
+    ],
+    animations: [
+      new AnimationClip('open', .4, [
+        new NumberKeyframeTrack('.rotation[y]', [0, .4], [TMath.degToRad(90), TMath.degToRad(180)])
+      ]),
+      new AnimationClip('close', .4, [
+        new NumberKeyframeTrack('.rotation[y]', [0, .4], [TMath.degToRad(180), TMath.degToRad(90)])
+      ])
+    ],
     instances: [
-      { scale: [1, 1, 1], position: [-7.625, 0, -7.125], rotation: [0, 180, 0] }
-    ]
+      { scale: [1, 1, 1], position: [-7.625, 0, -7.125], rotation: [0, 90, 0] }
+    ],
   },
 
   // left bay (indoor)

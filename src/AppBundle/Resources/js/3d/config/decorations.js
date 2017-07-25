@@ -30,6 +30,9 @@ const meshes = [
     name: 'SM_Octocat',
     geometry: SM_Octocat,
     material: 'M_Octocat',
+    onClick: () => {
+      window.location.href = 'https://github.com/Elorfin'
+    },
     instances: [
       { scale: [1, 1, 1], position: [5.95, 3, -7.1], rotation: [0, 0, 0] }
     ]
@@ -38,6 +41,9 @@ const meshes = [
     name: 'SM_LinkedIn',
     geometry: SM_LinkedIn,
     material: 'M_LinkedIn',
+    onClick: () => {
+      window.location.href = 'https://www.linkedin.com/in/axel-penin-32645b70/'
+    },
     instances: [
       { scale: [1, 1, 1], position: [6.7, 3, -7.1], rotation: [0, 0, 0] }
     ]
@@ -46,6 +52,9 @@ const meshes = [
     name: 'SM_StackOverflow',
     geometry: SM_StackOverflow,
     material: 'M_StackOverflow',
+    onClick: () => {
+      window.location.href = 'https://stackoverflow.com/users/379907/elorfin'
+    },
     instances: [
       { scale: [1, 1, 1], position: [7.45, 3, -7.1], rotation: [0, 0, 0] }
     ]

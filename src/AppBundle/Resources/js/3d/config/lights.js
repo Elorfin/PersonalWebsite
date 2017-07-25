@@ -46,7 +46,7 @@ const lights = [
         near: .1,
         far: 8
       },
-      mapSize: 1024
+      /*mapSize: 1024*/
     },
     instances: [
       // hall

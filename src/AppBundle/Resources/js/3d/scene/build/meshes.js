@@ -2,19 +2,23 @@ import merge from 'lodash/merge'
 
 import {
   Mesh,
-  Math as TMath
+  Math as TMath,
+  PositionalAudio
 } from 'three'
 
 import { getGeometryFromObject } from './../parser/raw-object-parser'
+import { getAudio } from './assets'
 import { getMaterialInstance } from './materials'
 
 const defaultMeshConfig = {
   castShadow: true,
   receiveShadow: true,
-  instances: {}
+  instances: [],
+  animations: [],
+  sounds: []
 }
 
-function createMesh(name, geometry, material, config) {
+function createMesh(name, geometry, material, config, audioListener) {
   const mesh = new Mesh(geometry, material)
 
   mesh.name          = name
@@ -33,10 +37,31 @@ function createMesh(name, geometry, material, config) {
     mesh.rotation.set(...config.rotation.map(axis => TMath.degToRad(axis)))
   }
 
+  if (config.animations) {
+    mesh.animations = config.animations
+  }
+
+  if (config.sounds) {
+    config.sounds.map(sound => {
+      let positionalAudio = new PositionalAudio(audioListener)
+      getAudio(sound, (soundBuffer) => {
+        positionalAudio.name = sound
+        positionalAudio.setBuffer(soundBuffer)
+        positionalAudio.setRefDistance(mesh.position.distanceTo(audioListener.parent.position))
+      })
+
+      mesh.add(positionalAudio)
+    })
+  }
+
+  if (config.userData) {
+    mesh.userData = config.userData
+  }
+
   return mesh
 }
 
-function add(scene, meshes) {
+function add(scene, meshes, audioListener) {
   // Load all defined meshes
   meshes.map(config => {
     const meshConfig = merge({}, defaultMeshConfig, config)
@@ -56,13 +81,20 @@ function add(scene, meshes) {
     meshConfig.instances.map((shape, idx) => {
       scene.add(
         createMesh(
-          meshConfig.name + '_' + idx,
+          meshConfig.name,
           meshGeometry,
           material,
           Object.assign({}, shape, {
             castShadow: meshConfig.castShadow,
-            receiveShadow: meshConfig.receiveShadow
-          })
+            receiveShadow: meshConfig.receiveShadow,
+            animations: meshConfig.animations,
+            sounds: meshConfig.sounds,
+            userData: {
+              index: idx,
+              click: !!meshConfig.onClick
+            }
+          }),
+          audioListener
         )
       )
     })

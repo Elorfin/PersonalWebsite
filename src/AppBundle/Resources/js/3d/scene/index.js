@@ -47,11 +47,12 @@ function addStats(container) {
 /**
  * Creates a new scene based on config.
  *
- * @param {object} config
+ * @param {object}        config
+ * @param {AudioListener} audioListener
  *
  * @returns {Scene}
  */
-function buildScene(config) {
+function buildScene(config, audioListener) {
   const scene = new Scene()
   const sceneConfig = merge({}, defaultConfig, config)
 
@@ -68,7 +69,7 @@ function buildScene(config) {
   // load statics mapping
   loadMapping(sceneConfig.staticAssets).then(() => {
     addLights(scene, sceneConfig.lights, sceneConfig.helpers.lights)
-    addMeshes(scene, sceneConfig.meshes)
+    addMeshes(scene, sceneConfig.meshes, audioListener)
   })
 
   return scene
@@ -125,6 +126,10 @@ function createRenderer(container, rendererConfig) {
   }
 
   renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
+
+  /*renderer.gammaInput = true
+  renderer.gammaOutput = true
+  renderer.physicallyCorrectLights = true*/
 
   // Enable shadow rendering
   if (rendererConfig.shadow) {

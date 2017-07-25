@@ -4,15 +4,6 @@ import {
 } from 'three'
 
 const materials = {
-  M_Sky: {
-    options: {
-      shading: SmoothShading
-    },
-    textures: {
-      map: 'T_Sky_D'
-    }
-  },
-
   M_Wall: {
     textures: {
       map      : 'T_Wall_D',

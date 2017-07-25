@@ -13,12 +13,15 @@ const IMPORT_FILES = {
   '.json': 'models',*/
   '.png': 'textures',
   '.jpg': 'textures',
-  '.jpeg': 'textures'
+  '.jpeg': 'textures',
+  '.wav': 'audios',
+  '.mp3': 'audios'
 }
 
 const mapping = {
-  models: {},
-  textures: {}
+  /*models: {},*/
+  textures: {},
+  audios: {}
 }
 
 createDestination()

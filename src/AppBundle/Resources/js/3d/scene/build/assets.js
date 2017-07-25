@@ -1,9 +1,11 @@
 import {
   FileLoader,
-  TextureLoader
+  TextureLoader,
+  AudioLoader
 } from 'three'
 
 const TEXTURE_ASSET = 'textures'
+const AUDIO_ASSET   = 'audios'
 
 // path mapping for assets
 let assetMap = {}
@@ -11,12 +13,14 @@ let assetMap = {}
 // stash loaded static assets
 // mostly to avoid multiple AJAX call when building the scene
 const loadedAssets = {
-  [TEXTURE_ASSET]: {}
+  [TEXTURE_ASSET]: {},
+  [AUDIO_ASSET]: {}
 }
 
 // init three JS loaders
 const loaders = {
-  [TEXTURE_ASSET]: new TextureLoader()
+  [TEXTURE_ASSET]: new TextureLoader(),
+  [AUDIO_ASSET]: new AudioLoader()
 }
 
 function loadMapping(mappingFilePath) {
@@ -50,6 +54,11 @@ function getAsset(name, type, callback = () => true) {
   return loadedAssets[type][name]
 }
 
+// shortcut to access audios
+function getAudio(name, callback = () => true) {
+  return getAsset(name, AUDIO_ASSET, callback)
+}
+
 // shortcut to access textures
 function getTexture(name, callback = () => true) {
   return getAsset(name, TEXTURE_ASSET, callback)
@@ -57,5 +66,6 @@ function getTexture(name, callback = () => true) {
 
 export {
   loadMapping,
+  getAudio,
   getTexture
 }
