@@ -166,8 +166,9 @@ const meshes = [
       action.play()
       sound.play()
 
-      mesh.userData.opened = !mesh.userData.opened
       mesh.currentAnimation = action
+      // toggle open state
+      mesh.userData.opened = !mesh.userData.opened
     },
     sounds: [
       'A_DoorOpen',

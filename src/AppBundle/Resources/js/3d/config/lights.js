@@ -38,6 +38,7 @@ const lights = [
 
   // neon lights
   {
+    name: 'L_NeonLight',
     type: PointLight,
     options: [0xFFFFFF, .25, 24, 2],
     castShadow: true,
@@ -63,6 +64,7 @@ const lights = [
 
   // desk lamp
   {
+    name: 'L_DeskLamp',
     type: SpotLight,
     options: [0xECE3AC, 1, 20, Math.PI/4, .5],
     castShadow: true,
@@ -101,6 +103,21 @@ const meshes = [
     name: 'SM_DeskLamp',
     geometry: SM_DeskLamp,
     material: 'M_DeskLamp',
+    onClick: (mesh, scene) => {
+      // retrieve the light to toggle
+      const light = scene.getObjectByName('L_DeskLamp')
+
+      // toggle light state
+      light.visible = !!mesh.userData.off
+      mesh.userData.off = !mesh.userData.off
+
+      // play sound effect
+      const sound = mesh.getObjectByName('A_ButtonClick')
+      sound.play()
+    },
+    sounds: [
+      'A_ButtonClick'
+    ],
     instances: [
       {scale: [1, 1, 1], position: [5.25, 2, 6], rotation: [0, 0, 0]}
     ]

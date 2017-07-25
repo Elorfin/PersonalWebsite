@@ -44,6 +44,8 @@ function add(scene, lights, showHelpers = false) {
     const lightConfig = merge({}, defaultLightConfig, config)
     const light = new lightConfig.type(...lightConfig.options)
 
+    light.name = lightConfig.name
+
     // configure light
     if (lightConfig.castShadow) {
       light.castShadow = true
@@ -71,7 +73,7 @@ function add(scene, lights, showHelpers = false) {
 
     // todo : optimize
     if (lightConfig.instances) {
-      lightConfig.instances.map(instance => {
+      lightConfig.instances.map((instance, idx) => {
         const lightInstance = light.clone()
 
         if (instance.position) {
@@ -81,6 +83,10 @@ function add(scene, lights, showHelpers = false) {
         if (instance.target) {
           lightInstance.target.position.set(...instance.target)
           lightInstance.target.updateMatrixWorld()
+        }
+
+        lightInstance.userData = {
+          index: idx
         }
 
         scene.add(lightInstance)
