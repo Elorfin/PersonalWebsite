@@ -171,8 +171,8 @@ const meshes = [
       mesh.userData.opened = !mesh.userData.opened
     },
     sounds: [
-      'A_DoorOpen',
-      'A_DoorClose'
+      ['A_DoorOpen', .6],
+      ['A_DoorClose', .6]
     ],
     animations: [
       new AnimationClip('open', .4, [

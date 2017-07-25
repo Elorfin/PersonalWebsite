@@ -1,6 +1,6 @@
 import {
   AmbientLight,
-  DirectionalLight,
+  /*DirectionalLight,*/
   PointLight,
   SpotLight
 } from 'three'
@@ -103,20 +103,19 @@ const meshes = [
     name: 'SM_DeskLamp',
     geometry: SM_DeskLamp,
     material: 'M_DeskLamp',
+    options: {
+      on: true
+    },
     onClick: (mesh, scene) => {
-      // retrieve the light to toggle
-      const light = scene.getObjectByName('L_DeskLamp')
-
       // toggle light state
-      light.visible = !!mesh.userData.off
+      scene.getObjectByName('L_DeskLamp').visible = !!mesh.userData.off
       mesh.userData.off = !mesh.userData.off
 
       // play sound effect
-      const sound = mesh.getObjectByName('A_ButtonClick')
-      sound.play()
+      mesh.getObjectByName('A_ButtonClick').play()
     },
     sounds: [
-      'A_ButtonClick'
+      ['A_ButtonClick', .2]
     ],
     instances: [
       {scale: [1, 1, 1], position: [5.25, 2, 6], rotation: [0, 0, 0]}

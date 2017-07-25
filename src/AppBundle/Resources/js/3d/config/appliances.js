@@ -6,6 +6,12 @@ const meshes = [
     name: 'SM_CoffeeMachine',
     geometry: SM_CoffeeMachine,
     material: 'M_CoffeeMachine',
+    onClick: (mesh) => {
+      mesh.getObjectByName('A_CoffeeMaking').play()
+    },
+    sounds: [
+      ['A_CoffeeMaking', .2]
+    ],
     instances: [
       { scale: [1, 1, 1], position: [-15.5, 0, -7.8], rotation: [0, 0, 0] }
     ]

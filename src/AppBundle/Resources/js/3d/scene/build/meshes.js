@@ -43,11 +43,18 @@ function createMesh(name, geometry, material, config, audioListener) {
 
   if (config.sounds) {
     config.sounds.map(sound => {
+      let audio
+      if (typeof sound === 'string') {
+        audio = [sound, 1]
+      } else {
+        audio = sound
+      }
+
       let positionalAudio = new PositionalAudio(audioListener)
-      getAudio(sound, (soundBuffer) => {
-        positionalAudio.name = sound
+      getAudio(audio[0], (soundBuffer) => {
+        positionalAudio.name = audio[0]
         positionalAudio.setBuffer(soundBuffer)
-        /*positionalAudio.setVolume(0.5)*/
+        positionalAudio.setVolume(audio[1])
         positionalAudio.setRefDistance(mesh.position.distanceTo(audioListener.parent.position))
       })
 
