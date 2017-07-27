@@ -123,15 +123,21 @@ const materials = {
   },
 
   M_Cabinet: {
-    textures: {
-      map: 'T_Cabinet_D'
+    options: {
+      color: 0x888888
     }
+    /*textures: {
+      map: 'T_Cabinet_D'
+    }*/
   },
 
   M_CabinetDoor: {
-    textures: {
-      map: 'T_CabinetDoor_D'
+    options: {
+      color: 0x888888
     }
+    /*textures: {
+      map: 'T_CabinetDoor_D'
+    }*/
   },
 
   M_Trash: {
@@ -148,6 +154,12 @@ const materials = {
   },
 
   M_Desk: {
+    options: {
+      color: 0x888888
+    }
+  },
+
+  M_DeskChair: {
     options: {
       color: 0x888888
     }

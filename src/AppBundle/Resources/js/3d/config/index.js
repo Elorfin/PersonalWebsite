@@ -18,7 +18,7 @@ export const config = {
 
   // dev debug options
   helpers: {
-    grid: false,
+    grid: true,
     axis: false,
     lights: false,
     stats: true

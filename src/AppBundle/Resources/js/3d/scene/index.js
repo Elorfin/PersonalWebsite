@@ -8,6 +8,7 @@ import { registerMaterials } from './build/materials'
 import { add as addLights }  from './build/lights'
 import { add as addMeshes }  from './build/meshes'
 import { addAxis, addGrid }  from './build/helpers'
+import { transform }         from './build/world'
 
 const defaultConfig = {
   helpers: {
@@ -154,10 +155,7 @@ function createRenderer(container, rendererConfig) {
 function createCamera(container, cameraConfig) {
   const camera = new cameraConfig.instance(container)
 
-  camera.position.set(...cameraConfig.position)
-  if (cameraConfig.lookAt) {
-    camera.lookAt(cameraConfig.lookAt)
-  }
+  transform(camera, cameraConfig)
 
   return camera
 }

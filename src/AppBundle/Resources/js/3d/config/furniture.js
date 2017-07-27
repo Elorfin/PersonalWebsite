@@ -1,10 +1,12 @@
 import { default as SM_BulletinBoard }   from 'models/Furniture/BulletinBoard/SM_BulletinBoard'
 import { default as SM_Cabinet }         from 'models/Furniture/Cabinet/SM_Cabinet'
 import { default as SM_CabinetDoor }     from 'models/Furniture/Cabinet/SM_CabinetDoor'
+import { default as SM_Chair }           from 'models/Furniture/Chair/SM_Chair'
 import { default as SM_Cupboard }        from 'models/Furniture/Cupboard/SM_Cupboard'
 import { default as SM_CupboardWindows } from 'models/Furniture/Cupboard/SM_CupboardWindows'
 import { default as SM_Documents }       from 'models/Furniture/Cupboard/SM_Documents'
 import { default as SM_Desk }            from 'models/Furniture/Desk/SM_Desk'
+import { default as SM_DeskChair }       from 'models/Furniture/DeskChair/SM_DeskChair'
 import { default as SM_DrawingTable }    from 'models/Furniture/DrawingTable/SM_DrawingTable'
 import { default as SM_HighTable }       from 'models/Furniture/HighTable/SM_HighTable'
 import { default as SM_Trash }           from 'models/Furniture/Trash/SM_Trash'
@@ -45,7 +47,7 @@ const meshes = [
     geometry: SM_Trash,
     material: 'M_Trash',
     instances: [
-      { scale: [1, 1, 1], position: [7.5, 0, 8.5], rotation: [0, 0, 0] }
+      { scale: [1, 1, 1], position: [5, 0, 9], rotation: [0, 0, 0] }
     ]
   },
 
@@ -64,6 +66,25 @@ const meshes = [
     material: 'M_Desk',
     instances: [
       { scale: [1, 1, 1], position: [8, 0, 5], rotation: [0, 55, 0] }
+    ]
+  },
+
+  {
+    name: 'SM_DeskChair',
+    geometry: SM_DeskChair,
+    material: 'M_DeskChair',
+    instances: [
+      { scale: [1, 1, 1], position: [9.5, 0, 6.5], rotation: [0, -100, 0] }
+    ]
+  },
+
+  {
+    name: 'SM_Chair',
+    geometry: SM_Chair,
+    material: 'M_DeskChair',
+    instances: [
+      { scale: [1, 1, 1], position: [2.5, 0, 5.2], rotation: [0, 95, 0] },
+      { scale: [1, 1, 1], position: [4.5, 0, 1], rotation: [0, 30, 0] }
     ]
   },
 

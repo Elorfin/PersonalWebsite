@@ -2,13 +2,13 @@ import merge from 'lodash/merge'
 
 import {
   Mesh,
-  Math as TMath,
   PositionalAudio
 } from 'three'
 
 import { getGeometryFromObject } from './../parser/raw-object-parser'
 import { getAudio } from './assets'
 import { getMaterialInstance } from './materials'
+import { transform } from './world'
 
 const defaultMeshConfig = {
   castShadow: true,
@@ -25,17 +25,7 @@ function createMesh(name, geometry, material, config, audioListener) {
   mesh.castShadow    = config.castShadow
   mesh.receiveShadow = config.receiveShadow
 
-  if (config.scale) {
-    mesh.scale.set(...config.scale)
-  }
-
-  if (config.position) {
-    mesh.position.set(...config.position)
-  }
-
-  if (config.rotation) {
-    mesh.rotation.set(...config.rotation.map(axis => TMath.degToRad(axis)))
-  }
+  transform(mesh, config)
 
   if (config.animations) {
     mesh.animations = config.animations
