@@ -18,7 +18,7 @@ export const config = {
 
   // dev debug options
   helpers: {
-    grid: true,
+    grid: false,
     axis: false,
     lights: false,
     stats: true
@@ -52,8 +52,8 @@ export const config = {
     lookAt: { x: 0, y: 4, z: 0 }
 
     // top-down camera
-    /*position: [0, 48, 0],
-    lookAt: { x: 0, y: 0, z: 0 }*/
+    /*position: [0, 48, 2],
+    lookAt: { x: 0, y: 0, z: 2 }*/
   },
 
   lights: lights,

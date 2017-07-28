@@ -90,7 +90,17 @@ const meshes = [
       { scale: [1, 1, 1], position: [0, 0, -8], rotation: [0, 0, 0] },
       { scale: [1, 1, 1], position: [4, 0, -8], rotation: [0, 0, 0] },
       { scale: [1, 1, 1], position: [8, 0, -8], rotation: [0, 0, 0] },
-      { scale: [1, 1, 1], position: [12, 0, -8], rotation: [0, 0, 0] }
+      { scale: [1, 1, 1], position: [12, 0, -8], rotation: [0, 0, 0] },
+
+      // front wall
+      { scale: [-1, 1, 1], position: [-12, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [-8, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [-4, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [0, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [4, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [8, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [12, 0, 12], rotation: [0, 0, 0] },
+      { scale: [-1, 1, 1], position: [16, 0, 12], rotation: [0, 0, 0] }
     ]
   },
 

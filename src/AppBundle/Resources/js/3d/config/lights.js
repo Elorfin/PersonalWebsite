@@ -76,7 +76,7 @@ const lights = [
       mapSize: 256
     },
     instances: [
-      {position: [5.975, 3.7, 6], target: [6.525, 0, 6]}
+      {position: [5.975, 3.7, 5], target: [6.525, 0, 5]}
     ]
   }
 ]
@@ -118,7 +118,7 @@ const meshes = [
       ['A_ButtonClick', .2]
     ],
     instances: [
-      {scale: [1, 1, 1], position: [5.25, 2, 6], rotation: [0, 0, 0]}
+      {scale: [1, 1, 1], position: [5.25, 2, 5], rotation: [0, 0, 0]}
     ]
   }
 ]

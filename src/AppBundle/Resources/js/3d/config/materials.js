@@ -104,6 +104,12 @@ const materials = {
     }
   },
 
+  M_Printer: {
+    options: {
+      color: 0x666666
+    }
+  },
+
   M_Computer: {
     options: {
       color: 0x262626
@@ -150,6 +156,12 @@ const materials = {
   M_DrawingTable: {
     textures: {
       map: 'T_DrawingTable_D'
+    }
+  },
+
+  M_Couch: {
+    options: {
+      color: 0x888888
     }
   },
 
