@@ -5,7 +5,7 @@
   .list-item {
     font-size: 14px;
     padding: 10px;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #CCCCCC;
 
     &:last-child {
       border-bottom: none;
@@ -54,7 +54,9 @@
   margin-top: auto;
   text-align: right;
 
-  a {
+  a,
+  button {
+    background: transparent;
     padding: $btn-padding-y-lg $btn-padding-x-lg;
     border: 1px solid transparent;
 
@@ -65,25 +67,15 @@
     }
   }
 
-  .desktop-cancel {
-    /*margin-right: 30px;*/
-  }
-
   .desktop-open {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     font-size: $font-size-h4;
     width: 20%;
-
-
     border-radius: 50px;
     border-color: white;
     box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.75),
-    inset 0 0 1px 2px rgba(0, 0, 0, 0.75);
-
-
-
-
+                inset 0 0 1px 2px rgba(0, 0, 0, 0.75);
   }
 }
