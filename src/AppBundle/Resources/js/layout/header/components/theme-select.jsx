@@ -7,7 +7,7 @@ const ThemeSelect = () =>
     </a>
 
     <a href="" className="">
-      <span className="fa fa-fw fa-circle" />
+      <span className="fa fa-fw fa-moon-o" />
     </a>
   </div>
 

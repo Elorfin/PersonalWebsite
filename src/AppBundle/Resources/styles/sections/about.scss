@@ -19,6 +19,7 @@
 
 .desktop-banner-container {
   margin-top: -2px; // hack to hide top bar borders
+  margin-left: calc(-100vw + 100%);
   border-bottom: 1px solid white;
 
   display: flex;

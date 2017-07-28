@@ -27,6 +27,13 @@ button {
   }
 }
 
+// avoids push effect on content when scrollbar appears
+.app-header,
+.app-content,
+.app-footer {
+  padding-left: calc(100vw - 100%);
+}
+
 .app-container {
   height: 100%;
   width: 100%;
@@ -47,4 +54,34 @@ button {
 
 .app-section {
   padding-top: $grid-gutter-width-base;
+}
+
+.back-to-top {
+  position: fixed;
+  right: calc(-100vw + 100%);
+  bottom: 0;
+  margin: $grid-gutter-width-base;
+
+  color: $body-bg;
+  background: $gray-dark;
+  border-radius: 50%;
+  border: none;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  font-size: $font-size-h1;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4); // larger than the standard btn box-shadow
+
+  @include transition($btn-transition);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $body-bg;
+    text-decoration: none;
+    background: darken($gray-dark, 10%);
+  }
 }
