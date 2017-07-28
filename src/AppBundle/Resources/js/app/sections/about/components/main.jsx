@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes as T } from 'prop-types'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { select } from 'main/app/selectors'
 import { SocialNetworks } from 'main/app/containers/social.jsx'
@@ -83,13 +84,13 @@ const About = props =>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
         <div className="desktop-banner-btns">
-          <a href="" className="desktop-cancel">
+          <button type="button" className="desktop-cancel">
             No, thanks.
-          </a>
+          </button>
 
-          <a href="" className="desktop-open">
+          <NavLink to="/3d" className="desktop-open">
             Try it now ! <span className="fa fa-arrow-right" />
-          </a>
+          </NavLink>
         </div>
       </div>
     </section>
