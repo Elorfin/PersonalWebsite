@@ -34,3 +34,4 @@
 !/web/dist/models/.gitkeep
 /web/uploads/*
 !/web/uploads/.gitkeep
+/web/index.html

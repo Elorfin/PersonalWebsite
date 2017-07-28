@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>{% block title %}Axel Penin{% endblock %}</title>
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description | striptags }}" />
 
         <link type="text/css" rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
-        {% block stylesheets %}{% endblock %}
 
+        <!-- Set the toolbar color for env that support it -->
+        <meta name="theme-color" content="#FFFFFF" />
+
+        <!-- favicon have become slightly complex -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}" />
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}" />
+        <link rel="mask-icon" color="#5bbad5" href="{{ asset('favicon/safari-pinned-tab.svg') }}" />
+        <link rel="manifest" href="{{ asset('manifest.json') }}" />
     </head>
 
     <body>
+        <!-- react mount point -->
         <div class="app-container"></div>
-        {% block body %}{% endblock %}
 
+        <script src="{{ asset('dist/js/common.bundle.js') }}"></script>
+        <script src="{{ asset('dist/js/polyfills.bundle.js') }}"></script>
         <script src="{{ asset('dist/js/app.bundle.js') }}"></script>
-        {% block javascripts %}{% endblock %}
     </body>
 </html>
