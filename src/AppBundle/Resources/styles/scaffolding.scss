@@ -19,6 +19,14 @@ body {
   font-style: italic;
 }
 
+button {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .app-container {
   height: 100%;
   width: 100%;
