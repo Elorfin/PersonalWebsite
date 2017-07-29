@@ -22,6 +22,13 @@ const meshes = [
     name: 'SM_Computer',
     geometry: SM_Computer,
     material: 'M_Computer',
+    onClick: (mesh) => {
+      // play sound effect
+      mesh.getObjectByName('A_Keyboard').play()
+    },
+    sounds: [
+      ['A_Keyboard', .1]
+    ],
     instances: [
       { scale: [1, 1, 1], position: [6.7, 2, 3.2], rotation: [0, 55, 0] }
     ]
@@ -31,9 +38,15 @@ const meshes = [
     name: 'SM_Printer',
     geometry: SM_Printer,
     material: 'M_Printer',
-    onClick: () => {
+    onClick: (mesh) => {
+      // play sound effect
+      mesh.getObjectByName('A_Printing').play()
+
       window.location.href = 'http://localhost/APWebsite/web/app_dev.php/pdf'
     },
+    sounds: [
+      ['A_Printing', .4]
+    ],
     instances: [
       { scale: [1, 1, 1], position: [15.8, 1, 5], rotation: [0, -90, 0] }
     ]

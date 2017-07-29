@@ -44,7 +44,7 @@ export const config = {
     instance: (container) => {
       const height   = 8 // back wall height
       const distance = 16
-      const vFOV     = 2 * Math.atan(height / ( 2 * distance ))
+      const vFOV     = 2 * Math.atan(height / (2 * distance))
 
       return new PerspectiveCamera(vFOV * 180 / Math.PI, container.offsetWidth / container.offsetHeight, 10, 50)
     },

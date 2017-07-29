@@ -13,10 +13,10 @@
 @import "./fonts";
 @import "./scaffolding";
 
+@import "./layout/errors";
 @import "./layout/header";
 @import "./layout/footer";
 
-@import "./components/errors";
 @import "./components/content-panel";
 @import "./components/maze";
 @import "./components/social";

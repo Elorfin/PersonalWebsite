@@ -40,6 +40,13 @@ const meshes = [
     name: 'SM_Whiteboard',
     geometry: SM_Whiteboard,
     material: 'M_Whiteboard',
+    onClick: (mesh) => {
+      // play sound effect
+      mesh.getObjectByName('A_MarkerWriting').play()
+    },
+    sounds: [
+      ['A_MarkerWriting', .3]
+    ],
     instances: [
       { scale: [1, 1, 1], position: [-3.4, 0, -7], rotation: [0, -8, 0] }
     ]
