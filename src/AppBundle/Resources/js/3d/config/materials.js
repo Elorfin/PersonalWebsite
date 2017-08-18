@@ -13,7 +13,7 @@ const materials = {
 
   M_Ceiling: {
     options: {
-      side: DoubleSide
+      /*side: DoubleSide*/
     },
     textures: {
       map      : 'T_Ceiling_D',

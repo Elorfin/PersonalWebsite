@@ -2,6 +2,7 @@ import { default as SM_BulletinBoard }   from 'models/Furniture/BulletinBoard/SM
 import { default as SM_Cabinet }         from 'models/Furniture/Cabinet/SM_Cabinet'
 import { default as SM_CabinetDoor }     from 'models/Furniture/Cabinet/SM_CabinetDoor'
 import { default as SM_Chair }           from 'models/Furniture/Chair/SM_Chair'
+import { default as SM_CoatHanger }      from 'models/Furniture/CoatHanger/SM_CoatHanger'
 import { default as SM_Couch }           from 'models/Furniture/Couch/SM_Couch'
 import { default as SM_Cupboard }        from 'models/Furniture/Cupboard/SM_Cupboard'
 import { default as SM_CupboardWindows } from 'models/Furniture/Cupboard/SM_CupboardWindows'
@@ -49,6 +50,15 @@ const meshes = [
     ],
     instances: [
       { scale: [1, 1, 1], position: [-3.4, 0, -7], rotation: [0, -8, 0] }
+    ]
+  },
+
+  {
+    name: 'SM_CoatHanger',
+    geometry: SM_CoatHanger,
+    material: 'M_Printer',
+    instances: [
+      { scale: [1, 1, 1], position: [-6.9, 4.2, -8], rotation: [0, 0, 0] }
     ]
   },
 

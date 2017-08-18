@@ -102,9 +102,9 @@ const meshes = [
     name: 'SM_DeskLamp',
     geometry: SM_DeskLamp,
     material: 'M_DeskLamp',
-    options: {
+    /*options: {
       on: true
-    },
+    },*/
     onClick: (mesh, scene) => {
       // toggle light state
       scene.getObjectByName('L_DeskLamp').visible = !!mesh.userData.off

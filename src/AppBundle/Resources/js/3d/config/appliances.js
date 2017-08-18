@@ -24,10 +24,10 @@ const meshes = [
     material: 'M_Computer',
     onClick: (mesh) => {
       // play sound effect
-      mesh.getObjectByName('A_Keyboard').play()
+      mesh.getObjectByName('A_KeyboardTyping').play()
     },
     sounds: [
-      ['A_Keyboard', .1]
+      ['A_KeyboardTyping', .1]
     ],
     instances: [
       { scale: [1, 1, 1], position: [6.7, 2, 3.2], rotation: [0, 55, 0] }

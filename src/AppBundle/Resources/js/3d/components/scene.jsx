@@ -107,10 +107,10 @@ class Scene extends Component {
     this.renderer = createRenderer(this.container, config.render)
     this.camera   = createCamera(this.container, config.camera)
 
-    this.audioListener  = new AudioListener()
+    this.audioListener = new AudioListener()
     this.camera.add(this.audioListener)
 
-    this.scene    = buildScene(config, this.audioListener)
+    this.scene = buildScene(config, this.audioListener)
     this.animationMixer = new AnimationMixer(this.scene)
 
     // add stats if enabled
