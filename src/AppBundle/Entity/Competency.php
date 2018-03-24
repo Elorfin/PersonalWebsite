@@ -27,6 +27,20 @@ class Competency implements \JsonSerializable
     private $mastery = 0;
 
     /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
+    private $icon;
+
+    /**
+     * @ORM\Column(type="array")
+     *
+     * @var array
+     */
+    private $colors;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Competency", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      *
@@ -67,6 +81,26 @@ class Competency implements \JsonSerializable
     public function setMastery(int $mastery)
     {
         $this->mastery = $mastery;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon)
+    {
+        $this->icon = $icon;
+    }
+
+    public function getColors(): array
+    {
+        return $this->colors;
+    }
+
+    public function setColors(array $colors)
+    {
+        $this->colors = $colors;
     }
 
     /**
@@ -135,8 +169,12 @@ class Competency implements \JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
             'mastery' => $this->mastery,
+            'description' => $this->description,
+            'meta' => [
+                'icon'   => $this->icon,
+                'colors' => $this->colors,
+            ],
             'parent' => !empty($this->parent) ? $this->parent->getId() : null,
         ];
     }

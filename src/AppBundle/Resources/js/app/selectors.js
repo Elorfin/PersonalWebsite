@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 
 const about = state => state.about
 const experiences = state => state.experiences
-const competencies = state => state.competencies
+const competencies = state => state.competencies.list
 
 const lastSiteUpdate = createSelector(
   [about],
