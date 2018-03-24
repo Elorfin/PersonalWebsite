@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  */
-class SocialNetwork
+class SocialNetwork implements \JsonSerializable
 {
     use IdTrait;
     use NameTrait;
@@ -22,6 +22,13 @@ class SocialNetwork
      * @var string
      */
     private $url;
+
+    /**
+     * @ORM\Column()
+     *
+     * @var string
+     */
+    private $class;
 
     /**
      * @ORM\Column()
@@ -51,6 +58,26 @@ class SocialNetwork
     }
 
     /**
+     * Get class.
+     *
+     * @return string
+     */
+    public function getClass(): string
+    {
+        return $this->class;
+    }
+
+    /**
+     * Set class.
+     *
+     * @param string $class
+     */
+    public function setClass(string $class)
+    {
+        $this->class = $class;
+    }
+
+    /**
      * Get icon.
      *
      * @return string
@@ -68,5 +95,21 @@ class SocialNetwork
     public function setIcon(string $icon)
     {
         $this->icon = $icon;
+    }
+
+    /**
+     * Serialize competency data.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'class' => $this->class,
+            'icon' => $this->icon,
+            'utl' => $this->url,
+        ];
     }
 }
