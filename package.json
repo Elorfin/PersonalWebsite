@@ -26,7 +26,7 @@
     "eslint-plugin-react": "^7.1.0",
     "node-sass": "^4.5.3",
     "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^3.1.11"
   },
   "scripts": {
     "build": "npm run webpack && npm run fonts && npm run sass && npm run models",
